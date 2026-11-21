@@ -1,5 +1,7 @@
 # 670Send — deployment manual (one Ubuntu 26.04 VPS)
 
+> 🇮🇩 **Versi Bahasa Indonesia yang lebih rinci dan ramah pemula: [`PANDUAN-INSTALASI-VPS.md`](PANDUAN-INSTALASI-VPS.md).**
+
 This is the whole path from an empty server to a running, monitored, backed-up 670Send, written for the person who
 will operate it. Every command is meant to be copied. Time needed the first time: about half a day (most of it waiting
 for DNS, Docker builds and the Meta/WhatsApp approvals — not for typing).
@@ -130,7 +132,7 @@ openssl rand -base64 32   # FIELD_ENCRYPTION_KEY
 |---|---|
 | URLs, `CORS_ORIGINS` | Exact origins, no wildcards, no trailing slash. |
 | `S3_*` | R2: endpoint `https://<account-id>.r2.cloudflarestorage.com`, region `auto`, bucket `670send-private`, a token scoped **only** to that bucket (Object Read & Write). |
-| `WHATSAPP_PROVIDER` + its credentials | `meta`, `fonnte` or `waha`. Leave unused providers **commented out** — an empty value fails validation. |
+| `WHATSAPP_PROVIDER` + its credentials | `fonnte` or `waha` for go-live. `meta` currently sends free text, which Meta delivers only inside the 24-hour window (template sending is not implemented). Leave unused providers **commented out** — an empty value fails validation. |
 | `SEED_SUPERADMIN_*` | The first Super Admin (≥ 14-character password). The first sign-in forces a password change. |
 | `BACKUP_*` | See §9. |
 

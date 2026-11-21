@@ -19,7 +19,7 @@ function VolumeChart({ days }: { days: Executive['last14Days'] }) {
       <h2 className="h2 mb-3">{t('admin.dashboard.last14')}</h2>
       <div className="flex h-36 items-end gap-1" role="img" aria-label={t('admin.dashboard.last14')}>
         {days.map((d) => (
-          <div key={d.date} className="flex flex-1 flex-col items-center justify-end" title={`${d.date}: ${d.parcels} · ${usd(d.gmv)}`}>
+          <div key={d.date} className="flex h-full flex-1 flex-col items-center justify-end" title={`${d.date}: ${d.parcels} · ${usd(d.gmv)}`}>
             <div className="w-full rounded-t bg-brand-500" style={{ height: `${Math.max(2, (d.parcels / max) * 100)}%` }} />
           </div>
         ))}

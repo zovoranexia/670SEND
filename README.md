@@ -4,6 +4,7 @@ Inter-municipality parcel logistics for Timor-Leste (14 municipalities) — Zovo
 `670send.tl` · `app.670send.tl` · `admin.670send.tl` · `api.670send.tl`
 
 * Architecture, ledger design, security decisions and open questions: [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md)
+* **Install on an Ubuntu 26.04 VPS:** [docs/PANDUAN-INSTALASI-VPS.md](docs/PANDUAN-INSTALASI-VPS.md) (Bahasa Indonesia, step by step) · [docs/DEPLOYMENT.md](docs/DEPLOYMENT.md) (English reference) · [infra/README.md](infra/README.md) (file map)
 * Database setup, migrations and seed: [apps/api/prisma/README.md](apps/api/prisma/README.md)
 * API conventions (decorators, guards, ledger, idempotency, uploads, tests): [apps/api/README.md](apps/api/README.md)
 * Business source document: `../paket_dokumen_sop_mou_skema_tarif_logistik_670send.md`
