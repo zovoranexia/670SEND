@@ -1,0 +1,30 @@
+{
+  "name": "670send",
+  "version": "0.1.0",
+  "private": true,
+  "description": "670Send — inter-municipality parcel logistics platform for Timor-Leste (Zovoranexia, Lda.)",
+  "packageManager": "pnpm@12.18.0",
+  "engines": {
+    "node": ">=22.12.0",
+    "pnpm": ">=10.0.0"
+  },
+  "scripts": {
+    "build": "turbo run build",
+    "dev": "turbo run dev --parallel",
+    "lint": "turbo run lint",
+    "typecheck": "turbo run typecheck",
+    "test": "turbo run test",
+    "db:up": "docker compose -f docker-compose.dev.yml up -d",
+    "db:down": "docker compose -f docker-compose.dev.yml down",
+    "db:generate": "pnpm --filter @670send/api db:generate",
+    "db:migrate": "pnpm --filter @670send/api db:migrate",
+    "db:seed": "pnpm --filter @670send/api db:seed",
+    "db:reset": "pnpm --filter @670send/api db:reset",
+    "format": "prettier --write \"**/*.{ts,tsx,json,md,yml,yaml}\" --ignore-path .gitignore"
+  },
+  "devDependencies": {
+    "prettier": "^3.6.2",
+    "turbo": "^2.5.0",
+    "typescript": "~5.9.3"
+  }
+}

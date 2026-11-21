@@ -1,0 +1,10 @@
+﻿<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" width="120" height="120" role="img" aria-label="670Send">
+  <title>670Send</title>
+  <rect width="120" height="120" rx="28" fill="#0B4F5C"/>
+  <g fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="9">
+    <g transform="translate(0 2)"><rect x="20" y="58" width="80" height="42" rx="11" stroke="#F8FAFC"/><path d="M60 58 V76" stroke="#F8FAFC"/>
+    <path d="M44 16 V44 M34 34 L44 44 L54 34" stroke="#E6511A"/>
+    <path d="M76 46 V18 M66 28 L76 18 L86 28" stroke="#E6511A"/></g>
+  </g>
+</svg>
+

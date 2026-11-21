@@ -1,0 +1,58 @@
+# Local development services ONLY (Phase 8 ships the hardened production stack).
+# Host ports default to high ports (55432 / 16379 / 19000) so they never clash with a Postgres, Redis or
+# S3 already running on your machine (override with POSTGRES_PORT / REDIS_PORT / S3_PORT in .env).
+# Ports are bound to 127.0.0.1 so nothing is reachable from the LAN.
+name: 670send-dev
+
+services:
+  postgres:
+    image: postgres:17-alpine
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: send670
+      POSTGRES_PASSWORD: send670_dev_only
+      POSTGRES_DB: send670
+      TZ: Asia/Dili
+      PGTZ: Asia/Dili
+    ports:
+      - "127.0.0.1:${POSTGRES_PORT:-55432}:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U send670 -d send670"]
+      interval: 5s
+      timeout: 3s
+      retries: 10
+
+  redis:
+    image: redis:7-alpine
+    restart: unless-stopped
+    command: ["redis-server", "--appendonly", "yes", "--maxmemory-policy", "noeviction"]
+    ports:
+      - "127.0.0.1:${REDIS_PORT:-16379}:6379"
+    volumes:
+      - redisdata:/data
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 5s
+      timeout: 3s
+      retries: 10
+
+  # S3-compatible object storage for photo uploads (dev only). MinIO no longer publishes public
+  # Docker images, so dev uses Adobe's S3Mock; production uses Cloudflare R2 (see ARCHITECTURE.md).
+  s3:
+    image: adobe/s3mock:latest
+    restart: unless-stopped
+    environment:
+      COM_ADOBE_TESTING_S3MOCK_STORE_INITIAL_BUCKETS: 670send-private
+      COM_ADOBE_TESTING_S3MOCK_STORE_REGION: us-east-1
+      COM_ADOBE_TESTING_S3MOCK_STORE_RETAIN_FILES_ON_EXIT: "true"
+    ports:
+      - "127.0.0.1:${S3_PORT:-19000}:9090"
+    volumes:
+      - s3data:/s3mockroot
+
+volumes:
+  pgdata:
+  redisdata:
+  s3data:

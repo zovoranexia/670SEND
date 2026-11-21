@@ -1,0 +1,622 @@
+{
+  "common": {
+    "appName": "670Send",
+    "tagline": "Send parcels to every municipality in Timor-Leste",
+    "language": {
+      "label": "Language",
+      "tet": "Tetun",
+      "pt": "Português",
+      "en": "English",
+      "id": "Indonesia"
+    },
+    "actions": {
+      "continue": "Continue",
+      "back": "Back",
+      "next": "Next",
+      "cancel": "Cancel",
+      "save": "Save",
+      "submit": "Submit",
+      "confirm": "Confirm",
+      "close": "Close",
+      "search": "Search",
+      "retry": "Retry",
+      "print": "Print",
+      "share": "Share",
+      "download": "Download",
+      "edit": "Edit",
+      "delete": "Delete",
+      "finish": "Finish",
+      "scan": "Scan",
+      "call": "Call",
+      "whatsapp": "WhatsApp",
+      "logout": "Log out",
+      "login": "Log in"
+    },
+    "labels": {
+      "loading": "Loading...",
+      "yes": "Yes",
+      "no": "No",
+      "optional": "Optional",
+      "required": "Required",
+      "total": "Total",
+      "status": "Status",
+      "date": "Date",
+      "from": "From",
+      "to": "To",
+      "name": "Name",
+      "phone": "Mobile number",
+      "address": "Address",
+      "notes": "Notes",
+      "weightKg": "Weight (kg)",
+      "currency": "USD"
+    }
+  },
+  "web": {
+    "nav": {
+      "home": "Home",
+      "calculator": "Rate Calculator",
+      "track": "Track Parcel",
+      "book": "Book Pick-Up",
+      "prohibited": "Prohibited Items",
+      "terms": "Terms"
+    },
+    "hero": {
+      "title": "Send Parcels Across All 14 Municipalities — Safe, Fast & Trackable!",
+      "subtitle": "From your nearest 670Link agent kiosk to the destination municipality — with OTP, proof photos and WhatsApp updates.",
+      "ctaCalculate": "Calculate shipping rate",
+      "ctaTrack": "Track a parcel",
+      "ctaBook": "Book a courier pick-up"
+    },
+    "schemes": {
+      "SCHEME_A": "Agent to Agent",
+      "SCHEME_B": "Pick-Up to Agent",
+      "SCHEME_C": "Agent to Door",
+      "SCHEME_D": "Door to Door (Premium)"
+    },
+    "calculator": {
+      "title": "Rate & Canal Calculator",
+      "origin": "Origin municipality",
+      "destination": "Destination municipality",
+      "weight": "Actual weight (kg)",
+      "length": "Length (cm)",
+      "width": "Width (cm)",
+      "height": "Height (cm)",
+      "scheme": "Service scheme",
+      "declaredValue": "Declared value (USD)",
+      "insure": "Add insurance (1%)",
+      "calculate": "Calculate",
+      "chargeableWeight": "Chargeable weight",
+      "baseFee": "Base shipping fee",
+      "pickupFee": "Courier pick-up fee",
+      "deliveryFee": "Courier delivery fee",
+      "insuranceFee": "Insurance premium",
+      "canal": {
+        "label": "Transport",
+        "BUS_BAGGAGE": "Official bus baggage",
+        "CARGO_TRUCK_PICKUP": "Cargo (pickup / truck)",
+        "SEA_FERRY_CARGO": "Sea cargo (ferry / port manifest)"
+      },
+      "seaNotice": "Parcels to/from Ataúro and Oecusse (RAEOA) travel exclusively on the official sea cargo manifest.",
+      "lead": "Get an indicative price and see how your parcel will travel. No sign-up needed.",
+      "routeTitle": "Route",
+      "parcelTitle": "Parcel",
+      "optionsTitle": "Options",
+      "routeHint": "Every route starts or ends in Díli.",
+      "swap": "Swap origin and destination",
+      "category": "Type of item",
+      "categories": {
+        "DOCUMENT": "Documents",
+        "GENERAL": "General goods",
+        "CLOTHING": "Clothing",
+        "ELECTRONICS": "Electronics",
+        "LIQUID": "Liquids",
+        "FOOD": "Food (packed)",
+        "OTHER": "Other"
+      },
+      "fragile": "Fragile",
+      "heavyBulk": "Heavy or bulky",
+      "insureHint": "Compensation up to the declared value (maximum USD 500).",
+      "resultTitle": "Your quote",
+      "total": "Total to pay",
+      "eta": "Estimated time",
+      "zone": "Tariff zone",
+      "tier": "Parcel class",
+      "tiers": {
+        "DOCUMENT": "Document",
+        "SMALL": "Small parcel",
+        "CARGO": "Cargo"
+      },
+      "volumetric": "Volumetric weight",
+      "wholesale": "Wholesale: the pick-up fee is charged once for 3 or more parcels.",
+      "indicative": "Indicative price. The final amount is confirmed at the kiosk from the real weight and size.",
+      "calculating": "Calculating…",
+      "sameRoute": "Origin and destination must be different.",
+      "needDili": "Every route must start or end in Díli.",
+      "errorGeneric": "We could not calculate the price. Please try again.",
+      "errorNetwork": "Cannot reach the server. Check your connection and try again.",
+      "ctaBook": "Book a pick-up",
+      "ctaFindKiosk": "How to send",
+      "kg": "kg",
+      "cm": "cm"
+    },
+    "tracker": {
+      "title": "Track Parcel",
+      "placeholder": "Enter waybill number (670S-DIL-BCU-261121-0042)",
+      "button": "Search",
+      "notFound": "Waybill not found. Please check the number.",
+      "destinationKiosk": "Destination kiosk",
+      "openMap": "Open in map",
+      "sender": "Sender",
+      "recipient": "Recipient",
+      "lead": "Enter the waybill number from your receipt or WhatsApp message.",
+      "format": "Format: 670S-ORIGIN-DESTINATION-YYMMDD-0000",
+      "invalid": "This does not look like a waybill number.",
+      "searching": "Searching…",
+      "errorNetwork": "Cannot reach the server. Check your connection and try again.",
+      "route": "Route",
+      "transport": "Transport",
+      "lastUpdate": "Last update",
+      "progress": "Progress",
+      "stepOf": "Step {current} of {total}",
+      "reached": "Reached",
+      "pending": "Waiting",
+      "current": "Now",
+      "copyLink": "Copy link",
+      "copied": "Link copied",
+      "kioskHint": "Bring your ID and the 6-digit OTP sent to you on WhatsApp.",
+      "openingHours": "Opening hours",
+      "exceptionTitle": "Attention",
+      "another": "Track another parcel"
+    },
+    "booking": {
+      "title": "Book a Courier Pick-Up",
+      "pickAddress": "Pin the pick-up location on the map",
+      "parcelCount": "Number of parcels",
+      "waNotifyLang": "Language for WhatsApp updates",
+      "wholesaleHint": "3 or more parcels from one location? The pick-up fee is charged only once.",
+      "submit": "Submit request",
+      "lead": "A courier collects your parcels from your door and takes them to the 670Send network. We call or WhatsApp you to confirm.",
+      "detailsTitle": "Your details",
+      "parcelsTitle": "Your parcels",
+      "locationTitle": "Pick-up location",
+      "name": "Your name",
+      "phone": "WhatsApp number",
+      "phoneHint": "Example: +670 7712 3456",
+      "service": "Service",
+      "destination": "Destination municipality",
+      "destinationAny": "Not sure yet",
+      "weight": "Estimated total weight (kg)",
+      "address": "Pick-up address or landmark",
+      "addressHint": "Street, suco, a shop or building the courier can recognise.",
+      "notes": "Notes for the courier",
+      "useLocation": "Use my location",
+      "locating": "Finding you…",
+      "locationDenied": "We could not get your location. Tap the map instead.",
+      "clearPin": "Remove pin",
+      "pinSet": "Pin set at {lat}, {lng}",
+      "noPin": "No pin yet. It is optional, but it helps the courier find you.",
+      "outsideTL": "That point is outside Timor-Leste. Please choose a location inside the country.",
+      "consent": "By sending this request you agree that 670Send may contact you on WhatsApp or by phone about this pick-up.",
+      "submitting": "Sending…",
+      "errorNetwork": "Cannot reach the server. Check your connection and try again.",
+      "errorGeneric": "We could not send your request. Please check the form and try again.",
+      "successTitle": "Request received",
+      "successBody": "Thank you. Our team will call or WhatsApp you to confirm the pick-up.",
+      "reference": "Your reference",
+      "keepReference": "Keep this code. Quote it if you call us.",
+      "newRequest": "Make another request",
+      "seePrice": "See the price in the calculator"
+    },
+    "footer": {
+      "operator": "Zovoranexia, Lda.",
+      "rights": "All rights reserved",
+      "exploreHeading": "Explore",
+      "legalHeading": "Legal",
+      "about": "670Send moves parcels between all 14 municipalities of Timor-Leste. Operated by {operator}.",
+      "support": "WhatsApp support"
+    },
+    "meta": {
+      "home": {
+        "title": "670Send — Parcel delivery across Timor-Leste",
+        "description": "Send parcels between all 14 municipalities of Timor-Leste through 670Link kiosks, bus baggage, cargo and ferry. Fixed tariffs, OTP hand-over and WhatsApp updates."
+      },
+      "calculator": {
+        "title": "Rate & Canal Calculator",
+        "description": "Get an instant price for your parcel and see whether it travels by bus, cargo or sea ferry."
+      },
+      "track": {
+        "title": "Track a Parcel",
+        "description": "Follow your 670Send parcel step by step with its waybill number."
+      },
+      "book": {
+        "title": "Book a Courier Pick-Up",
+        "description": "Ask a 670Send courier to collect your parcels from your door. Drop a pin on the map."
+      },
+      "prohibited": {
+        "title": "Prohibited & Restricted Items",
+        "description": "What you cannot send with 670Send, and how to pack items that need extra care."
+      },
+      "terms": {
+        "title": "Terms of Service",
+        "description": "The terms that apply to every 670Send parcel: declaration, inspection, liability, claims and storage."
+      },
+      "notFound": {
+        "title": "Page not found"
+      }
+    },
+    "a11y": {
+      "skip": "Skip to main content",
+      "mainNav": "Main navigation",
+      "menu": "Menu",
+      "languageMenu": "Choose language",
+      "external": "(opens in a new tab)",
+      "mapHint": "Click or tap the map to drop the pin. You can also use your location, or just type the address.",
+      "mapLoading": "Loading map…",
+      "requiredField": "required"
+    },
+    "home": {
+      "schemesTitle": "Four ways to send",
+      "schemesLead": "Choose how your parcel gets to us — and how it reaches the other side.",
+      "schemeDesc": {
+        "SCHEME_A": "Drop it at a 670Link kiosk. The recipient collects it at the kiosk in the destination municipality.",
+        "SCHEME_B": "A courier collects it from you. The recipient collects it at the destination kiosk.",
+        "SCHEME_C": "Drop it at a kiosk. A local courier delivers it to the recipient’s address.",
+        "SCHEME_D": "Courier pick-up and courier delivery. We handle both ends."
+      },
+      "howTitle": "How it works",
+      "how": {
+        "s1": {
+          "title": "Hand it in",
+          "body": "Bring the parcel to a 670Link kiosk or book a courier. We check your ID and take two photos of the contents."
+        },
+        "s2": {
+          "title": "Sealed and prepared",
+          "body": "The parcel is sealed, weighed and prepared at the hub for the right route."
+        },
+        "s3": {
+          "title": "On the official fleet",
+          "body": "It travels with licensed bus, cargo and ferry partners that work under a written agreement with us."
+        },
+        "s4": {
+          "title": "Arrives at the kiosk",
+          "body": "The recipient gets a WhatsApp message with a 6-digit OTP and the kiosk address."
+        },
+        "s5": {
+          "title": "Hand-over with OTP and ID",
+          "body": "The recipient shows their ID and the OTP. We take a proof-of-delivery photo."
+        }
+      },
+      "trustTitle": "Made so parcels arrive — and so you can prove it",
+      "trust": {
+        "otp": {
+          "title": "OTP hand-over",
+          "body": "Nobody can collect your parcel without the one-time code sent to the recipient."
+        },
+        "photos": {
+          "title": "Photo proof",
+          "body": "Contents and sealed parcel are photographed at drop-off. Delivery is photographed too."
+        },
+        "whatsapp": {
+          "title": "WhatsApp updates",
+          "body": "Sender and recipient are told at every step, in their own language."
+        },
+        "tariff": {
+          "title": "Fixed tariffs",
+          "body": "The price depends on zone and weight and is shown before you pay. No surprises at the counter."
+        }
+      },
+      "coverageTitle": "All 14 municipalities",
+      "coverageLead": "Díli is our hub: every route starts or ends in Díli.",
+      "ctaTitle": "Ready to send?",
+      "ctaBody": "Get your price in seconds. No sign-up needed."
+    },
+    "corridors": {
+      "LOCAL": "Local",
+      "EAST": "East corridor",
+      "SOUTH": "South corridor",
+      "WEST": "West corridor",
+      "SEA": "By sea"
+    },
+    "notFound": {
+      "title": "We could not find that page",
+      "body": "The page may have moved, or the address is not correct.",
+      "home": "Back to the home page"
+    },
+    "form": {
+      "required": "This field is required.",
+      "number": "Enter a valid number.",
+      "positive": "The value must be greater than zero.",
+      "max": "The value must be at most {max}.",
+      "minChars": "Enter at least {min} characters."
+    }
+  },
+  "pwa": {
+    "nav": {
+      "home": "Home",
+      "dropoff": "Receive Parcel",
+      "inbound": "Inbound",
+      "pickup": "Hand Over Parcel",
+      "jobs": "Jobs",
+      "handover": "Hub Handover",
+      "manifest": "Manifest",
+      "wallet": "Wallet",
+      "profile": "Profile"
+    },
+    "wizard": {
+      "step1": "Sender & Recipient (KYC)",
+      "step2": "Prohibited Items & Photos",
+      "step3": "Weight & Dimensions",
+      "step4": "Fee, Insurance & Canal",
+      "step5": "Confirm with PIN",
+      "senderId": "ID document (BI / Voter Card / Passport)",
+      "idNumber": "Document number",
+      "photoOpenBox": "Photo of contents (box open)",
+      "photoSealed": "Photo of sealed parcel",
+      "pin": "6-digit PIN",
+      "done": "Parcel registered. Print the receipt and share via WhatsApp."
+    },
+    "inbound": {
+      "title": "Receive Parcels from Fleet",
+      "sealIntact": "Seal intact, parcels complete",
+      "reportIncident": "Report incident",
+      "driverConfirm": "Driver confirms this incident"
+    },
+    "pod": {
+      "title": "Hand Over to Recipient",
+      "enterOtp": "Enter the 6-digit OTP",
+      "collectorName": "Collector name",
+      "collectorId": "Collector ID number",
+      "storagePenalty": "Storage fee (after day 5)",
+      "photoPod": "Photo of recipient holding the parcel with QR label",
+      "complete": "Complete delivery"
+    },
+    "courier": {
+      "pickupJobs": "Pick-ups",
+      "deliveryJobs": "Deliveries",
+      "callCustomer": "Call customer",
+      "waCustomer": "WhatsApp customer"
+    },
+    "driver": {
+      "scanManifest": "Scan manifest QR",
+      "baggagePhoto": "Photo of parcels in closed baggage compartment",
+      "departed": "Start trip",
+      "arrived": "Arrived",
+      "dropOffPoints": "Agent drop-off points along the route"
+    }
+  },
+  "admin": {
+    "nav": {
+      "dashboard": "Executive Dashboard",
+      "shipments": "Shipments",
+      "hubs": "Hub Operations",
+      "partners": "Partners & Compliance",
+      "finance": "Finance & Ledger",
+      "claims": "CS & Claims",
+      "tariffs": "Tariffs",
+      "templates": "WhatsApp Templates",
+      "rbac": "Roles & Permissions",
+      "audit": "Audit Logs"
+    },
+    "dashboard": {
+      "gmvToday": "GMV today",
+      "gmvMonth": "GMV this month",
+      "platformRevenue": "Platform revenue (25%)",
+      "claimReserve": "Claim reserve (5%)",
+      "inTransit": "Shipments in transit",
+      "unclaimed": "Unclaimed parcels (>5 days)"
+    },
+    "noPermission": "You do not have permission to perform this action.",
+    "forceOverrideReason": "Override reason (mandatory, recorded in audit log)"
+  },
+  "status": {
+    "PICKUP_ASSIGNED": {
+      "label": "Courier assigned",
+      "description": "A 670Send courier is on the way to collect your parcel."
+    },
+    "DROPPED_AT_ORIGIN": {
+      "label": "Parcel received",
+      "description": "The parcel was received and sealed at the origin agent or by the courier."
+    },
+    "CONSOLIDATED_AT_HUB": {
+      "label": "Prepared at Hub",
+      "description": "The parcel is prepared at the terminal hub for loading onto the fleet."
+    },
+    "IN_TRANSIT": {
+      "label": "In transit",
+      "description": "The parcel is travelling on the official fleet to the destination municipality."
+    },
+    "ARRIVED_AT_DEST_AGENT": {
+      "label": "Arrived at destination agent",
+      "description": "The parcel has arrived. The recipient must bring an ID and the OTP code."
+    },
+    "OUT_FOR_DELIVERY": {
+      "label": "Out for delivery",
+      "description": "A local courier is taking the parcel to the recipient's address."
+    },
+    "DELIVERED": {
+      "label": "Delivered",
+      "description": "Delivered to the recipient with OTP verification and proof photo."
+    },
+    "ON_HOLD_ISSUE": {
+      "label": "On hold — issue",
+      "description": "There is a problem with the parcel. Our CS team will contact you."
+    },
+    "RETURN_TO_SENDER": {
+      "label": "Returned to sender",
+      "description": "The parcel was not collected within 14 days and is returning to the Dili Hub."
+    }
+  },
+  "errors": {
+    "generic": "Something went wrong. Please try again.",
+    "unauthorized": "Please log in first.",
+    "forbidden": "You do not have permission for this action.",
+    "not_found": "Information not found.",
+    "validation_failed": "Invalid data. Please check the form.",
+    "idempotency_conflict": "This request key was already used with different data.",
+    "sea_route_bus_forbidden": "Parcels to/from Oecusse (RAEOA) and Ataúro cannot travel by bus. Use the official sea cargo manifest only.",
+    "bus_limit_exceeded": "The parcel exceeds bus baggage limits. Use cargo (pickup/truck).",
+    "bus_capacity_exceeded": "This bus's baggage capacity is full. Choose another bus or use cargo.",
+    "over_max_weight": "Weight exceeds the 500 kg limit.",
+    "insufficient_deposit": "Insufficient deposit balance. Please top up first.",
+    "invalid_otp": "Incorrect OTP code.",
+    "otp_expired": "The OTP code has expired.",
+    "otp_locked": "Too many OTP attempts. Please wait or contact CS.",
+    "photos_required": "2 photos are mandatory: open-box contents and sealed parcel.",
+    "prohibited_check_required": "Confirm that the parcel contains none of the prohibited items.",
+    "kyc_required": "Sender identification is mandatory. Anonymous drop-offs are not accepted.",
+    "shipment_wrong_state": "The shipment's current status does not allow this action.",
+    "vehicle_permit_expired": "The vehicle's DNTT/KIR permit has expired.",
+    "mou_expired": "The fleet partner's MoU has expired.",
+    "claim_over_limit": "The claim amount exceeds the liability limit.",
+    "pin_invalid": "Incorrect PIN.",
+    "account_locked": "Account temporarily locked. Please try again later.",
+    "invalid_credentials": "Invalid credentials.",
+    "account_inactive": "This account is not active. Contact the administrator.",
+    "refresh_invalid": "Session expired. Please log in again.",
+    "too_many_requests": "Too many requests. Please wait a few minutes.",
+    "request_in_progress": "This request is still being processed. Retry in a few seconds.",
+    "idempotency_key_required": "The Idempotency-Key header is required.",
+    "audit_reason_required": "A reason is required for this action (recorded in the audit log).",
+    "file_too_large": "The file is too large. Maximum {maxKb} KB.",
+    "file_type_not_allowed": "File type not allowed. Use JPEG, PNG or WebP.",
+    "upload_failed": "Upload failed. Please try again.",
+    "wallet_not_found": "Wallet not found.",
+    "ledger_unbalanced": "The financial posting is unbalanced. Operation cancelled.",
+    "upload_not_found": "Photo not found or already used.",
+    "internal_error": "Internal error. The technical team has been notified.",
+    "password_change_required": "Change your password before continuing.",
+    "route_not_supported": "This route is not available yet. Parcels must start or end in Dili.",
+    "destination_agent_required": "Choose the destination agent (this municipality has several).",
+    "no_destination_agent": "There is no active agent in the destination municipality.",
+    "declared_value_required": "A declared value is required for electronics and insurance.",
+    "delivery_address_required": "The recipient's address is required for door delivery.",
+    "addon_not_available": "This courier service is not available at this location.",
+    "scheme_not_allowed": "Your role cannot use this service scheme.",
+    "waybill_sequence_exhausted": "Today's waybill numbers for this route are exhausted (9999).",
+    "wrong_hub": "This parcel does not belong to this hub.",
+    "master_bag_invalid": "The master bag is not valid for this action.",
+    "manifest_invalid": "Invalid manifest: check parcels, vehicle and driver.",
+    "parcel_already_assigned": "The parcel is already in a bag or manifest.",
+    "driver_license_expired": "The driver's licence has expired.",
+    "partner_inactive": "The fleet partner is not active.",
+    "baggage_photo_required": "A photo of the parcels in the closed baggage compartment is required.",
+    "storage_fee_unpaid": "Collect the storage fee before handing over.",
+    "incident_driver_confirmation_required": "The driver must confirm this incident first.",
+    "incident_photo_required": "An incident photo is required.",
+    "booking_not_confirmed": "The pick-up request has not been confirmed yet.",
+    "booking_invalid": "Invalid pick-up request, or not assigned to this courier.",
+    "courier_unavailable": "Courier unavailable.",
+    "delivery_not_allowed": "This scheme does not include door delivery.",
+    "deposit_proof_required": "A proof photo is required for bank / MOSAN / T-Pay deposits.",
+    "reference_required": "A reference number is required.",
+    "duplicate_reference": "This reference was already used for another deposit.",
+    "self_approval_forbidden": "You cannot approve your own request.",
+    "payout_empty": "There is nothing to pay out in this period.",
+    "claim_deadline_passed": "Claim window passed: claims must be raised at hand-over.",
+    "claim_total_exceeded": "Total claims exceed the liability limit for this parcel.",
+    "escrow_insufficient": "The claim reserve is insufficient to pay this out.",
+    "refund_not_applicable": "This parcel is not eligible for a refund.",
+    "role_locked": "This role is protected and cannot be changed.",
+    "role_in_use": "Users still hold this role.",
+    "last_super_admin": "The last Super Admin cannot be removed.",
+    "template_variable_invalid": "The template uses variables that are not allowed: {vars}.",
+    "template_otp_required": "The template must include the otp variable.",
+    "setting_not_editable": "This setting cannot be edited through the API.",
+    "user_exists": "This e-mail or phone is already in use.",
+    "rts_invalid": "This parcel is not in the return-to-sender process.",
+    "override_not_allowed": "Override to or from DELIVERED is not allowed.",
+    "agent_not_compliant": "The agent cannot be activated: a signed addendum, a digital scale and secure storage are required.",
+    "fleet_not_compliant": "The partner cannot be activated: a valid MoU, an MoU number and payout details are required.",
+    "validation": {
+      "phone": "Invalid mobile number (+670...).",
+      "whatsapp_phone": "A WhatsApp-capable mobile number is required (+670 7xxx xxxx).",
+      "waybill": "Invalid waybill format.",
+      "otp": "The OTP must be 6 digits.",
+      "pin": "The PIN must be 6 digits.",
+      "pin_weak": "This PIN is too weak. Choose another.",
+      "name": "Incomplete name.",
+      "id_number": "Invalid document number.",
+      "password": "The password must be at least 12 characters, with letters and numbers."
+    }
+  },
+  "receipt": {
+    "title": "PARCEL SHIPPING RECEIPT",
+    "waybill": "Waybill",
+    "date": "Date",
+    "origin": "Origin",
+    "destination": "Destination",
+    "sender": "Sender",
+    "recipient": "Recipient",
+    "weight": "Weight",
+    "chargeable": "Chargeable",
+    "canal": "Transport",
+    "scheme": "Scheme",
+    "baseFee": "Base fee",
+    "pickupFee": "Pick-up fee",
+    "deliveryFee": "Delivery fee",
+    "insuranceFee": "Insurance",
+    "total": "TOTAL",
+    "paidCash": "Paid in cash",
+    "declaration": "The sender declares the contents are true and contain no prohibited items.",
+    "liability": "Max liability (uninsured): 10x base fee or USD 50.",
+    "claimNotice": "Damage claims must be made at hand-over, in front of the Agent.",
+    "trackAt": "Track at 670send.tl/track",
+    "thanks": "Thank you for using 670Send!"
+  },
+  "terms": {
+    "title": "670Send Terms of Service",
+    "clauses": {
+      "declaration": {
+        "title": "Truthful Declaration & Criminal Liability",
+        "body": "The sender warrants that the information about the contents is true and that the parcel contains no illegal or dangerous items. If prohibited items or a false declaration are discovered, the sender is fully liable under criminal and civil law and releases 670Send, Agents, Couriers and Fleet Partners from any legal claim."
+      },
+      "inspection": {
+        "title": "Right of Inspection",
+        "body": "670Send and the competent authorities (PNTL / Customs) may open and inspect a parcel where there are indications of a security violation."
+      },
+      "liability": {
+        "title": "Limited Liability",
+        "body": "Uninsured parcel: compensation is capped at 10 times the base shipping fee or USD 50.00, whichever is lower. Parcel with optional insurance (1% of value): compensation at the declared value, supported by a valid purchase receipt, up to USD 500.00 per waybill."
+      },
+      "exclusions": {
+        "title": "Claim Exclusions",
+        "body": "Not covered: fragile items damaged by inadequate inner packaging, natural deterioration or spoilage, consequential loss, and force majeure (natural disasters, roads cut off or landslides on Timor-Leste's mountain routes)."
+      },
+      "claimDeadline": {
+        "title": "Claim Deadline",
+        "body": "Damage claims must be raised at hand-over in front of the destination Agent or Courier (before leaving the kiosk), with video or photo of the parcel being opened. Claims made after the parcel has been taken home are not valid."
+      },
+      "identity": {
+        "title": "Identity and Hand-over",
+        "body": "The sender must show a valid ID (BI, voter card or passport) when handing in a parcel. The recipient collects with a valid ID and the one-time code (OTP) sent by WhatsApp; the hand-over is recorded with a photo."
+      },
+      "storage": {
+        "title": "Storage at the Destination Kiosk",
+        "body": "A parcel waiting at the kiosk is stored free for the first 5 days. From day 6 to day 14 a storage fee of USD 0.50 per day applies, payable when collecting. A parcel not collected within 14 days returns to the Díli Hub and is handed back to the sender."
+      }
+    },
+    "intro": "By handing a parcel to a 670Link agent or courier you accept these terms."
+  },
+  "prohibited": {
+    "title": "Prohibited & Restricted Items",
+    "intro": "Agents and Couriers must refuse the items below. If smuggling is attempted, 670Send may report it to the PNTL.",
+    "confirmHeading": "I confirm this parcel does NOT contain:",
+    "items": {
+      "narcotics": "Narcotics, psychotropics and prohibited drugs (without Ministry of Health authorization)",
+      "weapons_sharp": "Firearms, ammunition, explosives, fireworks and illegal bladed weapons",
+      "fuel_flammable": "Fuel and flammable/corrosive liquids: petrol, diesel, kerosene, LPG cylinders, wet batteries, thinner, pressurized spray paint",
+      "cash_gold_jewelry": "Cash, gold, high-value jewelry, blank cheques, state secret documents",
+      "protected_wildlife": "Live animals and protected plants (including illegal animal parts)",
+      "untaxed_contraband": "Untaxed contraband (illegal cigarettes or alcohol in commercial quantities)",
+      "raw_perishables": "Fresh perishable food (raw meat, fresh fish, ice) without refrigeration"
+    },
+    "restricted": {
+      "electronics": "Electronics (phones, laptops, spare parts): rigid box with bubble wrap, declared value, insurance recommended.",
+      "documents": "Important documents (diplomas, certificates, original contracts): waterproof pouch.",
+      "liquids": "Non-hazardous liquids (coconut oil, honey, liquid medicine): maximum 1 litre, tightly sealed plastic bottle."
+    },
+    "refusedTitle": "We will refuse these",
+    "restrictedTitle": "Accepted with care",
+    "footerNote": "If in doubt, ask at the kiosk before you send. A false declaration makes the sender fully liable."
+  }
+}

@@ -1,0 +1,21 @@
+﻿<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 120" width="500" height="120" role="img" aria-label="670Send">
+  <title>670Send</title>
+  <rect width="120" height="120" rx="28" fill="#F8FAFC"/>
+  <g fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="9">
+    <g transform="translate(0 2)"><rect x="20" y="58" width="80" height="42" rx="11" stroke="#0B4F5C"/><path d="M60 58 V76" stroke="#0B4F5C"/>
+    <path d="M44 16 V44 M34 34 L44 44 L54 34" stroke="#E6511A"/>
+    <path d="M76 46 V18 M66 28 L76 18 L86 28" stroke="#E6511A"/></g>
+  </g>
+  <g transform="translate(155 28)" fill="none" stroke-width="10" stroke-linecap="round" stroke-linejoin="round">
+    <g stroke="#F8FAFC"><path d="M27.16 14.21 A14 14 0 0 0 0 19 V45"/><circle cx="14" cy="45" r="14"/></g>
+    <g stroke="#F8FAFC"><path d="M46 5 H74 L55 59"/></g>
+    <g stroke="#F8FAFC"><rect x="91" y="5" width="28" height="54" rx="14"/></g>
+    <g stroke="#FF7A45">
+      <path transform="translate(145 0)" d="M26.6 13.9 A13.5 13.5 0 1 0 14 32 A13.5 13.5 0 1 1 1.4 51.1"/>
+      <path transform="translate(194.5 0)" d="M0 43 H32 A16 16 0 1 0 27.3 54.3"/>
+      <path transform="translate(248.5 0)" d="M0 27 V59 M0 41 A14 14 0 0 1 28 41 V59"/>
+      <g transform="translate(298.5 0)"><rect x="0" y="27" width="32" height="32" rx="16"/><path d="M32 5 V59"/></g>
+    </g>
+  </g>
+</svg>
+

@@ -1,0 +1,622 @@
+{
+  "common": {
+    "appName": "670Send",
+    "tagline": "Kirim paket ke seluruh munisípiu di Timor-Leste",
+    "language": {
+      "label": "Bahasa",
+      "tet": "Tetun",
+      "pt": "Português",
+      "en": "English",
+      "id": "Indonesia"
+    },
+    "actions": {
+      "continue": "Lanjut",
+      "back": "Kembali",
+      "next": "Berikutnya",
+      "cancel": "Batal",
+      "save": "Simpan",
+      "submit": "Kirim",
+      "confirm": "Konfirmasi",
+      "close": "Tutup",
+      "search": "Cari",
+      "retry": "Coba lagi",
+      "print": "Cetak",
+      "share": "Bagikan",
+      "download": "Unduh",
+      "edit": "Ubah",
+      "delete": "Hapus",
+      "finish": "Selesai",
+      "scan": "Pindai",
+      "call": "Telepon",
+      "whatsapp": "WhatsApp",
+      "logout": "Keluar",
+      "login": "Masuk"
+    },
+    "labels": {
+      "loading": "Memuat...",
+      "yes": "Ya",
+      "no": "Tidak",
+      "optional": "Opsional",
+      "required": "Wajib diisi",
+      "total": "Total",
+      "status": "Status",
+      "date": "Tanggal",
+      "from": "Dari",
+      "to": "Ke",
+      "name": "Nama",
+      "phone": "Nomor ponsel",
+      "address": "Alamat",
+      "notes": "Catatan",
+      "weightKg": "Berat (kg)",
+      "currency": "USD"
+    }
+  },
+  "web": {
+    "nav": {
+      "home": "Beranda",
+      "calculator": "Hitung Tarif",
+      "track": "Lacak Paket",
+      "book": "Pesan Jemput",
+      "prohibited": "Barang Terlarang",
+      "terms": "Ketentuan"
+    },
+    "hero": {
+      "title": "Kirim Paket ke 14 Munisipalitas dengan Aman, Cepat, dan Bisa Dilacak!",
+      "subtitle": "Dari kios agen 670Link terdekat hingga munisipalitas tujuan — dengan OTP, foto bukti, dan notifikasi WhatsApp.",
+      "ctaCalculate": "Hitung ongkos kirim",
+      "ctaTrack": "Lacak paket",
+      "ctaBook": "Pesan kurir jemput"
+    },
+    "schemes": {
+      "SCHEME_A": "Agen ke Agen",
+      "SCHEME_B": "Jemput ke Agen",
+      "SCHEME_C": "Agen ke Alamat",
+      "SCHEME_D": "Door-to-Door (Premium)"
+    },
+    "calculator": {
+      "title": "Kalkulator Tarif & Kanal",
+      "origin": "Munisipalitas asal",
+      "destination": "Munisipalitas tujuan",
+      "weight": "Berat aktual (kg)",
+      "length": "Panjang (cm)",
+      "width": "Lebar (cm)",
+      "height": "Tinggi (cm)",
+      "scheme": "Skema layanan",
+      "declaredValue": "Nilai barang (USD)",
+      "insure": "Tambah asuransi (1%)",
+      "calculate": "Hitung",
+      "chargeableWeight": "Berat tertagih",
+      "baseFee": "Ongkir dasar",
+      "pickupFee": "Biaya jemput kurir",
+      "deliveryFee": "Biaya antar kurir",
+      "insuranceFee": "Premi asuransi",
+      "canal": {
+        "label": "Transportasi",
+        "BUS_BAGGAGE": "Bagasi bus resmi",
+        "CARGO_TRUCK_PICKUP": "Kargo (pikap / truk)",
+        "SEA_FERRY_CARGO": "Kargo laut (feri / manifes pelabuhan)"
+      },
+      "seaNotice": "Paket ke/dari Ataúro dan Oecusse (RAEOA) hanya melalui manifes kargo laut resmi.",
+      "lead": "Dapatkan perkiraan harga dan lihat bagaimana paket Anda dikirim. Tanpa pendaftaran.",
+      "routeTitle": "Rute",
+      "parcelTitle": "Paket",
+      "optionsTitle": "Opsi",
+      "routeHint": "Setiap rute dimulai atau berakhir di Díli.",
+      "swap": "Tukar asal dan tujuan",
+      "category": "Jenis barang",
+      "categories": {
+        "DOCUMENT": "Dokumen",
+        "GENERAL": "Barang umum",
+        "CLOTHING": "Pakaian",
+        "ELECTRONICS": "Elektronik",
+        "LIQUID": "Cairan",
+        "FOOD": "Makanan (terkemas)",
+        "OTHER": "Lainnya"
+      },
+      "fragile": "Mudah pecah",
+      "heavyBulk": "Berat atau besar",
+      "insureHint": "Ganti rugi hingga nilai yang dideklarasikan (maksimal USD 500).",
+      "resultTitle": "Penawaran Anda",
+      "total": "Total yang dibayar",
+      "eta": "Perkiraan waktu",
+      "zone": "Zona tarif",
+      "tier": "Kelas paket",
+      "tiers": {
+        "DOCUMENT": "Dokumen",
+        "SMALL": "Paket kecil",
+        "CARGO": "Kargo"
+      },
+      "volumetric": "Berat volumetrik",
+      "wholesale": "Grosir: biaya jemput hanya dikenakan sekali untuk 3 paket atau lebih.",
+      "indicative": "Harga perkiraan. Jumlah akhir dikonfirmasi di kios berdasarkan berat dan ukuran sebenarnya.",
+      "calculating": "Menghitung…",
+      "sameRoute": "Asal dan tujuan harus berbeda.",
+      "needDili": "Setiap rute harus dimulai atau berakhir di Díli.",
+      "errorGeneric": "Kami tidak dapat menghitung harga. Silakan coba lagi.",
+      "errorNetwork": "Tidak dapat terhubung ke server. Periksa koneksi Anda dan coba lagi.",
+      "ctaBook": "Pesan jemput",
+      "ctaFindKiosk": "Cara mengirim",
+      "kg": "kg",
+      "cm": "cm"
+    },
+    "tracker": {
+      "title": "Lacak Paket",
+      "placeholder": "Masukkan nomor resi (670S-DIL-BCU-261121-0042)",
+      "button": "Cari",
+      "notFound": "Resi tidak ditemukan. Periksa kembali nomornya.",
+      "destinationKiosk": "Kios tujuan",
+      "openMap": "Buka di peta",
+      "sender": "Pengirim",
+      "recipient": "Penerima",
+      "lead": "Masukkan nomor resi dari struk atau pesan WhatsApp Anda.",
+      "format": "Format: 670S-ASAL-TUJUAN-TTBBHH-0000",
+      "invalid": "Ini tidak terlihat seperti nomor resi.",
+      "searching": "Mencari…",
+      "errorNetwork": "Tidak dapat terhubung ke server. Periksa koneksi Anda dan coba lagi.",
+      "route": "Rute",
+      "transport": "Transportasi",
+      "lastUpdate": "Pembaruan terakhir",
+      "progress": "Progres",
+      "stepOf": "Langkah {current} dari {total}",
+      "reached": "Tercapai",
+      "pending": "Menunggu",
+      "current": "Sekarang",
+      "copyLink": "Salin tautan",
+      "copied": "Tautan disalin",
+      "kioskHint": "Bawa identitas Anda dan OTP 6 digit yang dikirim lewat WhatsApp.",
+      "openingHours": "Jam buka",
+      "exceptionTitle": "Perhatian",
+      "another": "Lacak paket lain"
+    },
+    "booking": {
+      "title": "Pesan Kurir Jemput",
+      "pickAddress": "Tandai lokasi jemput di peta",
+      "parcelCount": "Jumlah paket",
+      "waNotifyLang": "Bahasa pesan WhatsApp",
+      "wholesaleHint": "Kirim 3 paket atau lebih dari satu lokasi? Biaya jemput hanya dikenakan sekali.",
+      "submit": "Kirim permintaan",
+      "lead": "Kurir menjemput paket Anda dari rumah dan membawanya ke jaringan 670Send. Kami akan menelepon atau mengirim WhatsApp untuk konfirmasi.",
+      "detailsTitle": "Data Anda",
+      "parcelsTitle": "Paket Anda",
+      "locationTitle": "Lokasi jemput",
+      "name": "Nama Anda",
+      "phone": "Nomor WhatsApp",
+      "phoneHint": "Contoh: +670 7712 3456",
+      "service": "Layanan",
+      "destination": "Munisipalitas tujuan",
+      "destinationAny": "Belum tahu",
+      "weight": "Perkiraan total berat (kg)",
+      "address": "Alamat atau patokan lokasi jemput",
+      "addressHint": "Jalan, suco, toko, atau gedung yang dikenali kurir.",
+      "notes": "Catatan untuk kurir",
+      "useLocation": "Pakai lokasi saya",
+      "locating": "Mencari lokasi Anda…",
+      "locationDenied": "Kami tidak dapat mengambil lokasi Anda. Ketuk peta saja.",
+      "clearPin": "Hapus pin",
+      "pinSet": "Pin di {lat}, {lng}",
+      "noPin": "Belum ada pin. Boleh dikosongkan, tetapi membantu kurir menemukan Anda.",
+      "outsideTL": "Titik itu berada di luar Timor-Leste. Pilih lokasi di dalam negeri.",
+      "consent": "Dengan mengirim permintaan ini, Anda setuju 670Send dapat menghubungi Anda lewat WhatsApp atau telepon terkait penjemputan ini.",
+      "submitting": "Mengirim…",
+      "errorNetwork": "Tidak dapat terhubung ke server. Periksa koneksi Anda dan coba lagi.",
+      "errorGeneric": "Kami tidak dapat mengirim permintaan Anda. Periksa formulir dan coba lagi.",
+      "successTitle": "Permintaan diterima",
+      "successBody": "Terima kasih. Tim kami akan menelepon atau mengirim WhatsApp untuk mengonfirmasi penjemputan.",
+      "reference": "Referensi Anda",
+      "keepReference": "Simpan kode ini. Sebutkan saat Anda menelepon kami.",
+      "newRequest": "Buat permintaan lain",
+      "seePrice": "Lihat harga di kalkulator"
+    },
+    "footer": {
+      "operator": "Zovoranexia, Lda.",
+      "rights": "Hak cipta dilindungi",
+      "exploreHeading": "Jelajahi",
+      "legalHeading": "Hukum",
+      "about": "670Send mengantar paket antar 14 munisipalitas di Timor-Leste. Dioperasikan oleh {operator}.",
+      "support": "Bantuan WhatsApp"
+    },
+    "meta": {
+      "home": {
+        "title": "670Send — Pengiriman paket ke seluruh Timor-Leste",
+        "description": "Kirim paket antar 14 munisipalitas di Timor-Leste lewat kios 670Link, bagasi bus, kargo, dan feri. Tarif tetap, serah terima dengan OTP, dan notifikasi WhatsApp."
+      },
+      "calculator": {
+        "title": "Kalkulator Tarif & Kanal",
+        "description": "Ketahui harga paket Anda seketika dan lihat apakah dikirim lewat bus, kargo, atau feri laut."
+      },
+      "track": {
+        "title": "Lacak Paket",
+        "description": "Pantau paket 670Send Anda langkah demi langkah dengan nomor resi."
+      },
+      "book": {
+        "title": "Pesan Kurir Jemput",
+        "description": "Minta kurir 670Send menjemput paket Anda dari rumah. Tandai lokasi di peta."
+      },
+      "prohibited": {
+        "title": "Barang Terlarang & Terbatas",
+        "description": "Apa yang tidak boleh dikirim dengan 670Send, dan cara mengemas barang yang perlu perhatian khusus."
+      },
+      "terms": {
+        "title": "Ketentuan Layanan",
+        "description": "Ketentuan untuk setiap paket 670Send: pernyataan, pemeriksaan, tanggung jawab, klaim, dan penyimpanan."
+      },
+      "notFound": {
+        "title": "Halaman tidak ditemukan"
+      }
+    },
+    "a11y": {
+      "skip": "Langsung ke konten utama",
+      "mainNav": "Navigasi utama",
+      "menu": "Menu",
+      "languageMenu": "Pilih bahasa",
+      "external": "(dibuka di tab baru)",
+      "mapHint": "Klik atau ketuk peta untuk menaruh pin. Anda juga bisa memakai lokasi Anda, atau cukup ketik alamat.",
+      "mapLoading": "Memuat peta…",
+      "requiredField": "wajib diisi"
+    },
+    "home": {
+      "schemesTitle": "Empat cara mengirim",
+      "schemesLead": "Pilih bagaimana paket sampai ke kami — dan bagaimana sampai ke tujuan.",
+      "schemeDesc": {
+        "SCHEME_A": "Serahkan di kios 670Link. Penerima mengambilnya di kios munisipalitas tujuan.",
+        "SCHEME_B": "Kurir menjemput dari Anda. Penerima mengambilnya di kios tujuan.",
+        "SCHEME_C": "Serahkan di kios. Kurir lokal mengantar ke alamat penerima.",
+        "SCHEME_D": "Jemput dan antar oleh kurir. Kami menangani kedua ujungnya."
+      },
+      "howTitle": "Cara kerjanya",
+      "how": {
+        "s1": {
+          "title": "Serahkan paket",
+          "body": "Bawa paket ke kios 670Link atau pesan kurir. Kami memeriksa identitas Anda dan memotret isi paket dua kali."
+        },
+        "s2": {
+          "title": "Disegel dan disiapkan",
+          "body": "Paket disegel, ditimbang, dan disiapkan di hub untuk rute yang tepat."
+        },
+        "s3": {
+          "title": "Dengan armada resmi",
+          "body": "Paket dibawa mitra bus, kargo, dan feri berlisensi yang bekerja dengan perjanjian tertulis bersama kami."
+        },
+        "s4": {
+          "title": "Tiba di kios",
+          "body": "Penerima mendapat pesan WhatsApp berisi OTP 6 digit dan alamat kios."
+        },
+        "s5": {
+          "title": "Serah terima dengan OTP dan identitas",
+          "body": "Penerima menunjukkan identitas dan OTP. Kami memotret bukti penyerahan."
+        }
+      },
+      "trustTitle": "Dibuat agar paket sampai — dan agar Anda bisa membuktikannya",
+      "trust": {
+        "otp": {
+          "title": "Serah terima dengan OTP",
+          "body": "Tidak ada yang bisa mengambil paket Anda tanpa kode sekali pakai yang dikirim ke penerima."
+        },
+        "photos": {
+          "title": "Bukti foto",
+          "body": "Isi paket dan paket yang disegel difoto saat diserahkan. Penyerahan akhir juga difoto."
+        },
+        "whatsapp": {
+          "title": "Notifikasi WhatsApp",
+          "body": "Pengirim dan penerima diberi tahu di setiap langkah, dalam bahasa mereka sendiri."
+        },
+        "tariff": {
+          "title": "Tarif tetap",
+          "body": "Harga bergantung pada zona dan berat, dan ditampilkan sebelum membayar. Tanpa kejutan di loket."
+        }
+      },
+      "coverageTitle": "Seluruh 14 munisipalitas",
+      "coverageLead": "Díli adalah hub kami: setiap rute dimulai atau berakhir di Díli.",
+      "ctaTitle": "Siap mengirim?",
+      "ctaBody": "Ketahui harganya dalam hitungan detik. Tanpa pendaftaran."
+    },
+    "corridors": {
+      "LOCAL": "Lokal",
+      "EAST": "Koridor Timur",
+      "SOUTH": "Koridor Selatan",
+      "WEST": "Koridor Barat",
+      "SEA": "Lewat laut"
+    },
+    "notFound": {
+      "title": "Halaman itu tidak ditemukan",
+      "body": "Halaman mungkin sudah dipindahkan, atau alamatnya tidak tepat.",
+      "home": "Kembali ke beranda"
+    },
+    "form": {
+      "required": "Kolom ini wajib diisi.",
+      "number": "Masukkan angka yang valid.",
+      "positive": "Nilai harus lebih besar dari nol.",
+      "max": "Nilai maksimal {max}.",
+      "minChars": "Masukkan minimal {min} karakter."
+    }
+  },
+  "pwa": {
+    "nav": {
+      "home": "Beranda",
+      "dropoff": "Terima Paket",
+      "inbound": "Paket Masuk",
+      "pickup": "Serahkan Paket",
+      "jobs": "Tugas",
+      "handover": "Serah ke Hub",
+      "manifest": "Manifes",
+      "wallet": "Dompet",
+      "profile": "Profil"
+    },
+    "wizard": {
+      "step1": "Pengirim & Penerima (KYC)",
+      "step2": "Barang Terlarang & Foto",
+      "step3": "Berat & Dimensi",
+      "step4": "Ongkir, Asuransi & Kanal",
+      "step5": "Konfirmasi dengan PIN",
+      "senderId": "Kartu identitas (BI / Kartaun Eleitorál / Paspor)",
+      "idNumber": "Nomor identitas",
+      "photoOpenBox": "Foto isi paket (kotak terbuka)",
+      "photoSealed": "Foto paket setelah disegel",
+      "pin": "PIN 6 digit",
+      "done": "Paket tercatat. Cetak struk dan kirim lewat WhatsApp."
+    },
+    "inbound": {
+      "title": "Terima Paket dari Armada",
+      "sealIntact": "Segel utuh, paket lengkap",
+      "reportIncident": "Laporkan insiden",
+      "driverConfirm": "Sopir mengonfirmasi insiden ini"
+    },
+    "pod": {
+      "title": "Serahkan ke Penerima",
+      "enterOtp": "Masukkan kode OTP 6 digit",
+      "collectorName": "Nama pengambil",
+      "collectorId": "Nomor ID pengambil",
+      "storagePenalty": "Biaya penyimpanan (setelah hari ke-5)",
+      "photoPod": "Foto penerima memegang paket dengan label QR",
+      "complete": "Selesaikan penyerahan"
+    },
+    "courier": {
+      "pickupJobs": "Jemputan",
+      "deliveryJobs": "Antaran",
+      "callCustomer": "Telepon pelanggan",
+      "waCustomer": "WhatsApp pelanggan"
+    },
+    "driver": {
+      "scanManifest": "Pindai QR manifes",
+      "baggagePhoto": "Foto paket di bagasi tertutup",
+      "departed": "Mulai perjalanan",
+      "arrived": "Tiba",
+      "dropOffPoints": "Titik serah agen di sepanjang rute"
+    }
+  },
+  "admin": {
+    "nav": {
+      "dashboard": "Dasbor Eksekutif",
+      "shipments": "Pengiriman",
+      "hubs": "Operasi Hub",
+      "partners": "Mitra & Kepatuhan",
+      "finance": "Keuangan & Buku Besar",
+      "claims": "CS & Klaim",
+      "tariffs": "Tarif",
+      "templates": "Templat WhatsApp",
+      "rbac": "Peran & Izin",
+      "audit": "Log Audit"
+    },
+    "dashboard": {
+      "gmvToday": "GMV hari ini",
+      "gmvMonth": "GMV bulan ini",
+      "platformRevenue": "Pendapatan platform (25%)",
+      "claimReserve": "Cadangan klaim (5%)",
+      "inTransit": "Paket dalam perjalanan",
+      "unclaimed": "Paket belum diambil (>5 hari)"
+    },
+    "noPermission": "Anda tidak memiliki izin untuk melakukan tindakan ini.",
+    "forceOverrideReason": "Alasan override (wajib, tercatat di log audit)"
+  },
+  "status": {
+    "PICKUP_ASSIGNED": {
+      "label": "Kurir ditugaskan",
+      "description": "Kurir 670Send sedang menuju lokasi Anda untuk menjemput paket."
+    },
+    "DROPPED_AT_ORIGIN": {
+      "label": "Paket diterima",
+      "description": "Paket diterima dan disegel di agen asal atau oleh kurir."
+    },
+    "CONSOLIDATED_AT_HUB": {
+      "label": "Disiapkan di Hub",
+      "description": "Paket disiapkan di hub terminal untuk dimuat ke armada."
+    },
+    "IN_TRANSIT": {
+      "label": "Dalam perjalanan",
+      "description": "Paket dibawa armada resmi menuju munisípiu tujuan."
+    },
+    "ARRIVED_AT_DEST_AGENT": {
+      "label": "Tiba di agen tujuan",
+      "description": "Paket sudah tiba. Penerima wajib membawa identitas dan kode OTP."
+    },
+    "OUT_FOR_DELIVERY": {
+      "label": "Sedang diantar",
+      "description": "Kurir lokal sedang mengantar paket ke alamat penerima."
+    },
+    "DELIVERED": {
+      "label": "Diterima",
+      "description": "Paket telah diserahkan ke penerima dengan verifikasi OTP dan foto bukti."
+    },
+    "ON_HOLD_ISSUE": {
+      "label": "Tertahan — ada kendala",
+      "description": "Ada kendala pada paket. Tim CS akan menghubungi Anda."
+    },
+    "RETURN_TO_SENDER": {
+      "label": "Dikembalikan ke pengirim",
+      "description": "Paket tidak diambil dalam 14 hari dan dikembalikan ke Hub Dili."
+    }
+  },
+  "errors": {
+    "generic": "Terjadi kesalahan. Silakan coba lagi.",
+    "unauthorized": "Silakan masuk terlebih dahulu.",
+    "forbidden": "Anda tidak memiliki izin untuk tindakan ini.",
+    "not_found": "Informasi tidak ditemukan.",
+    "validation_failed": "Data tidak valid. Periksa kembali formulir.",
+    "idempotency_conflict": "Kunci permintaan ini sudah dipakai dengan data yang berbeda.",
+    "sea_route_bus_forbidden": "Paket ke/dari Oecusse (RAEOA) dan Ataúro tidak boleh diangkut bus. Gunakan hanya manifes kargo laut resmi.",
+    "bus_limit_exceeded": "Paket melebihi batas bagasi bus. Gunakan kargo (pikap/truk).",
+    "bus_capacity_exceeded": "Kapasitas bagasi bus ini penuh. Pilih bus lain atau gunakan kargo.",
+    "over_max_weight": "Berat melebihi batas 500 kg.",
+    "insufficient_deposit": "Saldo deposit tidak cukup. Silakan top-up terlebih dahulu.",
+    "invalid_otp": "Kode OTP salah.",
+    "otp_expired": "Kode OTP sudah kedaluwarsa.",
+    "otp_locked": "Terlalu banyak percobaan OTP. Tunggu sebentar atau hubungi CS.",
+    "photos_required": "Wajib 2 foto: isi paket terbuka dan paket setelah disegel.",
+    "prohibited_check_required": "Konfirmasi bahwa paket tidak berisi barang terlarang apa pun.",
+    "kyc_required": "Identitas pengirim wajib. Pengirim anonim tidak diterima.",
+    "shipment_wrong_state": "Status paket saat ini tidak mengizinkan tindakan ini.",
+    "vehicle_permit_expired": "Izin DNTT/KIR kendaraan sudah kedaluwarsa.",
+    "mou_expired": "MoU mitra armada sudah kedaluwarsa.",
+    "claim_over_limit": "Nilai klaim melebihi batas tanggung jawab.",
+    "pin_invalid": "PIN salah.",
+    "account_locked": "Akun terkunci sementara. Coba lagi nanti.",
+    "invalid_credentials": "Kredensial tidak valid.",
+    "account_inactive": "Akun ini tidak aktif. Hubungi administrator.",
+    "refresh_invalid": "Sesi berakhir. Silakan masuk lagi.",
+    "too_many_requests": "Terlalu banyak permintaan. Tunggu beberapa menit.",
+    "request_in_progress": "Permintaan ini masih diproses. Coba lagi beberapa detik lagi.",
+    "idempotency_key_required": "Header Idempotency-Key wajib diisi.",
+    "audit_reason_required": "Alasan wajib diisi untuk tindakan ini (tercatat di log audit).",
+    "file_too_large": "Ukuran file terlalu besar. Maksimal {maxKb} KB.",
+    "file_type_not_allowed": "Jenis file tidak diizinkan. Gunakan JPEG, PNG, atau WebP.",
+    "upload_failed": "Unggahan gagal. Silakan coba lagi.",
+    "wallet_not_found": "Dompet tidak ditemukan.",
+    "ledger_unbalanced": "Pencatatan keuangan tidak seimbang. Operasi dibatalkan.",
+    "upload_not_found": "Foto tidak ditemukan atau sudah digunakan.",
+    "internal_error": "Kesalahan internal. Tim teknis telah diberi tahu.",
+    "password_change_required": "Ganti kata sandi Anda sebelum melanjutkan.",
+    "route_not_supported": "Rute ini belum tersedia. Paket harus berasal dari atau menuju Dili.",
+    "destination_agent_required": "Pilih agen tujuan (munisípiu ini memiliki beberapa agen).",
+    "no_destination_agent": "Tidak ada agen aktif di munisípiu tujuan.",
+    "declared_value_required": "Nilai barang wajib diisi untuk elektronik dan asuransi.",
+    "delivery_address_required": "Alamat penerima wajib diisi untuk pengantaran ke alamat.",
+    "addon_not_available": "Layanan kurir ini tidak tersedia di lokasi ini.",
+    "scheme_not_allowed": "Peran Anda tidak dapat menggunakan skema layanan ini.",
+    "waybill_sequence_exhausted": "Nomor resi untuk rute ini hari ini habis (9999).",
+    "wrong_hub": "Paket ini bukan untuk hub ini.",
+    "master_bag_invalid": "Karung transit tidak valid untuk tindakan ini.",
+    "manifest_invalid": "Manifes tidak valid: periksa paket, kendaraan, dan sopir.",
+    "parcel_already_assigned": "Paket sudah ada di karung atau manifes lain.",
+    "driver_license_expired": "SIM sopir sudah kedaluwarsa.",
+    "partner_inactive": "Mitra armada tidak aktif.",
+    "baggage_photo_required": "Foto paket di bagasi tertutup wajib diisi.",
+    "storage_fee_unpaid": "Tagih biaya penyimpanan sebelum menyerahkan paket.",
+    "incident_driver_confirmation_required": "Sopir harus mengonfirmasi insiden ini terlebih dahulu.",
+    "incident_photo_required": "Foto bukti insiden wajib diisi.",
+    "booking_not_confirmed": "Permintaan jemput belum dikonfirmasi.",
+    "booking_invalid": "Permintaan jemput tidak valid atau bukan untuk kurir ini.",
+    "courier_unavailable": "Kurir tidak tersedia.",
+    "delivery_not_allowed": "Skema ini tidak mencakup pengantaran ke alamat.",
+    "deposit_proof_required": "Foto bukti wajib untuk setoran bank / MOSAN / T-Pay.",
+    "reference_required": "Nomor referensi wajib diisi.",
+    "duplicate_reference": "Referensi ini sudah dipakai untuk setoran lain.",
+    "self_approval_forbidden": "Pembuat tidak boleh menyetujui permintaannya sendiri.",
+    "payout_empty": "Tidak ada dana yang dibayarkan pada periode ini.",
+    "claim_deadline_passed": "Batas waktu klaim terlewat: klaim harus diajukan saat serah terima.",
+    "claim_total_exceeded": "Total klaim melebihi batas tanggung jawab untuk paket ini.",
+    "escrow_insufficient": "Cadangan klaim tidak cukup untuk membayar.",
+    "refund_not_applicable": "Paket ini tidak berhak atas pengembalian dana.",
+    "role_locked": "Peran ini dilindungi dan tidak dapat diubah.",
+    "role_in_use": "Masih ada pengguna dengan peran ini.",
+    "last_super_admin": "Super Admin terakhir tidak dapat dihapus.",
+    "template_variable_invalid": "Templat memakai variabel yang tidak diizinkan: {vars}.",
+    "template_otp_required": "Templat harus menyertakan variabel otp.",
+    "setting_not_editable": "Pengaturan ini tidak dapat diubah melalui API.",
+    "user_exists": "Email atau nomor ponsel ini sudah dipakai.",
+    "rts_invalid": "Paket ini tidak dalam proses pengembalian.",
+    "override_not_allowed": "Override ke/dari DELIVERED tidak diizinkan.",
+    "agent_not_compliant": "Agen tidak dapat diaktifkan: perlu adendum bertanda tangan, timbangan digital, dan penyimpanan aman.",
+    "fleet_not_compliant": "Mitra tidak dapat diaktifkan: perlu MoU yang berlaku, nomor MoU, dan data pembayaran.",
+    "validation": {
+      "phone": "Nomor ponsel tidak valid (+670...).",
+      "whatsapp_phone": "Diperlukan nomor ponsel WhatsApp (+670 7xxx xxxx).",
+      "waybill": "Format resi tidak valid.",
+      "otp": "OTP harus 6 digit.",
+      "pin": "PIN harus 6 digit.",
+      "pin_weak": "PIN ini terlalu lemah. Pilih yang lain.",
+      "name": "Nama belum lengkap.",
+      "id_number": "Nomor identitas tidak valid.",
+      "password": "Kata sandi minimal 12 karakter, berisi huruf dan angka."
+    }
+  },
+  "receipt": {
+    "title": "RESI PENGIRIMAN PAKET",
+    "waybill": "Resi",
+    "date": "Tanggal",
+    "origin": "Asal",
+    "destination": "Tujuan",
+    "sender": "Pengirim",
+    "recipient": "Penerima",
+    "weight": "Berat",
+    "chargeable": "Berat tertagih",
+    "canal": "Transportasi",
+    "scheme": "Skema",
+    "baseFee": "Ongkir dasar",
+    "pickupFee": "Biaya jemput",
+    "deliveryFee": "Biaya antar",
+    "insuranceFee": "Asuransi",
+    "total": "TOTAL",
+    "paidCash": "Dibayar tunai",
+    "declaration": "Pengirim menyatakan isi paket benar dan tidak mengandung barang terlarang.",
+    "liability": "Ganti rugi maks. (tanpa asuransi): 10x ongkir dasar atau USD 50.",
+    "claimNotice": "Klaim kerusakan wajib diajukan saat serah terima di hadapan Agen.",
+    "trackAt": "Lacak di 670send.tl/track",
+    "thanks": "Terima kasih telah menggunakan 670Send!"
+  },
+  "terms": {
+    "title": "Syarat & Ketentuan 670Send",
+    "clauses": {
+      "declaration": {
+        "title": "Deklarasi Kebenaran Isi & Tanggung Jawab Pidana",
+        "body": "Pengirim menjamin bahwa informasi isi paket benar dan tidak mengandung barang ilegal atau berbahaya. Apabila ditemukan barang terlarang atau deklarasi palsu, pengirim bertanggung jawab penuh secara pidana dan perdata serta membebaskan 670Send, Agen, Kurir, dan Mitra Armada dari segala tuntutan hukum."
+      },
+      "inspection": {
+        "title": "Hak Pemeriksaan",
+        "body": "670Send dan otoritas berwenang (PNTL / Alfândega) berhak membuka dan memeriksa paket jika terdapat indikasi pelanggaran keamanan."
+      },
+      "liability": {
+        "title": "Batas Tanggung Jawab Ganti Rugi",
+        "body": "Paket tanpa asuransi: ganti rugi maksimal 10 kali ongkos kirim dasar atau USD 50,00, mana yang lebih rendah. Paket dengan asuransi opsional (1% nilai barang): ganti rugi sesuai nilai yang dideklarasikan berdasarkan nota pembelian sah, maksimal USD 500,00 per resi."
+      },
+      "exclusions": {
+        "title": "Pengecualian Klaim",
+        "body": "Tidak ditanggung: kerusakan barang pecah belah akibat pengemasan internal yang tidak memadai, kerusakan alami/pembusukan, kerugian tidak langsung, dan force majeure (bencana alam, jalan terputus atau longsor di jalur pegunungan Timor-Leste)."
+      },
+      "claimDeadline": {
+        "title": "Batas Waktu Klaim",
+        "body": "Klaim kerusakan wajib diajukan saat serah terima di hadapan Agen Tujuan atau Kurir (sebelum meninggalkan kios), dengan bukti video atau foto pembukaan paket. Klaim setelah paket dibawa pulang dianggap tidak berlaku."
+      },
+      "identity": {
+        "title": "Identitas dan Serah Terima",
+        "body": "Pengirim wajib menunjukkan identitas yang sah (BI, kartu pemilih, atau paspor) saat menyerahkan paket. Penerima mengambil dengan identitas yang sah dan kode sekali pakai (OTP) yang dikirim lewat WhatsApp; serah terima dicatat dengan foto."
+      },
+      "storage": {
+        "title": "Penyimpanan di Kios Tujuan",
+        "body": "Paket yang menunggu di kios disimpan gratis selama 5 hari pertama. Mulai hari ke-6 hingga hari ke-14 dikenakan biaya penyimpanan USD 0,50 per hari, dibayar saat pengambilan. Paket yang tidak diambil dalam 14 hari kembali ke Hub Díli dan dikembalikan kepada pengirim."
+      }
+    },
+    "intro": "Dengan menyerahkan paket kepada agen 670Link atau kurir, Anda menyetujui ketentuan ini."
+  },
+  "prohibited": {
+    "title": "Barang Terlarang & Terbatas",
+    "intro": "Agen dan Kurir wajib menolak barang-barang berikut. Jika ada upaya penyelundupan, 670Send berhak melapor kepada PNTL.",
+    "confirmHeading": "Saya konfirmasi paket ini TIDAK berisi:",
+    "items": {
+      "narcotics": "Narkotika, psikotropika, dan obat-obatan terlarang (tanpa izin Kementerian Kesehatan)",
+      "weapons_sharp": "Senjata api, amunisi, bahan peledak, petasan, dan senjata tajam ilegal",
+      "fuel_flammable": "Bahan bakar dan cairan mudah terbakar/korosif: bensin, solar, minyak tanah, tabung gas LPG, aki basah, tiner, cat semprot bertekanan",
+      "cash_gold_jewelry": "Uang tunai, emas, perhiasan bernilai tinggi, cek kosong, dokumen rahasia negara",
+      "protected_wildlife": "Satwa hidup dan tumbuhan dilindungi (termasuk organ satwa ilegal)",
+      "untaxed_contraband": "Barang selundupan tanpa pajak (rokok atau minuman keras ilegal dalam jumlah komersial)",
+      "raw_perishables": "Makanan basah/cepat busuk (daging mentah, ikan segar, es) tanpa pendingin"
+    },
+    "restricted": {
+      "electronics": "Elektronik (HP, laptop, suku cadang): kotak keras dengan bubble wrap, wajib deklarasi nilai, asuransi disarankan.",
+      "documents": "Dokumen penting (ijazah, sertifikat, kontrak asli): wajib amplop kedap air.",
+      "liquids": "Cairan tidak berbahaya (minyak kelapa, madu, obat cair): maksimal 1 liter, botol plastik tersegel rapat."
+    },
+    "refusedTitle": "Barang berikut akan kami tolak",
+    "restrictedTitle": "Diterima dengan hati-hati",
+    "footerNote": "Jika ragu, tanyakan di kios sebelum mengirim. Pernyataan palsu membuat pengirim bertanggung jawab penuh."
+  }
+}
