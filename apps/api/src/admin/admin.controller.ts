@@ -2,7 +2,7 @@ import { Body, Controller, Delete, Get, HttpCode, Param, ParseUUIDPipe, Patch, P
 import { z } from 'zod';
 import { LOCALES, NOTIFICATION_EVENT_CODES } from '@670send/types';
 import { pinSchema, tlPhoneSchema, tlWhatsAppPhoneSchema } from '@670send/validation';
-import { CurrentActor, RequireAnyPermission, RequirePermissions } from '../common/decorators';
+import { Authenticated, CurrentActor, RequireAnyPermission, RequirePermissions } from '../common/decorators';
 import { ZodValidationPipe } from '../common/zod-validation.pipe';
 import { moneyInput, uuid } from '../logistics/dto';
 import type { Actor } from '../rbac/actor';
@@ -294,6 +294,12 @@ const availability = z.object({ available: z.boolean() });
 @Controller()
 export class DirectoryController {
   constructor(private readonly dir: DirectoryService) {}
+
+  /* ---- field apps (agent / courier / driver PWA) ---- */
+  /** Who am I in the field: kiosk + municipality, courier + municipality + hub, driver + fleet company. */
+  @Authenticated() @Get('field/profile') fieldProfile(@CurrentActor() a: Actor) { return this.dir.fieldProfile(a); }
+  /** Active kiosks of a municipality, so the drop-off wizard can pick the destination kiosk (no phone numbers). */
+  @RequirePermissions('shipments:create') @Get('kiosks') kiosks(@Query(new ZodValidationPipe(z.object({ municipalityCode: code3 }))) q: { municipalityCode: string }) { return this.dir.listKiosks(q.municipalityCode); }
 
   /* ---- agents ---- */
   @RequirePermissions('agents:manage') @Post('admin/agents') createAgent(@CurrentActor() a: Actor, @Body(new ZodValidationPipe(agentCreate)) b: z.infer<typeof agentCreate>) { return this.dir.createAgent(a, b); }

@@ -320,10 +320,18 @@ export class ManifestsService {
       },
     });
     if (!m) throw Err.notFound();
+    // Incidents raised at the destination: the driver has no `incidents:read`, so this is how the driver app
+    // learns which ones it still has to confirm digitally.
+    const incidents = await this.prisma.inboundIncident.findMany({
+      where: { manifestId: m.id },
+      orderBy: { createdAt: 'asc' },
+      select: { id: true, condition: true, status: true, notes: true, driverConfirmedAt: true, shipment: { select: { waybillNumber: true } } },
+    });
     return {
       manifestCode: m.manifestCode,
       status: m.status,
       canal: m.transportCanal,
+      incidents: incidents.map((i) => ({ id: i.id, waybill: i.shipment.waybillNumber, condition: i.condition, status: i.status, notes: i.notes, driverConfirmed: i.driverConfirmedAt != null })),
       hub: m.originHub,
       destination: m.destMunicipality,
       fleetPartner: m.fleetPartner,

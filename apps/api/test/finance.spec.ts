@@ -203,8 +203,11 @@ describe('Finance centre: deposits (maker-checker), wallets, ledger, reconciliat
     it('Finance lists wallets (with owner names) and filters the ledger', async () => {
       const fin = await finance(ctx);
       const a = await createAgent(ctx, 'DIL', '5');
-      const wallets = await ctx.http.get('/v1/finance/wallets?ownerType=AGENT&walletType=DEPOSIT').set(bearer(fin.token));
-      expect(wallets.body.find((w: { ownerId: string }) => w.ownerId === a.agentId)).toMatchObject({ balance: '5.0000', owner: expect.stringContaining('Kios DIL') });
+      // Filter by owner: the shared test database holds hundreds of agent wallets by now, far more than one page.
+      const wallets = await ctx.http.get(`/v1/finance/wallets?ownerType=AGENT&walletType=DEPOSIT&ownerId=${a.agentId}`).set(bearer(fin.token));
+      expect(wallets.body).toHaveLength(1);
+      expect(wallets.body[0]).toMatchObject({ balance: '5.0000', owner: expect.stringContaining('Kios DIL') });
+      expect((await ctx.http.get('/v1/finance/wallets?ownerId=not-a-uuid').set(bearer(fin.token))).status).toBe(422);
       const sys = await ctx.http.get('/v1/finance/wallets?ownerType=SYSTEM').set(bearer(fin.token));
       expect(sys.body.map((w: { type: string }) => w.type)).toEqual(expect.arrayContaining(['PLATFORM_REVENUE', 'PENDING_SETTLEMENT', 'CLAIM_ESCROW_RESERVE']));
       const walletId = wallets.body.find((w: { ownerId: string }) => w.ownerId === a.agentId).id;

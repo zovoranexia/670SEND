@@ -11,5 +11,6 @@ export default defineConfig({
     css: false,
     restoreMocks: true,
     testTimeout: 20_000, // typing simulations are CPU-bound and run next to the API's test suite in CI
+    poolOptions: { forks: { maxForks: 2 } }, // see apps/pwa/vitest.config.ts: keep memory use modest
   },
 });

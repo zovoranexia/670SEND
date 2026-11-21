@@ -1,4 +1,4 @@
-# 670Send — System Architecture (Phases 1–5)
+# 670Send — System Architecture (Phases 1–6)
 
 Inter-municipality parcel logistics for Timor-Leste (14 municipalities), operated by Zovoranexia, Lda.
 Hybrid model: **670Link kiosks** (drop-off / pick-up points) + **bus baggage** (≤ 10 kg) + **pickup / truck cargo**
@@ -473,6 +473,48 @@ When the returned parcel is **received at the Dili hub**: the destination agent'
 * No analytics, no cookie banner (nothing needs consent today). Add both together if marketing analytics are wanted.
 * Support WhatsApp number (`NEXT_PUBLIC_SUPPORT_WHATSAPP`) and the exact operator contact details are not known yet; the footer shows them only when configured.
 * An Open Graph preview image is not generated (social shares show title and description only).
+
+---
+
+## 10f. Phase 6 — Field PWA `app.670send.tl` (what exists now)
+
+`apps/pwa` — React 19, Vite 7, `use-intl`, React Router 7, Workbox. Full guide: [apps/pwa/README.md](../apps/pwa/README.md). One installable app, three working modes chosen by role.
+
+| Role | Screens |
+|------|---------|
+| **Agent** | 5-step drop-off wizard (KYC → prohibited items + 2 photos → weight/size → price, insurance, canal → PIN) · receipt printing · inbound scan of master bags · OTP proof of delivery · parcels / reprint · wallet + top-up request |
+| **Courier** | pick-ups (call / WhatsApp / map, "collect" pre-fills the wizard from the booking) · deliveries (start, OTP hand-over, failed attempt) · availability · hand-over to the hub |
+| **Driver** | trips · scan the manifest QR · baggage-compartment photo (mandatory for buses) · start / arrive · confirm incidents |
+
+### API additions made for the app (all tested in `field-support.spec.ts`)
+
+* `GET /v1/field/profile` — where the user works (kiosk + municipality, courier + hub, driver + fleet). Needed to price from the right origin and to label the app.
+* `GET /v1/kiosks?municipalityCode=` — active kiosks of a municipality (no phone numbers): without it an agent could not choose the destination when a municipality has several kiosks (the API otherwise answers `destination_agent_required`).
+* `GET /v1/manifests/:code` now lists the trip's **incidents** with their ids. A driver has no `incidents:read`, so before this change a driver could not discover the incident they are required to confirm digitally.
+
+### Decisions
+
+* **Money-moving requests are retry-safe on a flaky network** (idempotency key bound to the payload; reconciliation against the agent's recent parcels before an edit after an ambiguous failure; PIN never stored). There is deliberately **no offline write queue**: a drop-off needs the live waybill sequence, the PIN check and the wallet debit.
+* **Photos are compressed on the phone** (measured: 5.9 MB → 797 KB, API cap 2 MiB) and re-encoded, which also strips EXIF.
+* **Printing:** server renders the 32-column ESC/POS receipt in the sender's language; the app streams it over Web Bluetooth with chunking, retry with 20-byte writes and reconnect; fallbacks for browsers without it (RawBT, WhatsApp share, copy).
+* **Language is saved to the user's profile** and the profile wins on sign-in; it still changes locally when offline.
+* **Offline shell cached at the first visit, before sign-in** (a real-browser check found it was only registered after sign-in — fixed and now guarded by a smoke check). API responses are never cached. Updates wait for the agent to tap "Update".
+* Session: access token in memory, rotating refresh token in `localStorage` (trade-off documented), single-flight refresh, offline never signs anyone out.
+* **Local ports:** web 3100, **PWA 3101**, admin 3102.
+
+### Verified in Phase 6
+
+* **110 PWA tests** (jsdom): auth and role-adaptive tabs, language sync, offline banner, session expiry; the wizard end to end incl. validation, live price, idempotent retry, server refusal, reconcile-before-edit, draft restore, courier booking pre-fill; inbound, OTP hand-over, wallet, courier jobs and hub hand-over, driver trips; scanner, print actions, photo field; plus 41 tests of the pure libraries (compressor, printer protocol, scan parsing, idempotency, API client with token refresh, wizard logic).
+* **Whole repo green** (`build + typecheck + test`, 21/21 tasks): **295 API tests**, 110 PWA, 85 web, 111 in the packages. The final run also exposed a fragile finance test (it looked for a new wallet in a 100-row page of a shared database); `GET /v1/finance/wallets` now also filters by `ownerId`, which the admin console will need anyway. Parallelism of the test workers and of turbo is capped (the development machine ran a worker out of memory with everything in parallel). **PWA smoke script** on the build: manifest and icons, offline shell, no API calls cached, update-on-tap, first load 185 KB gzipped (budget 260 KB).
+* **Real stack** (production build + real API + PostgreSQL, throwaway kiosk and courier created through the admin API, since suspended): PIN login, session surviving a reload via refresh token, language switch saved to the profile (checked in the database), a full 5-step parcel with two ~6 MB images compressed to 797 KB and uploaded, the real tariff ($5.00 by bus baggage), the registered parcel with both photos and an audit row, the kiosk deposit debited exactly $4.25 ($5.00 collected − 15 % kept), the 32-column receipt, and the courier mode with the availability switch persisted.
+* Two defects the tests and the browser found and I fixed: the collector's name on the hand-over screen refilled itself when cleared (an agent could not enter someone else's name), and the service worker was registered only after sign-in.
+
+### Open items
+
+* **Bluetooth printing is not tested on a physical 58 mm printer** (fake GATT only). Test the printers the kiosks will use; extra service UUIDs are one line.
+* The camera scanner was not exercised with a real camera; the **driver screens** were not driven in a real browser (tests + API tests only); nothing was tested on an iPhone.
+* No push notifications, no background sync, no photo-only offline queue.
+* Add the CSP / cache headers listed in `apps/pwa/README.md` to the Nginx vhost in Phase 8.
 
 ---
 

@@ -25,7 +25,7 @@ const depositSchema = z.object({
 const depositListSchema = z.object({ status: z.enum(['PENDING', 'APPROVED', 'REJECTED']).optional(), ownerType: z.enum(['AGENT', 'COURIER']).optional(), limit: limit(), before: isoDate.optional() });
 const reasonSchema = z.object({ reason: z.string().trim().min(3).max(300) });
 const statementSchema = z.object({ limit: limit(200, 50), before: isoDate.optional() });
-const walletsSchema = z.object({ ownerType: z.enum(['USER', 'AGENT', 'COURIER', 'FLEET_OWNER', 'SYSTEM']).optional(), walletType: z.string().optional(), limit: limit(200, 100) });
+const walletsSchema = z.object({ ownerType: z.enum(['USER', 'AGENT', 'COURIER', 'FLEET_OWNER', 'SYSTEM']).optional(), ownerId: uuid.optional(), walletType: z.string().optional(), limit: limit(200, 100) });
 const ledgerSchema = z.object({ walletId: uuid.optional(), referenceType: z.string().optional(), referenceId: z.string().max(80).optional(), from: isoDate.optional(), to: isoDate.optional(), limit: limit(200, 50), before: isoDate.optional() });
 const refundSchema = z.object({ waybill: z.string().trim().min(10).max(40), reason: z.string().trim().min(5).max(300), reference: z.string().trim().max(80).optional() });
 

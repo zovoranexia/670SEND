@@ -85,6 +85,14 @@ Precedence per request: **`X-Lang`** (language switcher) → signed-in user's **
 | PATCH schema | write it explicitly — **never** `.partial()` a create schema that has `.default()` values (the defaults get re-applied) |
 | Change a role's rights | `AccessService.setRolePermissions` — takes effect on the next request (actor cache is invalidated) |
 
+Endpoints the field PWA relies on (all in `src/admin/directory.service.ts` / `src/logistics/manifests.service.ts`):
+
+| Route | Purpose |
+|-------|---------|
+| `GET /v1/field/profile` | who the signed-in agent / courier / driver / fleet owner is and where they work (municipality, kiosk, hub, fleet); 403 for back-office users |
+| `GET /v1/kiosks?municipalityCode=` | active kiosks of a municipality (id, name, address, hours — no phones) so the wizard can choose the destination kiosk (`shipments:create`) |
+| `GET /v1/manifests/:code` → `incidents[]` | a driver sees the incidents of **their own** trip (they have no `incidents:read`) and confirms them with `POST /v1/incidents/:id/driver-confirm` |
+
 New permissions: add the key to `packages/types/src/permissions.ts` (catalog + the roles that get it), rebuild `@670send/types`, and re-run the seed; the guard denies by default until you do.
 
 ## Tests

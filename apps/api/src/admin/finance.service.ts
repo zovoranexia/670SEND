@@ -234,9 +234,9 @@ export class FinanceService {
     };
   }
 
-  async adminWallets(q: { ownerType?: string; walletType?: string; limit: number }) {
+  async adminWallets(q: { ownerType?: string; ownerId?: string; walletType?: string; limit: number }) {
     const rows = await this.prisma.wallet.findMany({
-      where: { ...(q.ownerType ? { ownerType: q.ownerType as never } : {}), ...(q.walletType ? { walletType: q.walletType as never } : {}) },
+      where: { ...(q.ownerType ? { ownerType: q.ownerType as never } : {}), ...(q.ownerId ? { ownerId: q.ownerId } : {}), ...(q.walletType ? { walletType: q.walletType as never } : {}) },
       orderBy: [{ walletType: 'asc' }, { balance: 'desc' }],
       take: q.limit,
     });
