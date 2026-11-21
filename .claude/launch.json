@@ -20,6 +20,16 @@
         "preview"
       ],
       "port": 3101
+    },
+    {
+      "name": "admin",
+      "runtimeExecutable": "pnpm",
+      "runtimeArgs": [
+        "--filter",
+        "@670send/admin",
+        "dev"
+      ],
+      "port": 3102
     }
   ]
 }

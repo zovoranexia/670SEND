@@ -518,6 +518,56 @@ When the returned parcel is **received at the Dili hub**: the destination agent'
 
 ---
 
+## 10g. Phase 7 — Admin backoffice `admin.670send.tl` (what exists now)
+
+`apps/admin` — React 19, Vite 7, `use-intl`, React Router 7, Tailwind 4. Full guide: [apps/admin/README.md](../apps/admin/README.md). **No API change was needed**: every screen sits on the Phase 2–6 endpoints (the contract was read from the controllers, not guessed).
+
+| Area (route) | What staff can do | Guarded by |
+|---|---|---|
+| **Executive dashboard** `/` | GMV today/month, platform revenue, reserves, queues needing attention (deposits, payouts, claims, incidents) with links, parcels by status/corridor, 14-day chart (with a table for screen readers), CSV exports (shipments, ledger, claims, deposits) | `dashboard:view`, `reports:export` |
+| **Shipments** `/shipments` | search by waybill/phone, timeline, WhatsApp storage reminders (day 3 / 5), **audited status override** with mandatory reason (never to/from Delivered) | `shipments:read_all`, `notifications:send_reminder`, `shipments:override_status` |
+| **Hub consolidation & manifest dispatch** `/hubs` | receive at hub (batch scan/paste, per-waybill failures with translated reasons) → master bags (suggestions, seal with plastic-seal no.) → manifests (fleet/vehicle/driver filtered to MoU-valid, permit-valid, canal-compatible; Oecusse/Ataúro force the ferry canal) → ready / cancel, **handover QR**; pick-up requests: confirm, assign courier, cancel | `master_bags:*`, `manifests:*`, `pickups:*` |
+| **Partners & MoU** `/partners` | fleet partners (MoU renewal, encrypted bank set-up, status), vehicles (DNTT/KIR) & drivers (licence) verify/deactivate, 670Link agents (addendum, status), couriers, **compliance alerts** (expiring/missing) | `fleet_partners:*`, `vehicles:*`, `drivers:*`, `agents:*`, `couriers:*` |
+| **Finance centre** `/finance` | deposit approvals with slip viewer · **fleet payouts** draft → submit → approve (different person) → pay (bank ref) / fail / cancel, statements + CSV, audited bank-detail reveal · wallets & statements · immutable ledger · reconciliation · add-on refunds | `deposits:*`, `payouts:*`, `wallets:read_all`, `ledger:read`, `reconciliation:run`, `refunds:issue` |
+| **CS & claims desk** `/claims` | claims with **side-by-side evidence** (as handed in ⟷ as found), liability preview, decide, finance co-approval above the CS limit, pay, recover · arrival incidents · return-to-sender | `claims:*`, `evidence:read`, `incidents:*`, `rts:manage` |
+| **Localized tariff matrix** `/tariffs` | zone rates **with names and delivery times in 4 languages**, add-ons (fee, courier/platform split, wholesale), municipality surcharges | `tariffs:read` / `tariffs:manage` |
+| **WhatsApp template editor** `/templates` | 11 messages × 4 languages side by side, variable chips, live preview with sample data, active switch, reset to default, delivery log | `templates:manage`, `notification_logs:read` |
+| **RBAC & audit** `/access`, `/audit` | users (create, roles, unlock, reset credentials, deactivate), **permission matrix editor** (Super Admin locked), 5 editable settings with typed forms, audit log with before/after | `users:manage`, `rbac:manage`, `settings:manage`, `audit:read` |
+
+### Decisions
+
+* **The UI mirrors permissions; the API enforces them.** Navigation, tabs and buttons are built from `hasPermission` over the permissions in the session (`/auth/me`), so a Finance admin never sees RBAC or audit, and typing a forbidden address bounces to the first allowed screen. Every refusal that can still happen (maker-checker, last Super Admin, locked role…) is shown with the API's own translated message.
+* **Four-eyes rules are visible, not just enforced.** The Approve button is disabled when the signed-in person created the deposit/payout (the server checks by person and remains the authority).
+* **Money actions are idempotent.** Approve deposit, pay payout/claim, refund and generate payouts send an `Idempotency-Key` bound to the payload: a click repeated after a timeout can never move money twice (key kept on a network failure, dropped once the server answered).
+* **Temporary passwords are forced out.** An account created or reset by an admin sees only the *Choose a new password* screen until it changes it (the API refuses everything else with `password_change_required`); the change revokes all sessions, so the user signs in again.
+* **Session lives in `sessionStorage`** (ends with the tab — shared office PCs), access token in memory only, single-flight refresh, offline never signs anyone out.
+* **Sensitive data is shown on demand:** bank account numbers only after a warned click (the API audits every reveal); photo evidence links are short-lived signed URLs fetched when the desk opens and refreshable.
+* **Dates:** screens use Díli calendar days; the API accepts only UTC timestamps for its range filters, so day bounds are converted (`diliDayStartIso`). A real-stack run found the audit/ledger filters failing with `+09:00` offsets: fixed and covered by a test.
+* **Reference data without an endpoint** (hubs, municipality → hub) comes from `@670send/types`.
+* **Local ports:** web 3100, PWA 3101, **admin 3102** (`pnpm --filter @670send/admin dev`).
+
+### API gaps found while building the console (documented, none blocking)
+
+* No hub endpoint; no listing of "loose parcels at a hub" (the console filters `GET /shipments?status=CONSOLIDATED_AT_HUB`, max 100, client-side); manifest detail lists bag codes but not the waybills inside.
+* Incidents have no photos of their own — evidence is reachable only through a claim (`claims:read` + `evidence:read`), so the arrival-incident list points there.
+* Manifest `GET` has no filters beyond status; most lists are capped (100–200) without a cursor; invalid enum filters answer 500 rather than 422 (the console only sends valid values).
+* CORS does not expose `Content-Disposition` (the console names CSV files itself).
+* Payout DTO has no creator id (the four-eyes hint compares the creator's name; the server remains authoritative).
+
+### Verified in Phase 7
+
+* **Admin test suite** (jsdom): sign-in, server error, validation, forced password change, permission-gated navigation per role, forbidden-address bounce, four-language rendering and profile sync; dashboard; deposit approval with idempotency key / four-eyes / reject-needs-reason; payouts (own payout not approvable, approve, pay with bank reference, audited bank reveal, read-only role); refund + reconciliation; claims desk (photos side by side, approve within the eligible amount, reject needs reason, finance co-approval, driver-confirmation warning); template editor (unknown variables, OTP rule, insert, preview, save); hub console (receive batch with failures, sea route forces the ferry canal, tab gating); tariffs (4-decimal rates, read-only role); RBAC (Super Admin locked, matrix save, no self-edit); audit; partners (expired MoU, renewal); shipments (override reason + audit header, never Delivered); plus the pure libraries (money, dates, idempotency, API client with parallel-call token refresh).
+* **Build smoke script**: first load 218 KB gzipped (budget 330 KB), every area its own chunk, QR generator only in the hub chunk, not indexable, no third-party code, tokens never in `localStorage`.
+* **Real stack** (production API + PostgreSQL; a throwaway Super Admin created through the API): sign-in → forced password change in Tetun → sign-in again; all ten areas and every tab loaded real data without a failed call; the **audit-filter bug** above; a real **deposit approval** through the UI (200, idempotency key accepted by CORS, list refreshed) followed by a **reconciliation that still balanced**; a session ended cleanly by refresh-token reuse detection after the machine was suspended for minutes (the *session expired* notice appeared); 375 px layout without horizontal scroll.
+
+### Open items
+
+* **Not driven in a real browser:** claims evidence with real photos, payouts end to end, manifest creation with a real fleet, template save, role editing (all covered by tests against the documented contracts, not clicked through on the live stack). Run a UAT pass with the four back-office roles.
+* No bulk actions, no saved filters, no real-time updates (screens refresh on demand), no printing of manifests (the QR is on screen).
+* The `Content-Security-Policy` and cache headers for `admin.670send.tl` (see `apps/admin/README.md`) belong in the Phase 8 Nginx vhost.
+
+---
+
 ## 11. Assumptions I made — please confirm or correct
 
 These are choices the brief left open. Each is isolated (a seed value or one function) and cheap to change **now**, more expensive after Phase 3.
