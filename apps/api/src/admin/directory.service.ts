@@ -78,6 +78,41 @@ export class DirectoryService {
     return rows[0]!.last_value;
   }
 
+  /* ================================ field apps (PWA) ================================ */
+
+  /** The signed-in field user's working context. Back-office staff have none (403). */
+  async fieldProfile(actor: Actor) {
+    if (actor.agentId) {
+      const a = await this.prisma.agent.findUniqueOrThrow({ where: { id: actor.agentId }, include: { municipality: { select: { code: true, name: true } } } });
+      return { kind: 'AGENT' as const, agentId: a.id, agentCode: a.agentCode, kioskName: a.kioskName, address: a.address, openingHours: a.openingHours, municipality: a.municipality };
+    }
+    if (actor.courierId) {
+      const c = await this.prisma.courier.findUniqueOrThrow({ where: { id: actor.courierId }, include: { municipality: { select: { code: true, name: true } }, hub: { select: { code: true, name: true } } } });
+      return { kind: 'COURIER' as const, courierId: c.id, isAvailable: c.isAvailable, vehicleType: c.vehicleType, municipality: c.municipality, hub: c.hub };
+    }
+    if (actor.driverId) {
+      const d = await this.prisma.driver.findUniqueOrThrow({ where: { id: actor.driverId }, include: { fleetPartner: { select: { id: true, companyName: true } } } });
+      return { kind: 'DRIVER' as const, driverId: d.id, fleetPartner: d.fleetPartner };
+    }
+    if (actor.fleetPartnerId) {
+      const p = await this.prisma.fleetPartner.findUniqueOrThrow({ where: { id: actor.fleetPartnerId }, select: { id: true, companyName: true } });
+      return { kind: 'FLEET_OWNER' as const, fleetPartnerId: p.id, companyName: p.companyName };
+    }
+    throw Err.forbidden();
+  }
+
+  /** Active kiosks of one municipality: enough to choose a destination, nothing personal. */
+  async listKiosks(municipalityCode: string) {
+    const muni = await this.prisma.municipality.findUnique({ where: { code: municipalityCode } });
+    if (!muni) throw Err.validation([{ path: 'municipalityCode', message: 'errors.validation_failed' }]);
+    const rows = await this.prisma.agent.findMany({
+      where: { municipalityId: muni.id, status: 'ACTIVE', deletedAt: null },
+      orderBy: { kioskName: 'asc' },
+      select: { id: true, agentCode: true, kioskName: true, address: true, openingHours: true },
+    });
+    return rows;
+  }
+
   /* ====================================== agents ====================================== */
 
   async createAgent(

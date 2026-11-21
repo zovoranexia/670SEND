@@ -1,0 +1,89 @@
+@import 'tailwindcss';
+
+/* Same brand tokens as the public site. Field-use rules: touch targets ≥ 48 px, text ≥ 16 px (no iOS zoom on focus),
+   AA contrast everywhere (the logo orange is decorative; text and buttons use accent-600). */
+@theme {
+  --font-sans: ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans', sans-serif;
+  --color-brand-50: #eef7f8;
+  --color-brand-100: #d6ecef;
+  --color-brand-200: #aad5db;
+  --color-brand-300: #6fb4be;
+  --color-brand-400: #388d9b;
+  --color-brand-500: #1b6f7d;
+  --color-brand-600: #0f5d6b;
+  --color-brand-700: #0b4f5c;
+  --color-brand-800: #083d47;
+  --color-brand-900: #062e36;
+  --color-accent-50: #fff3ed;
+  --color-accent-100: #ffe2d3;
+  --color-accent-500: #e6511a;
+  --color-accent-600: #c2410c;
+  --color-accent-700: #9a3412;
+}
+
+@layer base {
+  html {
+    color-scheme: light;
+    -webkit-text-size-adjust: 100%;
+    -webkit-tap-highlight-color: transparent;
+  }
+  body {
+    @apply bg-slate-50 font-sans text-base text-slate-800 antialiased;
+    overscroll-behavior-y: none;
+  }
+  :focus-visible {
+    outline: 3px solid var(--color-brand-700);
+    outline-offset: 2px;
+    border-radius: 6px;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+}
+
+@layer components {
+  .btn {
+    @apply inline-flex min-h-12 items-center justify-center gap-2 rounded-xl px-5 py-3 text-base font-semibold transition-colors select-none disabled:cursor-not-allowed disabled:opacity-50;
+  }
+  .btn-primary {
+    @apply bg-brand-700 text-white active:bg-brand-900;
+  }
+  .btn-accent {
+    @apply bg-accent-600 text-white active:bg-accent-700;
+  }
+  .btn-outline {
+    @apply border-2 border-brand-700 bg-white text-brand-700 active:bg-brand-50;
+  }
+  .btn-danger {
+    @apply bg-red-700 text-white active:bg-red-900;
+  }
+  .card {
+    @apply rounded-2xl border border-slate-200 bg-white p-4 shadow-sm;
+  }
+  .field-label {
+    @apply mb-1 block text-sm font-semibold text-slate-800;
+  }
+  .field-hint {
+    @apply mt-1 text-sm text-slate-600;
+  }
+  .field-error {
+    @apply mt-1 text-sm font-medium text-red-700;
+  }
+  .input {
+    @apply block min-h-12 w-full rounded-xl border border-slate-400 bg-white px-3 py-2.5 text-base text-slate-900 placeholder:text-slate-500 aria-[invalid=true]:border-red-600;
+  }
+  .screen {
+    @apply mx-auto w-full max-w-xl px-4 pb-28 pt-4;
+  }
+  .h1 {
+    @apply text-xl font-bold text-brand-800;
+  }
+  .h2 {
+    @apply text-base font-bold text-brand-800;
+  }
+}
