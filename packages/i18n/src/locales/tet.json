@@ -1,0 +1,622 @@
+{
+  "common": {
+    "appName": "670Send",
+    "tagline": "Haruka pakote ba munisípiu hotu iha Timor-Leste",
+    "language": {
+      "label": "Lian",
+      "tet": "Tetun",
+      "pt": "Português",
+      "en": "English",
+      "id": "Indonesia"
+    },
+    "actions": {
+      "continue": "Kontinua",
+      "back": "Fila fali",
+      "next": "Tuir mai",
+      "cancel": "Kansela",
+      "save": "Rai",
+      "submit": "Haruka",
+      "confirm": "Konfirma",
+      "close": "Taka",
+      "search": "Buka",
+      "retry": "Koko fali",
+      "print": "Imprime",
+      "share": "Fahe",
+      "download": "Download",
+      "edit": "Edita",
+      "delete": "Hamoos",
+      "finish": "Remata",
+      "scan": "Scan",
+      "call": "Telefone",
+      "whatsapp": "WhatsApp",
+      "logout": "Sai",
+      "login": "Tama"
+    },
+    "labels": {
+      "loading": "Karga hela...",
+      "yes": "Sin",
+      "no": "Lae",
+      "optional": "Opsionál",
+      "required": "Tenke prense",
+      "total": "Total",
+      "status": "Estadu",
+      "date": "Data",
+      "from": "Husi",
+      "to": "Ba",
+      "name": "Naran",
+      "phone": "Númeru telemóvel",
+      "address": "Enderesu",
+      "notes": "Observasaun",
+      "weightKg": "Todan (kg)",
+      "currency": "USD"
+    }
+  },
+  "web": {
+    "nav": {
+      "home": "Hahú",
+      "calculator": "Kalkula Taxa",
+      "track": "Akompaña Pakote",
+      "book": "Husu Foti Pakote",
+      "prohibited": "Sasán Proibidu",
+      "terms": "Kondisaun"
+    },
+    "hero": {
+      "title": "Haruka Pakote ba Munisípiu 14 ho Seguru, Lalais no Bele Akompaña!",
+      "subtitle": "Husi kios ajente 670Link besik Ita to'o munisípiu destinu — ho OTP, foto prova no notifikasaun WhatsApp.",
+      "ctaCalculate": "Kalkula taxa haruka",
+      "ctaTrack": "Akompaña pakote",
+      "ctaBook": "Husu kurir foti pakote"
+    },
+    "schemes": {
+      "SCHEME_A": "Ajente ba Ajente",
+      "SCHEME_B": "Kurir foti ba Ajente",
+      "SCHEME_C": "Ajente ba Uma",
+      "SCHEME_D": "Uma ba Uma (Premium)"
+    },
+    "calculator": {
+      "title": "Kalkulador Taxa & Kanál",
+      "origin": "Munisípiu orijen",
+      "destination": "Munisípiu destinu",
+      "weight": "Todan real (kg)",
+      "length": "Naruk (cm)",
+      "width": "Luan (cm)",
+      "height": "Aas (cm)",
+      "scheme": "Esquema serbisu",
+      "declaredValue": "Folin sasán (USD)",
+      "insure": "Hakarak seguru (1%)",
+      "calculate": "Kalkula",
+      "chargeableWeight": "Todan ne'ebé kobra",
+      "baseFee": "Taxa baziku",
+      "pickupFee": "Taxa kurir foti",
+      "deliveryFee": "Taxa kurir entrega",
+      "insuranceFee": "Prémiu seguru",
+      "canal": {
+        "label": "Transporte",
+        "BUS_BAGGAGE": "Bagajen ónibus ofisiál",
+        "CARGO_TRUCK_PICKUP": "Kargu (pikap / kamiaun)",
+        "SEA_FERRY_CARGO": "Kargu laut (ferry / manifestu portu)"
+      },
+      "seaNotice": "Pakote ba/husi Ataúro no Oecusse (RAEOA) uza de'it manifestu kargu laut ofisiál.",
+      "lead": "Hatene taxa aproximadu no haree oinsá Ita-nia pakote bá. La presiza rejistu.",
+      "routeTitle": "Rota",
+      "parcelTitle": "Pakote",
+      "optionsTitle": "Opsaun",
+      "routeHint": "Rota hotu hahú ka remata iha Díli.",
+      "swap": "Troka orijen ho destinu",
+      "category": "Tipu sasán",
+      "categories": {
+        "DOCUMENT": "Dokumentu",
+        "GENERAL": "Sasán jerál",
+        "CLOTHING": "Roupa",
+        "ELECTRONICS": "Eletróniku",
+        "LIQUID": "Likidu",
+        "FOOD": "Aihan (hakoi ona)",
+        "OTHER": "Seluk"
+      },
+      "fragile": "Frájil (fasil kotu)",
+      "heavyBulk": "Todan ka boot",
+      "insureHint": "Kompensasaun to’o folin ne’ebé Ita deklara (máximu USD 500).",
+      "resultTitle": "Ita-nia taxa",
+      "total": "Total atu selu",
+      "eta": "Tempu estimadu",
+      "zone": "Zona tarifa",
+      "tier": "Klase pakote",
+      "tiers": {
+        "DOCUMENT": "Dokumentu",
+        "SMALL": "Pakote ki’ik",
+        "CARGO": "Kargu"
+      },
+      "volumetric": "Todan volumétriku",
+      "wholesale": "Atakadu: taxa foti selu dala ida de’it ba pakote 3 ka liu.",
+      "indicative": "Folin aproximadu. Montante final konfirma iha kios tuir todan no tamanu loos.",
+      "calculating": "Kalkula hela...",
+      "sameRoute": "Orijen no destinu tenke diferente.",
+      "needDili": "Rota hotu tenke hahú ka remata iha Díli.",
+      "errorGeneric": "Ami la bele kalkula taxa. Favor koko fali.",
+      "errorNetwork": "La bele liga ba servidór. Hare Ita-nia konesaun no koko fali.",
+      "ctaBook": "Husu kurir foti",
+      "ctaFindKiosk": "Oinsá atu haruka",
+      "kg": "kg",
+      "cm": "cm"
+    },
+    "tracker": {
+      "title": "Akompaña Pakote",
+      "placeholder": "Hatama númeru resi (670S-DIL-BCU-261121-0042)",
+      "button": "Buka",
+      "notFound": "Resi la hetan. Hare fali númeru ne'e.",
+      "destinationKiosk": "Kios destinu",
+      "openMap": "Loke iha mapa",
+      "sender": "Haruka-na'in",
+      "recipient": "Simu-na'in",
+      "lead": "Hatama númeru resi husi Ita-nia resibu ka mensajen WhatsApp.",
+      "format": "Formatu: 670S-ORIJEN-DESTINU-AAMMDD-0000",
+      "invalid": "Ida ne’e la hanesan númeru resi.",
+      "searching": "Buka hela...",
+      "errorNetwork": "La bele liga ba servidór. Hare Ita-nia konesaun no koko fali.",
+      "route": "Rota",
+      "transport": "Transporte",
+      "lastUpdate": "Atualizasaun ikus",
+      "progress": "Progresu",
+      "stepOf": "Pasu {current} husi {total}",
+      "reached": "To’o ona",
+      "pending": "Hein",
+      "current": "Agora",
+      "copyLink": "Kopia link",
+      "copied": "Link kopia ona",
+      "kioskHint": "Lori dokumentu no OTP dígitu 6 ne’ebé haruka ba Ita iha WhatsApp.",
+      "openingHours": "Oras serbisu",
+      "exceptionTitle": "Atensaun",
+      "another": "Akompaña pakote seluk"
+    },
+    "booking": {
+      "title": "Husu Kurir Foti Pakote",
+      "pickAddress": "Hili fatin foti iha mapa",
+      "parcelCount": "Hira pakote",
+      "waNotifyLang": "Lian ba mensajen WhatsApp",
+      "wholesaleHint": "Haruka pakote 3 ka liu husi fatin ida? Taxa foti selu dala ida de'it.",
+      "submit": "Haruka pedidu",
+      "lead": "Kurir mai foti Ita-nia pakote iha uma no lori ba rede 670Send. Ami telefone ka haruka WhatsApp atu konfirma.",
+      "detailsTitle": "Ita-nia dadus",
+      "parcelsTitle": "Ita-nia pakote",
+      "locationTitle": "Fatin foti pakote",
+      "name": "Ita-nia naran",
+      "phone": "Númeru WhatsApp",
+      "phoneHint": "Ezemplu: +670 7712 3456",
+      "service": "Serbisu",
+      "destination": "Munisípiu destinu",
+      "destinationAny": "Seidauk hatene",
+      "weight": "Todan totál estimadu (kg)",
+      "address": "Enderesu fatin foti ka fatin sinál",
+      "addressHint": "Dalan, suku, loja ka edifísiu ne’ebé kurir bele hatene.",
+      "notes": "Nota ba kurir",
+      "useLocation": "Uza ha’u-nia fatin",
+      "locating": "Buka Ita-nia fatin...",
+      "locationDenied": "Ami la bele hetan Ita-nia fatin. Toka iha mapa.",
+      "clearPin": "Hasai pin",
+      "pinSet": "Pin tau iha {lat}, {lng}",
+      "noPin": "Seidauk iha pin. La obrigatóriu, maibé ajuda kurir hetan Ita.",
+      "outsideTL": "Fatin ne’e iha li’ur husi Timor-Leste. Favor hili fatin iha rai laran.",
+      "consent": "Bainhira haruka pedidu ne’e, Ita konkorda katak 670Send bele kontaktu Ita liu husi WhatsApp ka telefone kona-ba foti pakote ne’e.",
+      "submitting": "Haruka hela...",
+      "errorNetwork": "La bele liga ba servidór. Hare Ita-nia konesaun no koko fali.",
+      "errorGeneric": "Ami la bele haruka Ita-nia pedidu. Hare formuláriu no koko fali.",
+      "successTitle": "Pedidu simu ona",
+      "successBody": "Obrigadu. Ami-nia ekipa sei telefone ka haruka WhatsApp atu konfirma foti pakote.",
+      "reference": "Ita-nia referénsia",
+      "keepReference": "Rai kódigu ne’e. Hato’o bainhira Ita telefone mai ami.",
+      "newRequest": "Halo pedidu seluk",
+      "seePrice": "Haree taxa iha kalkulador"
+    },
+    "footer": {
+      "operator": "Zovoranexia, Lda.",
+      "rights": "Direitu hotu rai tiha",
+      "exploreHeading": "Esplora",
+      "legalHeading": "Legál",
+      "about": "670Send lori pakote entre munisípiu 14 iha Timor-Leste. Opera husi {operator}.",
+      "support": "Apoiu WhatsApp"
+    },
+    "meta": {
+      "home": {
+        "title": "670Send — Haruka pakote iha Timor-Leste tomak",
+        "description": "Haruka pakote entre munisípiu 14 iha Timor-Leste liu husi kios 670Link, bagajen ónibus, kargu no ferry. Taxa fiksu, OTP bainhira simu no notifikasaun WhatsApp."
+      },
+      "calculator": {
+        "title": "Kalkulador Taxa & Kanál",
+        "description": "Hatene taxa pakote lais no haree se pakote ne’e vá ho ónibus, kargu ka ferry."
+      },
+      "track": {
+        "title": "Akompaña Pakote",
+        "description": "Haree Ita-nia pakote 670Send pasu ba pasu ho númeru resi."
+      },
+      "book": {
+        "title": "Husu Kurir Foti Pakote",
+        "description": "Husu kurir 670Send atu foti Ita-nia pakote iha uma. Hili fatin iha mapa."
+      },
+      "prohibited": {
+        "title": "Sasán Proibidu & Restritu",
+        "description": "Sasán saida de’it mak labele haruka ho 670Send, no oinsá atu hakoi sasán ne’ebé presiza kuidadu."
+      },
+      "terms": {
+        "title": "Kondisaun Serbisu",
+        "description": "Kondisaun ba pakote 670Send hotu: deklarasaun, inspesaun, responsabilidade, klaim no rai pakote."
+      },
+      "notFound": {
+        "title": "Pájina la hetan"
+      }
+    },
+    "a11y": {
+      "skip": "Hakbesik ba konteúdu prinsipál",
+      "mainNav": "Menu prinsipál",
+      "menu": "Menu",
+      "languageMenu": "Hili lian",
+      "external": "(loke iha janela foun)",
+      "mapHint": "Klik ka toka mapa atu tau pin. Ita mos bele uza Ita-nia fatin agora, ka hakerek de’it enderesu.",
+      "mapLoading": "Karga mapa...",
+      "requiredField": "tenke prense"
+    },
+    "home": {
+      "schemesTitle": "Dalan haat atu haruka",
+      "schemesLead": "Hili oinsá pakote to’o ami-nia liman — no oinsá nia to’o iha ikus.",
+      "schemeDesc": {
+        "SCHEME_A": "Hatama iha kios 670Link. Simu-na’in foti iha kios iha munisípiu destinu.",
+        "SCHEME_B": "Kurir mai foti husi Ita. Simu-na’in foti iha kios destinu.",
+        "SCHEME_C": "Hatama iha kios. Kurir lokál entrega ba enderesu simu-na’in nian.",
+        "SCHEME_D": "Kurir foti no kurir entrega. Ami kuida ikus rua."
+      },
+      "howTitle": "Oinsá serbisu ne’e",
+      "how": {
+        "s1": {
+          "title": "Hatama pakote",
+          "body": "Lori pakote ba kios 670Link ka husu kurir. Ami haree Ita-nia dokumentu no foto rua husi sasán iha laran."
+        },
+        "s2": {
+          "title": "Sela no prepara",
+          "body": "Pakote sela, tau todan no prepara iha hub ba rota loos."
+        },
+        "s3": {
+          "title": "Ho armada ofisiál",
+          "body": "Pakote ba ho parseiru ónibus, kargu no ferry ne’ebé iha lisensa no asina akordu ho ami."
+        },
+        "s4": {
+          "title": "To’o iha kios",
+          "body": "Simu-na’in hetan mensajen WhatsApp ho OTP dígitu 6 no enderesu kios."
+        },
+        "s5": {
+          "title": "Entrega ho OTP no dokumentu",
+          "body": "Simu-na’in hatudu dokumentu no OTP. Ami foti foto prova entrega."
+        }
+      },
+      "trustTitle": "Halo ba pakote to’o — no Ita bele prova",
+      "trust": {
+        "otp": {
+          "title": "Entrega ho OTP",
+          "body": "Ema la bele foti Ita-nia pakote se la iha kódigu úniku ne’ebé haruka ba simu-na’in."
+        },
+        "photos": {
+          "title": "Foto prova",
+          "body": "Sasán iha laran no pakote sela foti foto bainhira hatama. Entrega mós foti foto."
+        },
+        "whatsapp": {
+          "title": "Notifikasaun WhatsApp",
+          "body": "Haruka-na’in no simu-na’in hatene iha pasu hotu, ho sira-nia lian rasik."
+        },
+        "tariff": {
+          "title": "Taxa fiksu",
+          "body": "Folin depende ba zona no todan no hatudu molok selu. Laiha surprezas iha kaunter."
+        }
+      },
+      "coverageTitle": "Munisípiu 14 hotu",
+      "coverageLead": "Díli mak ami-nia hub: rota hotu hahú ka remata iha Díli.",
+      "ctaTitle": "Prontu atu haruka?",
+      "ctaBody": "Hatene taxa iha segundu balu. La presiza rejistu."
+    },
+    "corridors": {
+      "LOCAL": "Lokál",
+      "EAST": "Koredór Leste",
+      "SOUTH": "Koredór Sul",
+      "WEST": "Koredór Oeste",
+      "SEA": "Liu husi tasi"
+    },
+    "notFound": {
+      "title": "Ami la hetan pájina ne’e",
+      "body": "Karik pájina ne’e muda ona, ka enderesu la loos.",
+      "home": "Fila ba pájina inísiu"
+    },
+    "form": {
+      "required": "Prense kampu ne’e.",
+      "number": "Hatama númeru ne’ebé loos.",
+      "positive": "Valór tenke boot liu zero.",
+      "max": "Valór tenke la liu {max}.",
+      "minChars": "Hatama karakter {min} ka liu."
+    }
+  },
+  "pwa": {
+    "nav": {
+      "home": "Hahú",
+      "dropoff": "Simu Pakote",
+      "inbound": "Pakote Tama",
+      "pickup": "Entrega Pakote",
+      "jobs": "Serbisu",
+      "handover": "Hatama ba Hub",
+      "manifest": "Manifestu",
+      "wallet": "Karteira",
+      "profile": "Perfíl"
+    },
+    "wizard": {
+      "step1": "Sender no Simu-na'in (KYC)",
+      "step2": "Sasán proibidu & Foto",
+      "step3": "Todan no Medida",
+      "step4": "Taxa, Seguru no Kanál",
+      "step5": "Konfirma ho PIN",
+      "senderId": "Dokumentu identidade (BI / Kartaun Eleitorál / Pasaporte)",
+      "idNumber": "Númeru dokumentu",
+      "photoOpenBox": "Foto sasán iha laran (kaixa loke)",
+      "photoSealed": "Foto pakote depois sela",
+      "pin": "PIN 6 dígitu",
+      "done": "Pakote rejistu ona. Imprime resi no haruka ba WhatsApp."
+    },
+    "inbound": {
+      "title": "Simu Pakote husi Armada",
+      "sealIntact": "Sela seguru, pakote kompletu",
+      "reportIncident": "Relata problema",
+      "driverConfirm": "Motorista konfirma problema ne'e"
+    },
+    "pod": {
+      "title": "Entrega ba Simu-na'in",
+      "enterOtp": "Hatama kódigu OTP 6 dígitu",
+      "collectorName": "Naran ema ne'ebé foti",
+      "collectorId": "Númeru ID ema ne'ebé foti",
+      "storagePenalty": "Taxa armazenamentu (depois loron-5)",
+      "photoPod": "Foto simu-na'in kaer pakote ho etiketa QR",
+      "complete": "Remata entrega"
+    },
+    "courier": {
+      "pickupJobs": "Pedidu foti",
+      "deliveryJobs": "Pedidu entrega",
+      "callCustomer": "Telefone kliente",
+      "waCustomer": "WhatsApp kliente"
+    },
+    "driver": {
+      "scanManifest": "Scan QR manifestu",
+      "baggagePhoto": "Foto pakote iha bagajen taka",
+      "departed": "Hahú viajen",
+      "arrived": "Tama ona",
+      "dropOffPoints": "Fatin entrega ajente iha dalan"
+    }
+  },
+  "admin": {
+    "nav": {
+      "dashboard": "Painel Prinsipál",
+      "shipments": "Pakote",
+      "hubs": "Operasaun Hub",
+      "partners": "Parseiru & Konformidade",
+      "finance": "Finansa & Ledger",
+      "claims": "CS & Klaim",
+      "tariffs": "Tarifa",
+      "templates": "Modelu WhatsApp",
+      "rbac": "Papél & Permisaun",
+      "audit": "Log Auditoria"
+    },
+    "dashboard": {
+      "gmvToday": "GMV ohin",
+      "gmvMonth": "GMV fulan ida ne'e",
+      "platformRevenue": "Reseita plataforma (25%)",
+      "claimReserve": "Reserva klaim (5%)",
+      "inTransit": "Pakote iha dalan",
+      "unclaimed": "Pakote la foti (>5 loron)"
+    },
+    "noPermission": "Ita la iha permisaun atu halo asaun ida ne'e.",
+    "forceOverrideReason": "Razaun ba override (obrigatóriu, rejistu iha auditoria)"
+  },
+  "status": {
+    "PICKUP_ASSIGNED": {
+      "label": "Kurir hetan ona serbisu",
+      "description": "Kurir 670Send atu foti pakote iha Ita-nia fatin."
+    },
+    "DROPPED_AT_ORIGIN": {
+      "label": "Pakote simu ona",
+      "description": "Pakote simu ona no sela iha Ajente orijen ka husi kurir."
+    },
+    "CONSOLIDATED_AT_HUB": {
+      "label": "Prepara iha Hub",
+      "description": "Pakote prepara iha Hub terminál hodi tula ba armada."
+    },
+    "IN_TRANSIT": {
+      "label": "Iha dalan",
+      "description": "Pakote lori husi armada ofisiál ba munisípiu destinu."
+    },
+    "ARRIVED_AT_DEST_AGENT": {
+      "label": "To'o ona iha Ajente destinu",
+      "description": "Pakote to'o ona. Simu-na'in tenke lori BI no kódigu OTP."
+    },
+    "OUT_FOR_DELIVERY": {
+      "label": "Kurir lori ba uma",
+      "description": "Kurir lokál lori pakote ba enderesu simu-na'in."
+    },
+    "DELIVERED": {
+      "label": "Simu ona",
+      "description": "Pakote entrega ona ba simu-na'in ho verifikasaun OTP no foto prova."
+    },
+    "ON_HOLD_ISSUE": {
+      "label": "Iha obstákulu",
+      "description": "Iha problema ho pakote. Ekipa CS sei kontaktu."
+    },
+    "RETURN_TO_SENDER": {
+      "label": "Fila fali ba haruka-na'in",
+      "description": "Pakote la foti durante loron 14 no fila fali ba Hub Dili."
+    }
+  },
+  "errors": {
+    "generic": "Iha problema. Favór koko fali.",
+    "unauthorized": "Ita presiza tama (login) uluk.",
+    "forbidden": "Ita la iha permisaun ba asaun ne'e.",
+    "not_found": "Informasaun la hetan.",
+    "validation_failed": "Dadus la válidu. Hare fali formuláriu.",
+    "idempotency_conflict": "Pedidu ne'e uza ona ho dadus seluk.",
+    "sea_route_bus_forbidden": "Pakote ba/husi Oecusse (RAEOA) no Ataúro la bele lori ho ónibus. Uza de'it manifestu kargu laut ofisiál.",
+    "bus_limit_exceeded": "Pakote boot liu ba bagajen ónibus. Uza kargu pikap/kamiaun.",
+    "bus_capacity_exceeded": "Bagajen ónibus ne'e nakonu ona. Hili ónibus seluk ka tau iha kargu.",
+    "over_max_weight": "Todan liu limite 500 kg.",
+    "insufficient_deposit": "Saldu depózitu la sufisiente. Halo top-up uluk.",
+    "invalid_otp": "Kódigu OTP la loos.",
+    "otp_expired": "Kódigu OTP ekspira ona.",
+    "otp_locked": "Tentativa OTP barak liu. Hein uluk ka kontaktu CS.",
+    "photos_required": "Foto 2 obrigatóriu: sasán iha laran no pakote depois sela.",
+    "prohibited_check_required": "Konfirma katak pakote la iha sasán proibidu hotu.",
+    "kyc_required": "Identidade haruka-na'in obrigatóriu. La bele simu pakote anónimu.",
+    "shipment_wrong_state": "Estadu pakote la permite asaun ne'e.",
+    "vehicle_permit_expired": "Lisensa DNTT/KIR veíkulu ekspira ona.",
+    "mou_expired": "MoU parseiru armada ekspira ona.",
+    "claim_over_limit": "Montante klaim liu limite responsabilidade.",
+    "pin_invalid": "PIN la loos.",
+    "account_locked": "Kontu bloke temporáriu. Koko fali depois.",
+    "invalid_credentials": "Kontaktu ka password la loos.",
+    "account_inactive": "Kontu ne'e la ativu. Kontaktu administradór.",
+    "refresh_invalid": "Sesaun remata ona. Tama fali.",
+    "too_many_requests": "Pedidu barak liu. Hein uluk minutu balu.",
+    "request_in_progress": "Pedidu ne'e prosesu hela. Koko fali iha segundu balu.",
+    "idempotency_key_required": "Header Idempotency-Key obrigatóriu.",
+    "audit_reason_required": "Razaun obrigatóriu ba asaun ne'e (rejistu iha auditoria).",
+    "file_too_large": "Fatin file boot liu. Maximu {maxKb} KB.",
+    "file_type_not_allowed": "Tipu file la permite. Uza JPEG, PNG ka WebP.",
+    "upload_failed": "Upload falla. Koko fali.",
+    "wallet_not_found": "Karteira la hetan.",
+    "ledger_unbalanced": "Lansamentu finanseiru la ekilibra. Operasaun kansela.",
+    "upload_not_found": "Foto la hetan ka uza ona.",
+    "internal_error": "Erru interna. Ekipa tékniku hetan ona informasaun.",
+    "password_change_required": "Troka password uluk molok kontinua.",
+    "route_not_supported": "Rota ne'e seidauk disponivel. Pakote tenke sai ka tama iha Díli.",
+    "destination_agent_required": "Hili ajente destinu (iha ajente barak iha munisípiu ne'e).",
+    "no_destination_agent": "Laiha ajente ativu iha munisípiu destinu.",
+    "declared_value_required": "Folin sasán obrigatóriu ba eletróniku no seguru.",
+    "delivery_address_required": "Enderesu simu-na'in obrigatóriu ba entrega kurier.",
+    "addon_not_available": "Serbisu kurier ne'e la disponivel iha fatin ida-ne'e.",
+    "scheme_not_allowed": "Ita-nia papél la bele uza esquema serbisu ida ne'e.",
+    "waybill_sequence_exhausted": "Númeru resi ba rota ne'e iha loron ohin remata ona (9999).",
+    "wrong_hub": "Pakote ne'e la tuir hub ida ne'e.",
+    "master_bag_invalid": "Karung transit la válidu ba asaun ne'e.",
+    "manifest_invalid": "Manifestu la válidu: hare pakote, veíkulu no sopir.",
+    "parcel_already_assigned": "Pakote ne'e iha karung ka manifestu seluk ona.",
+    "driver_license_expired": "Karta Kondusaun sopir ekspira ona.",
+    "partner_inactive": "Parseiru armada la ativu.",
+    "baggage_photo_required": "Foto pakote iha bagajen taka obrigatóriu.",
+    "storage_fee_unpaid": "Simu taxa armazenamentu uluk molok entrega.",
+    "incident_driver_confirmation_required": "Sopir tenke konfirma problema ne'e uluk.",
+    "incident_photo_required": "Foto prova problema obrigatóriu.",
+    "booking_not_confirmed": "Pedidu foti seidauk konfirma.",
+    "booking_invalid": "Pedidu foti la válidu ka la ba kurier ida ne'e.",
+    "courier_unavailable": "Kurier la disponivel.",
+    "delivery_not_allowed": "Esquema ida ne'e la iha entrega ba uma.",
+    "deposit_proof_required": "Foto prova obrigatóriu ba depózitu liu husi banku / MOSAN / T-Pay.",
+    "reference_required": "Númeru referénsia obrigatóriu.",
+    "duplicate_reference": "Referénsia ne'e uza ona ba depózitu seluk.",
+    "self_approval_forbidden": "Ema ne'ebé kria la bele aprova ninia an rasik.",
+    "payout_empty": "Laiha osan atu selu iha períodu ne'e.",
+    "claim_deadline_passed": "Prazu klaim hotu ona: klaim tenke halo bainhira simu pakote.",
+    "claim_total_exceeded": "Total klaim liu limite responsabilidade ba pakote ne'e.",
+    "escrow_insufficient": "Reserva klaim la sufisiente atu selu.",
+    "refund_not_applicable": "Pakote ne'e la iha direitu ba restituisaun.",
+    "role_locked": "Papél ne'e proteje no la bele troka.",
+    "role_in_use": "Papél ne'e seidauk livre: iha uza-na'in sei uza.",
+    "last_super_admin": "La bele hasai Super Admin ikus.",
+    "template_variable_invalid": "Modelu uza variavel la autorizadu: {vars}.",
+    "template_otp_required": "Modelu ne'e tenke inklui variavel otp.",
+    "setting_not_editable": "Konfigurasaun ne'e la bele troka husi API.",
+    "user_exists": "Email ka telemóvel ne'e uza ona.",
+    "rts_invalid": "Pakote ne'e la iha prosesu fila fali.",
+    "override_not_allowed": "Override la bele ba/husi DELIVERED.",
+    "agent_not_compliant": "Ajente la bele ativa: presiza adendu asina, timbangan dijitál no fatin seguru.",
+    "fleet_not_compliant": "Parseiru la bele ativa: presiza MoU válidu, númeru MoU no dadus pagamentu.",
+    "validation": {
+      "phone": "Númeru telemóvel la válidu (+670...).",
+      "whatsapp_phone": "Presiza númeru telemóvel WhatsApp (+670 7xxx xxxx).",
+      "waybill": "Formatu resi la loos.",
+      "otp": "OTP tenke dígitu 6.",
+      "pin": "PIN tenke dígitu 6.",
+      "pin_weak": "PIN ne'e fraku liu. Hili seluk.",
+      "name": "Naran la kompletu.",
+      "id_number": "Númeru dokumentu la válidu.",
+      "password": "Password tenke karakter 12 ka liu, ho letra no númeru."
+    }
+  },
+  "receipt": {
+    "title": "RESI HARUKA PAKOTE",
+    "waybill": "Resi",
+    "date": "Data",
+    "origin": "Orijen",
+    "destination": "Destinu",
+    "sender": "Haruka-na'in",
+    "recipient": "Simu-na'in",
+    "weight": "Todan",
+    "chargeable": "Todan kobra",
+    "canal": "Transporte",
+    "scheme": "Esquema",
+    "baseFee": "Taxa baziku",
+    "pickupFee": "Taxa foti",
+    "deliveryFee": "Taxa entrega",
+    "insuranceFee": "Seguru",
+    "total": "TOTAL",
+    "paidCash": "Selu osan-kontante",
+    "declaration": "Haruka-na'in deklara sasán iha pakote loos no la iha sasán proibidu.",
+    "liability": "Responsabilidade maximu (la iha seguru): dala 10 taxa baziku ka USD 50.",
+    "claimNotice": "Klaim estragus tenke halo bainhira simu pakote, iha oin Ajente.",
+    "trackAt": "Akompaña iha 670send.tl/track",
+    "thanks": "Obrigadu uza 670Send!"
+  },
+  "terms": {
+    "title": "Kondisaun Serbisu 670Send",
+    "clauses": {
+      "declaration": {
+        "title": "Deklarasaun Loos & Responsabilidade Krimi",
+        "body": "Haruka-na'in garante katak informasaun kona-ba sasán iha pakote loos no la iha sasán ilegál ka perigu. Se hetan sasán proibidu ka deklarasaun falsu, haruka-na'in responsavel totál tuir lei (krimi no sivíl) no halo 670Send, Ajente, Kurir no Parseiru Armada livre husi prosesu legál."
+      },
+      "inspection": {
+        "title": "Direitu Inspesaun",
+        "body": "670Send no autoridade kompetente (PNTL / Alfândega) iha direitu atu loke no inspesiona pakote se iha sinál violasaun seguransa."
+      },
+      "liability": {
+        "title": "Limite Responsabilidade",
+        "body": "Pakote la iha seguru: indemnizasaun maximu dala 10 taxa baziku ka USD 50.00 (ida ne'ebé ki'ik liu). Pakote ho seguru opsionál (1% husi folin sasán): indemnizasaun tuir folin deklarada ho nota kompra válida, maximu USD 500.00 kada resi."
+      },
+      "exclusions": {
+        "title": "Klaim Ne'ebé La Kobre",
+        "body": "La kobre: sasán frájil ne'ebé estraga tanba embalajen la sufisiente, estragus naturál ka sasán aat, perda indireta, no forsa maior (dezastre naturál, dalan taka tanba rai-monu iha foho Timor-Leste)."
+      },
+      "claimDeadline": {
+        "title": "Prazu Klaim",
+        "body": "Klaim estragus tenke hato'o bainhira simu pakote iha oin Ajente destinu ka Kurir (molok lori sai husi kios), ho vídeu ka foto loke pakote. Klaim depois lori ba uma la válidu."
+      },
+      "identity": {
+        "title": "Identidade no Entrega",
+        "body": "Haruka-na’in tenke hatudu dokumentu válidu (BI, kartaun eleitorál ka pasaportu) bainhira hatama pakote. Simu-na’in foti ho dokumentu válidu no kódigu úniku (OTP) ne’ebé haruka liu husi WhatsApp; entrega rejistu ho foto."
+      },
+      "storage": {
+        "title": "Rai Pakote iha Kios Destinu",
+        "body": "Pakote ne’ebé hein iha kios rai gratuita ba loron 5 dahuluk. Husi loron 6 to’o loron 14 aplika taxa rai USD 0.50 ba loron ida, selu bainhira foti. Pakote ne’ebé la foti iha loron 14 laran fila ba Hub Díli no entrega fali ba haruka-na’in."
+      }
+    },
+    "intro": "Bainhira hatama pakote ba ajente 670Link ka kurir, Ita simu kondisaun sira ne’e."
+  },
+  "prohibited": {
+    "title": "Sasán Proibidu & Restritu",
+    "intro": "Ajente no Kurir tenke rejeita sasán sira ne'e. Se hetan tentativa kontrabandu, 670Send bele relata ba PNTL.",
+    "confirmHeading": "Ha'u konfirma katak pakote ne'e LA IHA:",
+    "items": {
+      "narcotics": "Narkótiku, droga no ai-moruk proibidu (la iha lisensa husi Ministériu Saúde)",
+      "weapons_sharp": "Arma-fogu, munisaun, bomba/material sulin, petarda, no arma kortante ilegál",
+      "fuel_flammable": "Kombustível no likidu fasil sunu/korozivu: gasolina, solar, mina-rai, botija gás LPG, bateria bé, tiner, tinta spray",
+      "cash_gold_jewelry": "Osan kontante, osan-mean (ouro), joia folin aas, xeke mamuk, dokumentu sekretu estadu",
+      "protected_wildlife": "Animál moris no ai-horis protejidu (inklui parte animál ilegál)",
+      "untaxed_contraband": "Sasán kontrabandu laiha impostu (sigaru ka bebida alkoólika ilegál iha kuantidade komersiál)",
+      "raw_perishables": "Aihan fresku ne'ebé lais aat (naan mentah, ikan fresku, jelu) la iha ekipamentu malirin"
+    },
+    "restricted": {
+      "electronics": "Eletróniku (HP, laptop, sparepart): kaixa metin ho bubble wrap, deklara folin, seguru rekomenda.",
+      "documents": "Dokumentu importante (diploma, sertifikadu, kontratu orijinál): tama iha amplop kontra bé.",
+      "liquids": "Likidu la perigu (mina-nuu, mel, ai-moruk likidu): maximu litru 1, botelha plástiku sela di'ak."
+    },
+    "refusedTitle": "Ami sei rejeita sasán sira ne’e",
+    "restrictedTitle": "Simu ho kuidadu",
+    "footerNote": "Se iha dúvida, husu iha kios molok haruka. Deklarasaun falsu halo haruka-na’in responsavel totál."
+  }
+}

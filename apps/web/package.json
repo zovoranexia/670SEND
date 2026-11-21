@@ -1,0 +1,42 @@
+{
+  "name": "@670send/web",
+  "version": "0.1.0",
+  "private": true,
+  "description": "670send.tl — public site: landing, rate & canal calculator, waybill tracker, pick-up booking, legal pages (tet · pt · en · id)",
+  "scripts": {
+    "dev": "next dev -p 3100",
+    "build": "next build",
+    "start": "node scripts/start.mjs",
+    "typecheck": "next typegen && tsc --noEmit",
+    "test": "vitest run",
+    "smoke": "node scripts/smoke.mjs",
+    "a11y": "node scripts/a11y.mjs"
+  },
+  "dependencies": {
+    "@670send/i18n": "workspace:*",
+    "@670send/types": "workspace:*",
+    "@670send/validation": "workspace:*",
+    "leaflet": "^1.9.4",
+    "next": "^16.4.6",
+    "next-intl": "^4.15.3",
+    "react": "^19.3.1",
+    "react-dom": "^19.3.1",
+    "zod": "^4.6.7"
+  },
+  "devDependencies": {
+    "@tailwindcss/postcss": "^4.3.5",
+    "@testing-library/dom": "^10.4.0",
+    "@testing-library/jest-dom": "^6.9.1",
+    "@testing-library/react": "^16.3.3",
+    "@testing-library/user-event": "^14.6.1",
+    "@types/leaflet": "^1.9.22",
+    "@types/node": "^22.15.0",
+    "@types/react": "^19.2.0",
+    "@types/react-dom": "^19.2.0",
+    "axe-core": "^4.14.1",
+    "jsdom": "^26.1.0",
+    "tailwindcss": "^4.3.5",
+    "typescript": "~5.9.3",
+    "vitest": "^3.2.0"
+  }
+}

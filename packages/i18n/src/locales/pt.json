@@ -1,0 +1,622 @@
+{
+  "common": {
+    "appName": "670Send",
+    "tagline": "Envie encomendas para todos os municípios de Timor-Leste",
+    "language": {
+      "label": "Idioma",
+      "tet": "Tetun",
+      "pt": "Português",
+      "en": "English",
+      "id": "Indonesia"
+    },
+    "actions": {
+      "continue": "Continuar",
+      "back": "Voltar",
+      "next": "Seguinte",
+      "cancel": "Cancelar",
+      "save": "Guardar",
+      "submit": "Enviar",
+      "confirm": "Confirmar",
+      "close": "Fechar",
+      "search": "Pesquisar",
+      "retry": "Tentar novamente",
+      "print": "Imprimir",
+      "share": "Partilhar",
+      "download": "Transferir",
+      "edit": "Editar",
+      "delete": "Eliminar",
+      "finish": "Concluir",
+      "scan": "Ler QR",
+      "call": "Ligar",
+      "whatsapp": "WhatsApp",
+      "logout": "Sair",
+      "login": "Entrar"
+    },
+    "labels": {
+      "loading": "A carregar...",
+      "yes": "Sim",
+      "no": "Não",
+      "optional": "Opcional",
+      "required": "Obrigatório",
+      "total": "Total",
+      "status": "Estado",
+      "date": "Data",
+      "from": "De",
+      "to": "Para",
+      "name": "Nome",
+      "phone": "Número de telemóvel",
+      "address": "Morada",
+      "notes": "Observações",
+      "weightKg": "Peso (kg)",
+      "currency": "USD"
+    }
+  },
+  "web": {
+    "nav": {
+      "home": "Início",
+      "calculator": "Calcular Tarifa",
+      "track": "Rastrear Encomenda",
+      "book": "Pedir Recolha",
+      "prohibited": "Artigos Proibidos",
+      "terms": "Termos"
+    },
+    "hero": {
+      "title": "Envie Encomendas para os 14 Municípios com Segurança, Rapidez e Rastreamento!",
+      "subtitle": "Do quiosque agente 670Link mais próximo até ao município de destino — com OTP, foto de prova e notificações por WhatsApp.",
+      "ctaCalculate": "Calcular tarifa",
+      "ctaTrack": "Rastrear encomenda",
+      "ctaBook": "Pedir recolha por estafeta"
+    },
+    "schemes": {
+      "SCHEME_A": "Agente para Agente",
+      "SCHEME_B": "Recolha ao Domicílio para Agente",
+      "SCHEME_C": "Agente para Domicílio",
+      "SCHEME_D": "Porta a Porta (Premium)"
+    },
+    "calculator": {
+      "title": "Calculadora de Tarifa e Canal",
+      "origin": "Município de origem",
+      "destination": "Município de destino",
+      "weight": "Peso real (kg)",
+      "length": "Comprimento (cm)",
+      "width": "Largura (cm)",
+      "height": "Altura (cm)",
+      "scheme": "Esquema de serviço",
+      "declaredValue": "Valor declarado (USD)",
+      "insure": "Quero seguro (1%)",
+      "calculate": "Calcular",
+      "chargeableWeight": "Peso tarifável",
+      "baseFee": "Tarifa base",
+      "pickupFee": "Taxa de recolha",
+      "deliveryFee": "Taxa de entrega",
+      "insuranceFee": "Prémio de seguro",
+      "canal": {
+        "label": "Transporte",
+        "BUS_BAGGAGE": "Bagageira de autocarro oficial",
+        "CARGO_TRUCK_PICKUP": "Carga (pick-up / camião)",
+        "SEA_FERRY_CARGO": "Carga marítima (ferry / manifesto portuário)"
+      },
+      "seaNotice": "As encomendas de/para Ataúro e Oecusse (RAEOA) viajam exclusivamente por manifesto de carga marítima oficial.",
+      "lead": "Obtenha um preço indicativo e veja como a sua encomenda viaja. Sem registo.",
+      "routeTitle": "Rota",
+      "parcelTitle": "Encomenda",
+      "optionsTitle": "Opções",
+      "routeHint": "Todas as rotas começam ou terminam em Díli.",
+      "swap": "Trocar origem e destino",
+      "category": "Tipo de artigo",
+      "categories": {
+        "DOCUMENT": "Documentos",
+        "GENERAL": "Mercadorias gerais",
+        "CLOTHING": "Roupa",
+        "ELECTRONICS": "Eletrónicos",
+        "LIQUID": "Líquidos",
+        "FOOD": "Alimentos (embalados)",
+        "OTHER": "Outro"
+      },
+      "fragile": "Frágil",
+      "heavyBulk": "Pesado ou volumoso",
+      "insureHint": "Compensação até ao valor declarado (máximo USD 500).",
+      "resultTitle": "O seu orçamento",
+      "total": "Total a pagar",
+      "eta": "Prazo estimado",
+      "zone": "Zona tarifária",
+      "tier": "Classe da encomenda",
+      "tiers": {
+        "DOCUMENT": "Documento",
+        "SMALL": "Encomenda pequena",
+        "CARGO": "Carga"
+      },
+      "volumetric": "Peso volumétrico",
+      "wholesale": "Grosso: a taxa de recolha é cobrada uma só vez para 3 ou mais encomendas.",
+      "indicative": "Preço indicativo. O valor final é confirmado no quiosque com o peso e o tamanho reais.",
+      "calculating": "A calcular…",
+      "sameRoute": "A origem e o destino têm de ser diferentes.",
+      "needDili": "Todas as rotas têm de começar ou terminar em Díli.",
+      "errorGeneric": "Não foi possível calcular o preço. Tente novamente.",
+      "errorNetwork": "Não foi possível contactar o servidor. Verifique a ligação e tente novamente.",
+      "ctaBook": "Pedir recolha",
+      "ctaFindKiosk": "Como enviar",
+      "kg": "kg",
+      "cm": "cm"
+    },
+    "tracker": {
+      "title": "Rastrear Encomenda",
+      "placeholder": "Introduza o número da guia (670S-DIL-BCU-261121-0042)",
+      "button": "Pesquisar",
+      "notFound": "Guia não encontrada. Verifique o número.",
+      "destinationKiosk": "Quiosque de destino",
+      "openMap": "Abrir no mapa",
+      "sender": "Remetente",
+      "recipient": "Destinatário",
+      "lead": "Introduza o número da guia que consta do recibo ou da mensagem de WhatsApp.",
+      "format": "Formato: 670S-ORIGEM-DESTINO-AAMMDD-0000",
+      "invalid": "Isto não parece um número de guia.",
+      "searching": "A pesquisar…",
+      "errorNetwork": "Não foi possível contactar o servidor. Verifique a ligação e tente novamente.",
+      "route": "Rota",
+      "transport": "Transporte",
+      "lastUpdate": "Última atualização",
+      "progress": "Progresso",
+      "stepOf": "Passo {current} de {total}",
+      "reached": "Concluído",
+      "pending": "Em espera",
+      "current": "Agora",
+      "copyLink": "Copiar ligação",
+      "copied": "Ligação copiada",
+      "kioskHint": "Leve o documento de identificação e o OTP de 6 dígitos enviado por WhatsApp.",
+      "openingHours": "Horário",
+      "exceptionTitle": "Atenção",
+      "another": "Rastrear outra encomenda"
+    },
+    "booking": {
+      "title": "Pedir Recolha por Estafeta",
+      "pickAddress": "Escolha o local de recolha no mapa",
+      "parcelCount": "Número de encomendas",
+      "waNotifyLang": "Idioma das mensagens WhatsApp",
+      "wholesaleHint": "3 ou mais encomendas do mesmo local? A taxa de recolha é cobrada apenas uma vez.",
+      "submit": "Enviar pedido",
+      "lead": "Um estafeta recolhe as suas encomendas à porta e leva-as para a rede 670Send. Contactamo-lo por telefone ou WhatsApp para confirmar.",
+      "detailsTitle": "Os seus dados",
+      "parcelsTitle": "As suas encomendas",
+      "locationTitle": "Local de recolha",
+      "name": "O seu nome",
+      "phone": "Número de WhatsApp",
+      "phoneHint": "Exemplo: +670 7712 3456",
+      "service": "Serviço",
+      "destination": "Município de destino",
+      "destinationAny": "Ainda não sei",
+      "weight": "Peso total estimado (kg)",
+      "address": "Morada ou ponto de referência da recolha",
+      "addressHint": "Rua, suco, uma loja ou edifício que o estafeta reconheça.",
+      "notes": "Notas para o estafeta",
+      "useLocation": "Usar a minha localização",
+      "locating": "A localizá-lo…",
+      "locationDenied": "Não foi possível obter a sua localização. Toque no mapa.",
+      "clearPin": "Remover marcador",
+      "pinSet": "Marcador em {lat}, {lng}",
+      "noPin": "Ainda sem marcador. É opcional, mas ajuda o estafeta a encontrá-lo.",
+      "outsideTL": "Esse ponto fica fora de Timor-Leste. Escolha um local dentro do país.",
+      "consent": "Ao enviar este pedido, aceita que a 670Send o contacte por WhatsApp ou telefone sobre esta recolha.",
+      "submitting": "A enviar…",
+      "errorNetwork": "Não foi possível contactar o servidor. Verifique a ligação e tente novamente.",
+      "errorGeneric": "Não foi possível enviar o pedido. Verifique o formulário e tente novamente.",
+      "successTitle": "Pedido recebido",
+      "successBody": "Obrigado. A nossa equipa vai contactá-lo por telefone ou WhatsApp para confirmar a recolha.",
+      "reference": "A sua referência",
+      "keepReference": "Guarde este código. Indique-o se nos telefonar.",
+      "newRequest": "Fazer outro pedido",
+      "seePrice": "Ver o preço na calculadora"
+    },
+    "footer": {
+      "operator": "Zovoranexia, Lda.",
+      "rights": "Todos os direitos reservados",
+      "exploreHeading": "Explorar",
+      "legalHeading": "Legal",
+      "about": "A 670Send transporta encomendas entre os 14 municípios de Timor-Leste. Operada por {operator}.",
+      "support": "Apoio por WhatsApp"
+    },
+    "meta": {
+      "home": {
+        "title": "670Send — Entrega de encomendas em todo o Timor-Leste",
+        "description": "Envie encomendas entre os 14 municípios de Timor-Leste através de quiosques 670Link, bagageira de autocarro, carga e ferry. Tarifas fixas, entrega com OTP e notificações por WhatsApp."
+      },
+      "calculator": {
+        "title": "Calculadora de Tarifa e Canal",
+        "description": "Saiba de imediato o preço da sua encomenda e se viaja de autocarro, em carga ou de ferry."
+      },
+      "track": {
+        "title": "Rastrear Encomenda",
+        "description": "Acompanhe a sua encomenda 670Send passo a passo com o número da guia."
+      },
+      "book": {
+        "title": "Pedir Recolha por Estafeta",
+        "description": "Peça a um estafeta 670Send que recolha as suas encomendas à porta. Marque o local no mapa."
+      },
+      "prohibited": {
+        "title": "Artigos Proibidos e Restritos",
+        "description": "O que não pode enviar com a 670Send e como embalar artigos que exigem cuidado."
+      },
+      "terms": {
+        "title": "Termos de Serviço",
+        "description": "Os termos aplicáveis a todas as encomendas 670Send: declaração, inspeção, responsabilidade, reclamações e armazenamento."
+      },
+      "notFound": {
+        "title": "Página não encontrada"
+      }
+    },
+    "a11y": {
+      "skip": "Saltar para o conteúdo principal",
+      "mainNav": "Navegação principal",
+      "menu": "Menu",
+      "languageMenu": "Escolher idioma",
+      "external": "(abre num novo separador)",
+      "mapHint": "Clique ou toque no mapa para colocar o marcador. Também pode usar a sua localização ou escrever a morada.",
+      "mapLoading": "A carregar o mapa…",
+      "requiredField": "obrigatório"
+    },
+    "home": {
+      "schemesTitle": "Quatro formas de enviar",
+      "schemesLead": "Escolha como a encomenda chega até nós — e como chega ao outro lado.",
+      "schemeDesc": {
+        "SCHEME_A": "Entregue num quiosque 670Link. O destinatário levanta-a no quiosque do município de destino.",
+        "SCHEME_B": "Um estafeta recolhe-a consigo. O destinatário levanta-a no quiosque de destino.",
+        "SCHEME_C": "Entregue num quiosque. Um estafeta local entrega-a na morada do destinatário.",
+        "SCHEME_D": "Recolha e entrega por estafeta. Tratamos das duas pontas."
+      },
+      "howTitle": "Como funciona",
+      "how": {
+        "s1": {
+          "title": "Entregue a encomenda",
+          "body": "Leve a encomenda a um quiosque 670Link ou peça um estafeta. Verificamos o seu documento de identificação e fotografamos o conteúdo duas vezes."
+        },
+        "s2": {
+          "title": "Selada e preparada",
+          "body": "A encomenda é selada, pesada e preparada no hub para a rota certa."
+        },
+        "s3": {
+          "title": "Na frota oficial",
+          "body": "Viaja com parceiros licenciados de autocarro, carga e ferry que trabalham com acordo escrito connosco."
+        },
+        "s4": {
+          "title": "Chega ao quiosque",
+          "body": "O destinatário recebe uma mensagem de WhatsApp com um OTP de 6 dígitos e a morada do quiosque."
+        },
+        "s5": {
+          "title": "Entrega com OTP e documento",
+          "body": "O destinatário mostra o documento de identificação e o OTP. Tiramos uma fotografia de prova de entrega."
+        }
+      },
+      "trustTitle": "Feito para que as encomendas cheguem — e para que possa prová-lo",
+      "trust": {
+        "otp": {
+          "title": "Entrega com OTP",
+          "body": "Ninguém levanta a sua encomenda sem o código único enviado ao destinatário."
+        },
+        "photos": {
+          "title": "Prova fotográfica",
+          "body": "O conteúdo e a encomenda selada são fotografados na entrega. A entrega final também."
+        },
+        "whatsapp": {
+          "title": "Notificações por WhatsApp",
+          "body": "Remetente e destinatário são informados em cada passo, no seu próprio idioma."
+        },
+        "tariff": {
+          "title": "Tarifas fixas",
+          "body": "O preço depende da zona e do peso e é mostrado antes de pagar. Sem surpresas ao balcão."
+        }
+      },
+      "coverageTitle": "Todos os 14 municípios",
+      "coverageLead": "Díli é o nosso hub: todas as rotas começam ou terminam em Díli.",
+      "ctaTitle": "Pronto para enviar?",
+      "ctaBody": "Saiba o preço em segundos. Sem registo."
+    },
+    "corridors": {
+      "LOCAL": "Local",
+      "EAST": "Corredor Leste",
+      "SOUTH": "Corredor Sul",
+      "WEST": "Corredor Oeste",
+      "SEA": "Por mar"
+    },
+    "notFound": {
+      "title": "Não encontrámos essa página",
+      "body": "A página pode ter mudado de sítio ou o endereço não está correto.",
+      "home": "Voltar à página inicial"
+    },
+    "form": {
+      "required": "Este campo é obrigatório.",
+      "number": "Introduza um número válido.",
+      "positive": "O valor tem de ser superior a zero.",
+      "max": "O valor não pode exceder {max}.",
+      "minChars": "Introduza pelo menos {min} caracteres."
+    }
+  },
+  "pwa": {
+    "nav": {
+      "home": "Início",
+      "dropoff": "Receber Encomenda",
+      "inbound": "Entradas",
+      "pickup": "Entregar Encomenda",
+      "jobs": "Tarefas",
+      "handover": "Entrega ao Hub",
+      "manifest": "Manifesto",
+      "wallet": "Carteira",
+      "profile": "Perfil"
+    },
+    "wizard": {
+      "step1": "Remetente e Destinatário (KYC)",
+      "step2": "Artigos proibidos e Fotos",
+      "step3": "Peso e Dimensões",
+      "step4": "Tarifa, Seguro e Canal",
+      "step5": "Confirmar com PIN",
+      "senderId": "Documento de identificação (BI / Cartão Eleitoral / Passaporte)",
+      "idNumber": "Número do documento",
+      "photoOpenBox": "Foto do conteúdo (caixa aberta)",
+      "photoSealed": "Foto da encomenda selada",
+      "pin": "PIN de 6 dígitos",
+      "done": "Encomenda registada. Imprima o talão e envie por WhatsApp."
+    },
+    "inbound": {
+      "title": "Receber Encomendas da Frota",
+      "sealIntact": "Selo intacto, encomendas completas",
+      "reportIncident": "Reportar incidente",
+      "driverConfirm": "O motorista confirma este incidente"
+    },
+    "pod": {
+      "title": "Entrega ao Destinatário",
+      "enterOtp": "Introduza o código OTP de 6 dígitos",
+      "collectorName": "Nome de quem levanta",
+      "collectorId": "N.º de ID de quem levanta",
+      "storagePenalty": "Taxa de armazenamento (após o dia 5)",
+      "photoPod": "Foto do destinatário com a encomenda e etiqueta QR",
+      "complete": "Concluir entrega"
+    },
+    "courier": {
+      "pickupJobs": "Recolhas",
+      "deliveryJobs": "Entregas",
+      "callCustomer": "Ligar ao cliente",
+      "waCustomer": "WhatsApp ao cliente"
+    },
+    "driver": {
+      "scanManifest": "Ler QR do manifesto",
+      "baggagePhoto": "Foto das encomendas na bagageira fechada",
+      "departed": "Iniciar viagem",
+      "arrived": "Chegou",
+      "dropOffPoints": "Pontos de entrega de agentes no percurso"
+    }
+  },
+  "admin": {
+    "nav": {
+      "dashboard": "Painel Executivo",
+      "shipments": "Encomendas",
+      "hubs": "Operações de Hub",
+      "partners": "Parceiros e Conformidade",
+      "finance": "Finanças e Razão",
+      "claims": "CS e Reclamações",
+      "tariffs": "Tarifas",
+      "templates": "Modelos WhatsApp",
+      "rbac": "Funções e Permissões",
+      "audit": "Registo de Auditoria"
+    },
+    "dashboard": {
+      "gmvToday": "GMV de hoje",
+      "gmvMonth": "GMV do mês",
+      "platformRevenue": "Receita da plataforma (25%)",
+      "claimReserve": "Reserva para reclamações (5%)",
+      "inTransit": "Encomendas em trânsito",
+      "unclaimed": "Encomendas não levantadas (>5 dias)"
+    },
+    "noPermission": "Não tem permissão para executar esta ação.",
+    "forceOverrideReason": "Motivo da substituição (obrigatório, registado na auditoria)"
+  },
+  "status": {
+    "PICKUP_ASSIGNED": {
+      "label": "Estafeta atribuído",
+      "description": "Um estafeta 670Send vai recolher a encomenda no seu local."
+    },
+    "DROPPED_AT_ORIGIN": {
+      "label": "Encomenda recebida",
+      "description": "A encomenda foi recebida e selada no agente de origem ou pelo estafeta."
+    },
+    "CONSOLIDATED_AT_HUB": {
+      "label": "Preparada no Hub",
+      "description": "A encomenda está preparada no terminal para embarcar na frota."
+    },
+    "IN_TRANSIT": {
+      "label": "Em trânsito",
+      "description": "A encomenda viaja na frota oficial para o município de destino."
+    },
+    "ARRIVED_AT_DEST_AGENT": {
+      "label": "Chegou ao agente de destino",
+      "description": "A encomenda chegou. O destinatário deve levar o BI e o código OTP."
+    },
+    "OUT_FOR_DELIVERY": {
+      "label": "Em entrega ao domicílio",
+      "description": "O estafeta local está a levar a encomenda à morada do destinatário."
+    },
+    "DELIVERED": {
+      "label": "Entregue",
+      "description": "Encomenda entregue ao destinatário com verificação OTP e foto de prova."
+    },
+    "ON_HOLD_ISSUE": {
+      "label": "Ocorrência",
+      "description": "Há um problema com a encomenda. A equipa de CS vai contactá-lo."
+    },
+    "RETURN_TO_SENDER": {
+      "label": "Devolvida ao remetente",
+      "description": "A encomenda não foi levantada em 14 dias e regressa ao Hub de Díli."
+    }
+  },
+  "errors": {
+    "generic": "Ocorreu um erro. Tente novamente.",
+    "unauthorized": "Tem de iniciar sessão primeiro.",
+    "forbidden": "Não tem permissão para esta ação.",
+    "not_found": "Informação não encontrada.",
+    "validation_failed": "Dados inválidos. Verifique o formulário.",
+    "idempotency_conflict": "Este pedido já foi utilizado com dados diferentes.",
+    "sea_route_bus_forbidden": "As encomendas de/para Oecusse (RAEOA) e Ataúro não podem seguir de autocarro. Utilize apenas o manifesto de carga marítima oficial.",
+    "bus_limit_exceeded": "A encomenda excede os limites da bagageira do autocarro. Utilize carga (pick-up/camião).",
+    "bus_capacity_exceeded": "A bagageira deste autocarro está cheia. Escolha outro autocarro ou use carga.",
+    "over_max_weight": "O peso excede o limite de 500 kg.",
+    "insufficient_deposit": "Saldo de depósito insuficiente. Faça primeiro um carregamento.",
+    "invalid_otp": "Código OTP incorreto.",
+    "otp_expired": "O código OTP expirou.",
+    "otp_locked": "Demasiadas tentativas de OTP. Aguarde ou contacte o CS.",
+    "photos_required": "São obrigatórias 2 fotos: conteúdo aberto e encomenda selada.",
+    "prohibited_check_required": "Confirme que a encomenda não contém nenhum artigo proibido.",
+    "kyc_required": "A identificação do remetente é obrigatória. Não são aceites envios anónimos.",
+    "shipment_wrong_state": "O estado atual da encomenda não permite esta ação.",
+    "vehicle_permit_expired": "A licença DNTT/KIR do veículo expirou.",
+    "mou_expired": "O MoU do parceiro de frota expirou.",
+    "claim_over_limit": "O valor da reclamação excede o limite de responsabilidade.",
+    "pin_invalid": "PIN incorreto.",
+    "account_locked": "Conta temporariamente bloqueada. Tente mais tarde.",
+    "invalid_credentials": "Credenciais inválidas.",
+    "account_inactive": "Esta conta não está ativa. Contacte o administrador.",
+    "refresh_invalid": "A sessão expirou. Inicie sessão novamente.",
+    "too_many_requests": "Demasiados pedidos. Aguarde alguns minutos.",
+    "request_in_progress": "Este pedido está a ser processado. Tente novamente dentro de segundos.",
+    "idempotency_key_required": "O cabeçalho Idempotency-Key é obrigatório.",
+    "audit_reason_required": "É obrigatório indicar o motivo desta ação (fica registado na auditoria).",
+    "file_too_large": "O ficheiro é demasiado grande. Máximo {maxKb} KB.",
+    "file_type_not_allowed": "Tipo de ficheiro não permitido. Use JPEG, PNG ou WebP.",
+    "upload_failed": "Falha no carregamento. Tente novamente.",
+    "wallet_not_found": "Carteira não encontrada.",
+    "ledger_unbalanced": "O lançamento financeiro não está equilibrado. Operação cancelada.",
+    "upload_not_found": "Fotografia não encontrada ou já utilizada.",
+    "internal_error": "Erro interno. A equipa técnica foi informada.",
+    "password_change_required": "Altere a palavra-passe antes de continuar.",
+    "route_not_supported": "Rota ainda não disponível. A encomenda tem de sair de ou chegar a Díli.",
+    "destination_agent_required": "Escolha o agente de destino (há vários neste município).",
+    "no_destination_agent": "Não há agentes ativos no município de destino.",
+    "declared_value_required": "O valor declarado é obrigatório para eletrónicos e seguro.",
+    "delivery_address_required": "A morada do destinatário é obrigatória para entrega ao domicílio.",
+    "addon_not_available": "Este serviço de estafeta não está disponível neste local.",
+    "scheme_not_allowed": "A sua função não pode usar este esquema de serviço.",
+    "waybill_sequence_exhausted": "Esgotada a numeração de guias para esta rota hoje (9999).",
+    "wrong_hub": "Esta encomenda não pertence a este hub.",
+    "master_bag_invalid": "O saco de trânsito não é válido para esta ação.",
+    "manifest_invalid": "Manifesto inválido: verifique encomendas, veículo e motorista.",
+    "parcel_already_assigned": "A encomenda já está num saco ou manifesto.",
+    "driver_license_expired": "A carta de condução do motorista expirou.",
+    "partner_inactive": "O parceiro de frota não está ativo.",
+    "baggage_photo_required": "A fotografia das encomendas na bagageira fechada é obrigatória.",
+    "storage_fee_unpaid": "Cobre primeiro a taxa de armazenamento antes de entregar.",
+    "incident_driver_confirmation_required": "O motorista tem de confirmar primeiro este incidente.",
+    "incident_photo_required": "É obrigatória uma fotografia do incidente.",
+    "booking_not_confirmed": "O pedido de recolha ainda não foi confirmado.",
+    "booking_invalid": "Pedido de recolha inválido ou não atribuído a este estafeta.",
+    "courier_unavailable": "Estafeta indisponível.",
+    "delivery_not_allowed": "Este esquema não inclui entrega ao domicílio.",
+    "deposit_proof_required": "É obrigatório o comprovativo (foto) para depósitos por banco / MOSAN / T-Pay.",
+    "reference_required": "O número de referência é obrigatório.",
+    "duplicate_reference": "Esta referência já foi utilizada noutro depósito.",
+    "self_approval_forbidden": "Quem criou não pode aprovar o seu próprio pedido.",
+    "payout_empty": "Não há valores a pagar neste período.",
+    "claim_deadline_passed": "Prazo expirado: a reclamação tinha de ser feita no momento da entrega.",
+    "claim_total_exceeded": "O total das reclamações excede o limite de responsabilidade desta encomenda.",
+    "escrow_insufficient": "A reserva de reclamações é insuficiente para pagar.",
+    "refund_not_applicable": "Esta encomenda não tem direito a reembolso.",
+    "role_locked": "Esta função está protegida e não pode ser alterada.",
+    "role_in_use": "Existem utilizadores com esta função.",
+    "last_super_admin": "Não é possível remover o último Super Admin.",
+    "template_variable_invalid": "O modelo usa variáveis não permitidas: {vars}.",
+    "template_otp_required": "O modelo tem de incluir a variável otp.",
+    "setting_not_editable": "Esta definição não é editável pela API.",
+    "user_exists": "Este e-mail ou telemóvel já está em uso.",
+    "rts_invalid": "Esta encomenda não está em devolução.",
+    "override_not_allowed": "Não é possível forçar de/para DELIVERED.",
+    "agent_not_compliant": "O agente não pode ser ativado: faltam o adendo assinado, a balança digital ou o armazenamento seguro.",
+    "fleet_not_compliant": "O parceiro não pode ser ativado: são necessários um MoU em vigor, o número do MoU e os dados de pagamento.",
+    "validation": {
+      "phone": "Número de telemóvel inválido (+670...).",
+      "whatsapp_phone": "É necessário um número móvel com WhatsApp (+670 7xxx xxxx).",
+      "waybill": "Formato de guia inválido.",
+      "otp": "O OTP deve ter 6 dígitos.",
+      "pin": "O PIN deve ter 6 dígitos.",
+      "pin_weak": "Este PIN é demasiado fraco. Escolha outro.",
+      "name": "Nome incompleto.",
+      "id_number": "Número de documento inválido.",
+      "password": "A palavra-passe deve ter pelo menos 12 caracteres, com letras e números."
+    }
+  },
+  "receipt": {
+    "title": "GUIA DE ENVIO DE ENCOMENDA",
+    "waybill": "Guia",
+    "date": "Data",
+    "origin": "Origem",
+    "destination": "Destino",
+    "sender": "Remetente",
+    "recipient": "Destinatário",
+    "weight": "Peso",
+    "chargeable": "Peso tarifável",
+    "canal": "Transporte",
+    "scheme": "Esquema",
+    "baseFee": "Tarifa base",
+    "pickupFee": "Taxa de recolha",
+    "deliveryFee": "Taxa de entrega",
+    "insuranceFee": "Seguro",
+    "total": "TOTAL",
+    "paidCash": "Pago em numerário",
+    "declaration": "O remetente declara que o conteúdo é verdadeiro e não inclui artigos proibidos.",
+    "liability": "Responsabilidade máxima (sem seguro): 10x a tarifa base ou USD 50.",
+    "claimNotice": "As reclamações por danos devem ser feitas no momento da entrega, perante o Agente.",
+    "trackAt": "Rastreie em 670send.tl/track",
+    "thanks": "Obrigado por usar a 670Send!"
+  },
+  "terms": {
+    "title": "Termos de Serviço 670Send",
+    "clauses": {
+      "declaration": {
+        "title": "Declaração Verdadeira e Responsabilidade Penal",
+        "body": "O remetente garante que as informações sobre o conteúdo são verdadeiras e que não contém artigos ilegais ou perigosos. Caso sejam encontrados artigos proibidos ou declaração falsa, o remetente assume total responsabilidade penal e civil e isenta a 670Send, os Agentes, os Estafetas e os Parceiros de Frota de qualquer ação judicial."
+      },
+      "inspection": {
+        "title": "Direito de Inspeção",
+        "body": "A 670Send e as autoridades competentes (PNTL / Alfândega) têm o direito de abrir e inspecionar a encomenda quando existam indícios de violação de segurança."
+      },
+      "liability": {
+        "title": "Limite de Responsabilidade",
+        "body": "Encomenda sem seguro: indemnização máxima de 10 vezes a tarifa base de envio ou USD 50,00 (o menor dos dois). Encomenda com seguro opcional (1% do valor): indemnização pelo valor declarado, mediante fatura de compra válida, até USD 500,00 por guia."
+      },
+      "exclusions": {
+        "title": "Exclusões de Reclamação",
+        "body": "Não cobre: artigos frágeis danificados por embalagem interna inadequada, deterioração natural, danos indiretos e força maior (desastres naturais, estradas cortadas ou deslizamentos nas zonas montanhosas de Timor-Leste)."
+      },
+      "claimDeadline": {
+        "title": "Prazo para Reclamação",
+        "body": "As reclamações por danos devem ser apresentadas no momento da entrega, perante o Agente de destino ou o Estafeta (antes de sair do quiosque), com vídeo ou foto da abertura da encomenda. Reclamações após levar a encomenda não são válidas."
+      },
+      "identity": {
+        "title": "Identificação e Entrega",
+        "body": "O remetente deve apresentar um documento de identificação válido (BI, cartão eleitoral ou passaporte) ao entregar a encomenda. O destinatário levanta-a com um documento válido e o código único (OTP) enviado por WhatsApp; a entrega fica registada com fotografia."
+      },
+      "storage": {
+        "title": "Armazenamento no Quiosque de Destino",
+        "body": "Uma encomenda à espera no quiosque é guardada gratuitamente nos primeiros 5 dias. Do dia 6 ao dia 14 aplica-se uma taxa de armazenamento de USD 0,50 por dia, a pagar no levantamento. Uma encomenda não levantada em 14 dias regressa ao Hub de Díli e é devolvida ao remetente."
+      }
+    },
+    "intro": "Ao entregar uma encomenda a um agente 670Link ou a um estafeta, aceita estes termos."
+  },
+  "prohibited": {
+    "title": "Artigos Proibidos e Restritos",
+    "intro": "Os Agentes e Estafetas devem recusar os artigos abaixo. Em caso de tentativa de contrabando, a 670Send pode comunicar à PNTL.",
+    "confirmHeading": "Confirmo que esta encomenda NÃO contém:",
+    "items": {
+      "narcotics": "Estupefacientes, psicotrópicos e medicamentos proibidos (sem autorização do Ministério da Saúde)",
+      "weapons_sharp": "Armas de fogo, munições, explosivos, petardos e armas brancas ilegais",
+      "fuel_flammable": "Combustíveis e líquidos inflamáveis/corrosivos: gasolina, gasóleo, petróleo, botijas de gás LPG, baterias húmidas, diluente, tinta em spray",
+      "cash_gold_jewelry": "Dinheiro em numerário, ouro, joias de elevado valor, cheques em branco, documentos secretos do Estado",
+      "protected_wildlife": "Animais vivos e plantas protegidas (incluindo partes de animais ilegais)",
+      "untaxed_contraband": "Artigos de contrabando sem impostos (cigarros ou bebidas alcoólicas ilegais em quantidade comercial)",
+      "raw_perishables": "Alimentos frescos/perecíveis (carne crua, peixe fresco, gelo) sem refrigeração"
+    },
+    "restricted": {
+      "electronics": "Eletrónicos (telemóveis, portáteis, peças): caixa rígida com plástico-bolha, valor declarado e seguro recomendado.",
+      "documents": "Documentos importantes (diplomas, certificados, contratos originais): envelope impermeável.",
+      "liquids": "Líquidos não perigosos (óleo de coco, mel, medicamentos líquidos): máximo 1 litro, garrafa de plástico bem selada."
+    },
+    "refusedTitle": "Vamos recusar estes artigos",
+    "restrictedTitle": "Aceites com cuidado",
+    "footerNote": "Em caso de dúvida, pergunte no quiosque antes de enviar. Uma declaração falsa torna o remetente totalmente responsável."
+  }
+}
