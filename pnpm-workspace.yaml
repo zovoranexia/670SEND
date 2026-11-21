@@ -10,3 +10,8 @@ allowBuilds:
   esbuild: true
   msgpackr-extract: false
   prisma: true
+  # Reviewed and deliberately NOT run (their prebuilt binaries arrive as optional packages): without this entry
+  # `pnpm install` ends with ERR_PNPM_IGNORED_BUILDS (exit 1), which would fail the Docker builds and CI.
+  '@parcel/watcher': false
+  '@swc/core': false
+  sharp: false

@@ -1,0 +1,22 @@
+# Build context for infra/docker/*.Dockerfile — keep it small and keep secrets out of every layer.
+.git
+.github
+.claude
+**/node_modules
+**/dist
+**/.next
+**/.turbo
+**/coverage
+**/*.tsbuildinfo
+.env
+.env.*
+!.env.example
+**/.env.local
+**/.env.*.local
+infra
+docs
+backups
+*.pem
+*.key
+**/*.log
+.DS_Store
