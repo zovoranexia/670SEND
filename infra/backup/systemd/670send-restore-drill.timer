@@ -1,0 +1,10 @@
+[Unit]
+Description=Weekly 670Send restore drill (Sundays 04:30, server time = Asia/Dili)
+
+[Timer]
+OnCalendar=Sun *-*-* 04:30:00
+RandomizedDelaySec=15min
+Persistent=true
+
+[Install]
+WantedBy=timers.target

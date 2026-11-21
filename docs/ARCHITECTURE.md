@@ -564,7 +564,48 @@ When the returned parcel is **received at the Dili hub**: the destination agent'
 
 * **Not driven in a real browser:** claims evidence with real photos, payouts end to end, manifest creation with a real fleet, template save, role editing (all covered by tests against the documented contracts, not clicked through on the live stack). Run a UAT pass with the four back-office roles.
 * No bulk actions, no saved filters, no real-time updates (screens refresh on demand), no printing of manifests (the QR is on screen).
-* The `Content-Security-Policy` and cache headers for `admin.670send.tl` (see `apps/admin/README.md`) belong in the Phase 8 Nginx vhost.
+* The `Content-Security-Policy` and cache headers for `admin.670send.tl` (see `apps/admin/README.md`) belong in the Phase 8 Nginx vhost (now done: `infra/nginx/snippets/headers-admin.conf`).
+
+---
+
+## 10h. Phase 8 — DevOps kit (what exists now)
+
+Everything to run 670Send on **one Ubuntu 26.04 LTS VPS**. Manual: [DEPLOYMENT.md](DEPLOYMENT.md); map of the files: [infra/README.md](../infra/README.md).
+
+| Piece | What it is |
+|---|---|
+| `infra/docker/*.Dockerfile` | Multi-stage builds. **api** (runtime 603 MB; non-root, tini, health check, pruned production tree with the Prisma client generated inside; plus a `migrate` target for `prisma migrate deploy` + the idempotent seed), **web** (Next.js standalone, 393 MB), **static** (PWA + admin built, their smoke checks run *inside* the build, exported to a folder). Build arguments carry the public URLs. |
+| `docker-compose.prod.yml` | postgres 17 · redis 7 · api · web · `migrate` job (profile `tools`). postgres/redis on an `internal: true` network with **no published port**; api/web published on `127.0.0.1` only; every service `cap_drop: ALL`, `no-new-privileges`, memory limits, log rotation; api/web read-only root filesystem; the API gets an **explicit allow-list of variables** (seed passwords and backup settings never reach it); optional variables are absent rather than empty. |
+| `infra/nginx/*` | Hardened `nginx.conf`, four vhosts, shared snippets (TLS 1.2+, OCSP stapling, HSTS, per-site CSP / Permissions-Policy), per-IP rate limits (tight on sign-in), 3 MB upload cap on the API, atomic static releases, SPA fallback with the right cache rules, forged `X-Forwarded-For` overwritten, unknown hosts answered with nothing, writes refused on the public site. |
+| `infra/host/harden-ubuntu.sh` | SSH keys-only/no root/one user (refuses to run if it would lock you out), ufw, fail2ban (SSH only), sysctl, unattended security updates with a 03:30 reboot, auditd, journald limits, swap, root locked. Idempotent. |
+| `infra/scripts/*` | `bootstrap.sh` (Docker, Nginx, Certbot, rclone, layout), `issue-certs.sh` (ACME bootstrap → 4 certificates → vhosts, renewal hook, dry run), `deploy.sh` (preflight → pre-deploy backup → build → migrate → start → **health gate** → publish → prune; automatic fallback to the previous release if unhealthy), `rollback.sh`, `status.sh`. |
+| `infra/backup/*` | Nightly **GPG-encrypted** dump (+ a copy of the secrets file) to a *separate* R2/S3 bucket, checksum sidecar, size check, 30-day daily + ~13-month monthly retention, dead-man's-switch pings; `restore.sh` (list, scratch restore, **live restore with a safety dump first**), `restore-drill.sh` (weekly timer: freshness + integrity, plus a full restore when a key is available). The private key is **not on the server** by design. |
+
+### Decisions
+
+* **Nginx and Certbot on the host**, not in containers: certificates and renewal are plain Ubuntu packages and a bad deploy cannot take the front door down.
+* **Docker bypasses ufw for published ports**, so nothing is published on a public interface; the firewall is a second layer, not the first.
+* **One API instance.** BullMQ's repeatable jobs register once per boot; scaling out needs the cron jobs moved to a worker first (documented).
+* **Rollback = switching immutable releases** (image tags + one static folder per release). Migrations are forward-only and additive; the pre-deploy backup is the way back from a destructive one.
+* **Backups are encrypted to a public key; the server cannot read its own backups.** Trade-off: the unattended weekly drill is integrity-only unless the operator deliberately keeps a second "drill" key on the server; the full drill is a monthly human procedure with the offline key.
+* **No web fail2ban jails:** mobile carriers in Timor-Leste share public addresses (CGNAT), so banning an address could lock out a town; abuse is handled by Nginx/API rate limits with generous bursts.
+* **`pnpm-workspace.yaml` now lists the reviewed-and-ignored build scripts** (`@parcel/watcher`, `@swc/core`, `sharp`): without it `pnpm install` exits 1 (`ERR_PNPM_IGNORED_BUILDS`), which would fail every Docker build and CI run.
+
+### Verified in Phase 8 (development machine + Docker Desktop)
+
+* **Images built from the real Dockerfiles**: api (603 MB), migrate, web (393 MB), static (PWA + admin; both smoke scripts passed inside the build; the API address `https://api.670send.tl` is baked in, no `localhost`).
+* **The production compose file, run for real** (separate project, dummy secrets): postgres + redis healthy, **`migrate` applied every migration and the production seed to an empty database**, the API reached *healthy* and answered `/v1/health/ready` on loopback; read-only filesystem confirmed (`touch` fails), capabilities dropped, non-root, only the API published (on 127.0.0.1), no seed/backup variables in the API environment; the API's own guard refused to start when I accidentally gave every secret the same value. The web container ran with the same hardening and served pages with the CSP (API origin baked in) and HSTS.
+* **Nginx** (`infra/nginx/test.sh`, 28 checks in a container with stub back-ends): syntax, redirects, ACME path, SPA fallback, cache rules, CSP preserved inside cache locations, forged `X-Forwarded-For` overwritten, 405 on writes, sign-in rate limit, 413 on oversized bodies, unknown hosts, no version leak.
+* **Backup kit** (`infra/backup/test.sh`, 25 checks, run both against a minimal schema and against the **real migrated schema**): encrypted at rest and unreadable by the server, checksum, off-site upload and size verification, listing, scratch restore with the ledger-nets-to-zero and row-count checks, wrong key refused, **tampering detected**, drill (integrity-only without a key, full with one, fails on a stale backup), retention pruning, **live restore** replacing the database after a safety dump.
+* **Host side, as far as a container allows**: all scripts `shellcheck`-clean; every package the scripts install exists in the Ubuntu 26.04 archive (Nginx 1.28, certbot 4.0, rclone 1.60, docker 29); Docker's apt repository has a `resolute` suite; the generated SSH configuration passes OpenSSH 10.2's `sshd -t` with the intended effective settings; the fail2ban jail configuration passes `fail2ban-client -t`.
+* **Defects the real runs found and I fixed** (none would have been caught by reading): Redis restart-looped (the overridden command skips the image entrypoint that hands over the data directory); a duplicate `proxy_read_timeout` made Nginx refuse the API vhost; the regex location for `.js` outranked `/assets/`, so fingerprinted bundles got a 1-hour cache instead of "immutable"; the manual's `gpg --quick-generate-key … ed25519 encr` is not a valid key spec; Prisma refused a client generated by a different CLI version; `prisma.config.ts` broke `prisma generate` in the pruned tree; `gpg --list-packets` exits non-zero without a secret key (which would have made the drill fail on a healthy backup).
+
+### Open items — do on a staging server before production
+
+* **`harden-ubuntu.sh`, `bootstrap.sh`, `issue-certs.sh`, `deploy.sh`, `rollback.sh` were not executed end to end on a real Ubuntu 26.04 VPS.** They are shell-checked, their package names and configuration files are verified as above, and their building blocks (images, compose, Nginx, backups) are exercised, but `ufw`, `ssh.socket`, `auditd`, `unattended-upgrades`, real DNS, real Let's Encrypt issuance/renewal, OCSP stapling and a real Cloudflare R2 bucket are untested.
+* **Docker Desktop on the development PC crashed twice during image builds** (memory pressure; it also truncated a cache file once). The Dockerfiles are not at fault, but the first build on a 4 GB VPS needs the swap file the hardening script creates (a first build takes several minutes).
+* No load test; memory limits (postgres 1.5 GB, api 768 MB, web 512 MB, redis 512 MB) are a starting point. No monitoring stack, WAL archiving / point-in-time recovery, PostgreSQL major-version upgrade procedure or multi-server setup — documented as the growth path, not built.
+* CI does not exist yet: `infra/nginx/test.sh` and `infra/backup/test.sh` are the natural first jobs.
 
 ---
 

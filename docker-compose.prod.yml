@@ -1,0 +1,228 @@
+# 670Send — production stack for ONE Ubuntu 26.04 VPS (4 GB RAM is enough to start).
+#
+#   cp infra/env/production.env.example /opt/670send/.env && chmod 600 /opt/670send/.env   # then fill it in
+#   RELEASE=$(git rev-parse --short HEAD) docker compose --env-file /opt/670send/.env -f docker-compose.prod.yml build
+#   ... up -d      (infra/scripts/deploy.sh does all of this, in order, with a rollback point)
+#
+# What runs here:  postgres · redis · api · web  (+ `migrate`, a one-shot job).
+# What does NOT run here: Nginx and Certbot (host packages, see infra/nginx) and the two static apps
+# (PWA, admin: files served by that Nginx).
+#
+# Network model — the only ports published to the host are bound to 127.0.0.1 and are reached through Nginx:
+#   postgres, redis  → `internal` network only (no route to the Internet, no published port)
+#   api, web         → `edge` (outbound: R2, WhatsApp provider, map tiles) + published on loopback
+# Docker bypasses ufw for published ports, which is exactly why nothing is published on 0.0.0.0.
+name: 670send
+
+x-logging: &logging
+  driver: json-file
+  options:
+    max-size: "10m"
+    max-file: "5"
+
+x-hardened: &hardened
+  restart: unless-stopped
+  security_opt:
+    - no-new-privileges:true
+  cap_drop:
+    - ALL
+  logging: *logging
+
+services:
+  postgres:
+    <<: *hardened
+    image: postgres:17-alpine
+    # The image's entrypoint starts as root, fixes ownership of the data directory and drops to `postgres`.
+    cap_add: [CHOWN, SETUID, SETGID, FOWNER, DAC_OVERRIDE]
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER:-send670}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:?set POSTGRES_PASSWORD in the env file}
+      POSTGRES_DB: ${POSTGRES_DB:-send670}
+      TZ: Asia/Dili
+      PGTZ: Asia/Dili
+    # Sized for a 4 GB host shared with the API; raise shared_buffers (~25 % of RAM) on a bigger VPS.
+    command:
+      - postgres
+      - -c
+      - shared_buffers=512MB
+      - -c
+      - effective_cache_size=1536MB
+      - -c
+      - work_mem=8MB
+      - -c
+      - maintenance_work_mem=128MB
+      - -c
+      - max_connections=100
+      - -c
+      - wal_compression=on
+      - -c
+      - log_min_duration_statement=500
+      - -c
+      - log_lock_waits=on
+      - -c
+      - password_encryption=scram-sha-256
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    networks: [internal]
+    shm_size: 256m
+    mem_limit: 1536m
+    stop_grace_period: 60s
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U $${POSTGRES_USER} -d $${POSTGRES_DB}"]
+      interval: 10s
+      timeout: 4s
+      retries: 10
+      start_period: 20s
+
+  redis:
+    <<: *hardened
+    image: redis:7-alpine
+    # Overriding `command` skips the image entrypoint (the part that hands /data to `redis` and drops root), so run as
+    # that user directly: the volume is initialised owned by it, and no capability is needed. (Caught by a real run.)
+    user: redis
+    environment:
+      REDIS_PASSWORD: ${REDIS_PASSWORD:?set REDIS_PASSWORD in the env file}
+    # BullMQ needs `noeviction`; the cap makes a runaway queue fail loudly instead of eating the host.
+    # The password is read from the environment, never put on the command line (visible in `ps`/inspect).
+    command:
+      - sh
+      - -c
+      - exec redis-server --requirepass "$$REDIS_PASSWORD" --appendonly yes --appendfsync everysec --maxmemory 384mb --maxmemory-policy noeviction
+    volumes:
+      - redisdata:/data
+    networks: [internal]
+    mem_limit: 512m
+    healthcheck:
+      test: ["CMD-SHELL", "redis-cli -a \"$$REDIS_PASSWORD\" --no-auth-warning ping | grep -q PONG"]
+      interval: 10s
+      timeout: 4s
+      retries: 10
+
+  api:
+    <<: *hardened
+    image: 670send/api:${RELEASE:-current}
+    build:
+      context: .
+      dockerfile: infra/docker/api.Dockerfile
+      target: runtime
+    # Every variable the API reads is listed here on purpose: seed passwords, backup keys and the like never reach it.
+    # Optional variables use the pass-through form (`NAME:` with no value): they are simply absent when the env file
+    # does not set them (an EMPTY value would fail the API's URL validation).
+    environment:
+      NODE_ENV: production
+      TZ: Asia/Dili
+      API_PORT: "4010"
+      TRUST_PROXY: "1"
+      LOG_LEVEL: ${LOG_LEVEL:-info}
+      DEFAULT_LOCALE: tet
+      WEB_URL: ${WEB_URL:?}
+      CORS_ORIGINS: ${CORS_ORIGINS:?}
+      DATABASE_URL: postgresql://${POSTGRES_USER:-send670}:${POSTGRES_PASSWORD}@postgres:5432/${POSTGRES_DB:-send670}?schema=public&connection_limit=20
+      REDIS_URL: redis://:${REDIS_PASSWORD}@redis:6379
+      JWT_ACCESS_SECRET: ${JWT_ACCESS_SECRET:?}
+      JWT_REFRESH_SECRET: ${JWT_REFRESH_SECRET:?}
+      JWT_ACCESS_TTL: ${JWT_ACCESS_TTL:-15m}
+      JWT_REFRESH_TTL: ${JWT_REFRESH_TTL:-14d}
+      OTP_PEPPER: ${OTP_PEPPER:?}
+      FIELD_ENCRYPTION_KEY: ${FIELD_ENCRYPTION_KEY:?}
+      ARGON2_MEMORY_KIB: ${ARGON2_MEMORY_KIB:-65536}
+      ARGON2_TIME_COST: ${ARGON2_TIME_COST:-3}
+      ARGON2_PARALLELISM: ${ARGON2_PARALLELISM:-1}
+      AUTH_MAX_FAILED_ATTEMPTS: ${AUTH_MAX_FAILED_ATTEMPTS:-5}
+      AUTH_LOCK_MINUTES: ${AUTH_LOCK_MINUTES:-15}
+      RATE_LIMIT_PUBLIC_PER_MIN: ${RATE_LIMIT_PUBLIC_PER_MIN:-60}
+      RATE_LIMIT_AUTH_PER_MIN: ${RATE_LIMIT_AUTH_PER_MIN:-10}
+      S3_ENDPOINT: ${S3_ENDPOINT:?}
+      S3_REGION: ${S3_REGION:-auto}
+      S3_BUCKET: ${S3_BUCKET:?}
+      S3_ACCESS_KEY_ID: ${S3_ACCESS_KEY_ID:?}
+      S3_SECRET_ACCESS_KEY: ${S3_SECRET_ACCESS_KEY:?}
+      S3_FORCE_PATH_STYLE: ${S3_FORCE_PATH_STYLE:-false}
+      S3_SIGNED_URL_TTL_SECONDS: ${S3_SIGNED_URL_TTL_SECONDS:-300}
+      S3_AUTO_CREATE_BUCKET: "false"
+      UPLOAD_MAX_BYTES: ${UPLOAD_MAX_BYTES:-2097152}
+      QUEUES_ENABLED: "true"
+      WHATSAPP_PROVIDER: ${WHATSAPP_PROVIDER:?}
+      META_WA_API_VERSION: ${META_WA_API_VERSION:-v22.0}
+      WAHA_SESSION: ${WAHA_SESSION:-default}
+      META_WA_PHONE_NUMBER_ID:
+      META_WA_ACCESS_TOKEN:
+      FONNTE_TOKEN:
+      WAHA_BASE_URL:
+      WAHA_API_KEY:
+      OPS_ALERT_PHONE:
+    ports:
+      - "127.0.0.1:4010:4010"
+    networks: [internal, edge]
+    read_only: true
+    tmpfs:
+      - /tmp:size=64m,mode=1777
+    mem_limit: 768m
+    stop_grace_period: 30s
+    depends_on:
+      postgres:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+
+  web:
+    <<: *hardened
+    image: 670send/web:${RELEASE:-current}
+    build:
+      context: .
+      dockerfile: infra/docker/web.Dockerfile
+      args:
+        NEXT_PUBLIC_WEB_URL: ${WEB_URL:?}
+        NEXT_PUBLIC_API_URL: ${API_URL:?}
+        NEXT_PUBLIC_SUPPORT_WHATSAPP: ${SUPPORT_WHATSAPP:-}
+        NEXT_PUBLIC_MAP_TILE_URL: ${MAP_TILE_URL:-https://tile.openstreetmap.org/{z}/{x}/{y}.png}
+        NEXT_PUBLIC_MAP_ATTRIBUTION: ${MAP_ATTRIBUTION:-© OpenStreetMap contributors}
+    environment:
+      NODE_ENV: production
+      TZ: Asia/Dili
+      PORT: "3100"
+      HOSTNAME: 0.0.0.0
+    ports:
+      - "127.0.0.1:3100:3100"
+    networks: [edge]
+    read_only: true
+    tmpfs:
+      - /tmp:size=32m,mode=1777
+      - /app/apps/web/.next/cache:size=128m,uid=1000,gid=1000
+    mem_limit: 512m
+
+  # One-shot job (profile `tools`): apply pending migrations, then the idempotent seed. Never started by `up`.
+  #   docker compose --env-file ... -f docker-compose.prod.yml run --rm migrate
+  migrate:
+    profiles: [tools]
+    image: 670send/api-migrate:${RELEASE:-current}
+    build:
+      context: .
+      dockerfile: infra/docker/api.Dockerfile
+      target: migrate
+    security_opt:
+      - no-new-privileges:true
+    cap_drop:
+      - ALL
+    environment:
+      NODE_ENV: production
+      TZ: Asia/Dili
+      DATABASE_URL: postgresql://${POSTGRES_USER:-send670}:${POSTGRES_PASSWORD}@postgres:5432/${POSTGRES_DB:-send670}?schema=public
+      SEED_DEMO_DATA: "false"
+      SEED_FORCE_UPDATE: ${SEED_FORCE_UPDATE:-false}
+      SEED_SUPERADMIN_EMAIL: ${SEED_SUPERADMIN_EMAIL:?}
+      SEED_SUPERADMIN_PHONE: ${SEED_SUPERADMIN_PHONE:?}
+      SEED_SUPERADMIN_PASSWORD: ${SEED_SUPERADMIN_PASSWORD:?}
+    networks: [internal]
+    depends_on:
+      postgres:
+        condition: service_healthy
+
+networks:
+  internal:
+    internal: true
+  edge: {}
+
+volumes:
+  pgdata:
+  redisdata:

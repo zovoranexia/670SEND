@@ -1,0 +1,18 @@
+[Unit]
+Description=670Send backup restore drill (integrity check; full restore when a key is available)
+Documentation=file:///opt/670send/app/docs/DEPLOYMENT.md
+After=docker.service network-online.target
+Wants=network-online.target
+Requires=docker.service
+
+[Service]
+Type=oneshot
+ExecStart=/opt/670send/app/infra/backup/restore-drill.sh
+TimeoutStartSec=3h
+Nice=15
+IOSchedulingClass=idle
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectHome=true
+ProtectSystem=strict
+ReadWritePaths=/var/backups/670send /var/lib/670send /var/lock /run

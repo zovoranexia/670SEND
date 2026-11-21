@@ -19,7 +19,7 @@ Inter-municipality parcel logistics for Timor-Leste (14 municipalities) — Zovo
 | 5 | Public site `apps/web` (next-intl, 4 languages): landing, live calculator, tracker, pick-up booking with map pin, prohibited items & terms — 85 tests, axe-clean | **done** |
 | 6 | Field PWA `apps/pwa` (installable, offline shell): agent drop-off wizard with camera compression and Bluetooth receipt printing, inbound scan, OTP hand-over, courier jobs, driver trips — 110 tests, driven in a real browser against the real API | **done** |
 | 7 | Admin backoffice `apps/admin` (4 languages, RBAC-gated): dashboard, hub consolidation & manifest dispatch, partners & MoU, finance / deposits / fleet payouts, claims desk with side-by-side photo evidence, localized tariff matrix, WhatsApp template editor, RBAC & audit — no API change needed; driven against the real API | **done** |
-| 8 | DevOps kit | planned |
+| 8 | DevOps kit `infra/` + `docker-compose.prod.yml`: multi-stage Dockerfiles, hardened compose stack, Nginx vhosts + TLS, Ubuntu 26.04 hardening, Certbot, GPG-encrypted off-site backup / restore / restore drill, deploy / rollback — images built and run, Nginx (28 checks) and backups (25 checks, real schema) tested; host scripts **not yet run on a real VPS** | **done** (stage on a test server first) |
 
 Whole repo: **295 API tests** (19 suites, real PostgreSQL + Redis) · 110 PWA · 67 admin · 85 web · 111 package tests — `pnpm test` is green.
 

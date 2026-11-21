@@ -1,0 +1,19 @@
+[Unit]
+Description=670Send encrypted database backup (off-site)
+Documentation=file:///opt/670send/app/docs/DEPLOYMENT.md
+After=docker.service network-online.target
+Wants=network-online.target
+Requires=docker.service
+
+[Service]
+Type=oneshot
+ExecStart=/opt/670send/app/infra/backup/backup.sh
+TimeoutStartSec=2h
+Nice=10
+IOSchedulingClass=idle
+# The job writes only here (plus the Docker socket it talks to)
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectHome=true
+ProtectSystem=strict
+ReadWritePaths=/var/backups/670send /var/lib/670send /var/lock /run
