@@ -232,28 +232,28 @@ async function seedAddonTariffs() {
   const rows = [
     {
       serviceType: 'MOTOR_PICKUP', feeUsd: '1.50', maxWeightKg: 10, radiusKm: 5,
-      labelTet: 'Kurir motor foti pakote (≤10 kg, ≤5 km)',
+      labelTet: 'Estafeta motor foti pakote (≤10 kg, ≤5 km)',
       labelPt: 'Recolha por estafeta de mota (≤10 kg, ≤5 km)',
       labelEn: 'Motorbike pick-up (≤10 kg, ≤5 km)',
       labelId: 'Jemput kurir motor (≤10 kg, ≤5 km)',
     },
     {
       serviceType: 'MOTOR_DELIVERY', feeUsd: '1.50', maxWeightKg: 10, radiusKm: 5,
-      labelTet: 'Kurir motor entrega pakote (≤10 kg, ≤5 km)',
+      labelTet: 'Estafeta motor entrega pakote (≤10 kg, ≤5 km)',
       labelPt: 'Entrega por estafeta de mota (≤10 kg, ≤5 km)',
       labelEn: 'Motorbike last-mile delivery (≤10 kg, ≤5 km)',
       labelId: 'Antar kurir motor (≤10 kg, ≤5 km)',
     },
     {
       serviceType: 'CARGO_PICKUP', feeUsd: '5.00', maxWeightKg: 500, radiusKm: 5,
-      labelTet: 'Pikap foti kargu (>10 kg, área Díli)',
+      labelTet: 'Pikap foti karga (>10 kg, área Díli)',
       labelPt: 'Recolha de carga em pick-up (>10 kg, área de Díli)',
       labelEn: 'Pickup-truck cargo pick-up (>10 kg, Dili urban)',
       labelId: 'Jemput kargo pikap (>10 kg, area Dili)',
     },
     {
       serviceType: 'CARGO_DELIVERY', feeUsd: '5.00', maxWeightKg: 500, radiusKm: 5,
-      labelTet: 'Pikap entrega kargu (>10 kg, área Díli)',
+      labelTet: 'Pikap entrega karga (>10 kg, área Díli)',
       labelPt: 'Entrega de carga em pick-up (>10 kg, área de Díli)',
       labelEn: 'Pickup-truck cargo delivery (>10 kg, Dili urban)',
       labelId: 'Antar kargo pikap (>10 kg, area Dili)',

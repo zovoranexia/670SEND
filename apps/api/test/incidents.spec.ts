@@ -110,7 +110,7 @@ describe('Inbound incidents: damaged / wet / missing → ON_HOLD, driver confirm
     expect(s.status).toBe('RETURN_TO_SENDER');
     expect(s.rtsFlaggedAt).not.toBeNull();
     const sender = parcels.find((p) => p.waybill === second!.waybill)!;
-    expect(messagesTo(ctx, sender.senderPhone).at(-1)!.body).toContain('haruka fila fali ba Hub Dili');
+    expect(messagesTo(ctx, sender.senderPhone).at(-1)!.body).toContain('haruka fila fali ba Hub Díli');
     // the trip can finally close
     expect((await ctx.prisma.manifest.findFirstOrThrow({ where: { items: { some: { masterBag: { bagCode } } } } })).status).toBe('DISCREPANCY');
   });

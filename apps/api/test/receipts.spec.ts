@@ -72,7 +72,7 @@ describe('Localized receipts and labels over HTTP', () => {
 
   it('prints the receipt in each language with title, fee lines, declaration, liability and claim rule', async () => {
     const expectations: Record<string, string[]> = {
-      tet: ['RESI HARUKA PAKOTE', 'Taxa baziku', 'Haruka-na\'in deklara', 'dala 10 taxa baziku ka USD 50', 'Klaim estragus'],
+      tet: ['RESIBU HARUKA PAKOTE', 'Taxa baziku', 'Haruka-na\'in deklara', 'dala 10 taxa baziku ka USD 50', 'Klaim estragus'],
       pt: ['GUIA DE ENVIO DE ENCOMENDA', 'Tarifa base', 'O remetente declara', '10x a tarifa base ou USD 50', 'As reclamações por danos'],
       en: ['PARCEL SHIPPING RECEIPT', 'Base fee', 'The sender declares', '10x base fee or USD 50', 'Damage claims must be made'],
       id: ['RESI PENGIRIMAN PAKET', 'Ongkir dasar', 'Pengirim menyatakan', '10x ongkir dasar atau USD 50', 'Klaim kerusakan wajib'],

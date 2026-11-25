@@ -39,8 +39,8 @@ describe('Auth (JWT + refresh rotation + PIN + lockout)', () => {
         ['pt', 'Credenciais inválidas.'],
         ['en', 'Invalid credentials.'],
         ['id', 'Kredensial tidak valid.'],
-        [undefined, 'Kontaktu ka password la loos.'], // Tetun is the default
-        ['de-DE', 'Kontaktu ka password la loos.'], // unsupported → Tetun, never English
+        [undefined, 'Korreiu eletróniku, telemóvel ka liafuan-pase la loos.'], // Tetun is the default
+        ['de-DE', 'Korreiu eletróniku, telemóvel ka liafuan-pase la loos.'], // unsupported → Tetun, never English
       ];
       for (const [lang, expected] of cases) {
         // (anonymous caller → Accept-Language decides)
