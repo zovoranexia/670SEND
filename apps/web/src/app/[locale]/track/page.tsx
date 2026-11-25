@@ -3,6 +3,7 @@ import { getTranslations, setRequestLocale } from 'next-intl/server';
 import { Suspense } from 'react';
 import type { Locale } from '@670send/types';
 import { Tracker } from '@/components/tracker/tracker';
+import { PageHero } from '@/components/page-hero';
 import { pageMetadata } from '@/lib/seo';
 
 type Props = { params: Promise<{ locale: Locale }> };
@@ -19,14 +20,13 @@ export default async function TrackPage({ params }: Props) {
   const t = await getTranslations('web.tracker');
 
   return (
-    <div className="container-page py-10 sm:py-14">
-      <h1 className="mx-auto max-w-3xl text-3xl font-extrabold tracking-tight text-brand-800 sm:text-4xl">{t('title')}</h1>
-      <p className="mx-auto mt-3 max-w-3xl text-lg text-slate-700">{t('lead')}</p>
-      <div className="mt-8">
+    <>
+      <PageHero title={t('title')} lead={t('lead')} />
+      <div className="container-page pb-10 pt-4">
         <Suspense fallback={<div className="card mx-auto h-40 max-w-3xl animate-pulse bg-slate-100" aria-hidden="true" />}>
           <Tracker />
         </Suspense>
       </div>
-    </div>
+    </>
   );
 }

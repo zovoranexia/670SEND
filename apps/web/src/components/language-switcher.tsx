@@ -19,12 +19,12 @@ export function LanguageSwitcher({ className = '' }: { className?: string }) {
 
   return (
     <details className={`relative ${className}`}>
-      <summary className="flex min-h-11 list-none items-center gap-2 rounded-lg border border-white/40 px-3 text-sm font-semibold text-white hover:bg-white/10" aria-label={t('web.a11y.languageMenu')}>
+      <summary className="flex min-h-11 list-none items-center gap-2 rounded-xl border border-white/30 px-3 text-sm font-semibold text-white transition hover:bg-white/10" aria-label={t('web.a11y.languageMenu')}>
         <IconGlobe width={18} height={18} />
         <span aria-hidden="true">{LOCALE_LABELS[locale].short}</span>
         <span className="sr-only">{t('common.language.label')}: {LOCALE_LABELS[locale].native}</span>
       </summary>
-      <ul className="absolute right-0 z-50 mt-2 w-44 overflow-hidden rounded-xl border border-slate-200 bg-white py-1 text-slate-800 shadow-lg" aria-label={t('web.a11y.languageMenu')}>
+      <ul className="absolute right-0 z-50 mt-2 w-44 overflow-hidden rounded-2xl border border-slate-200 bg-white py-1.5 text-slate-800 shadow-lift" aria-label={t('web.a11y.languageMenu')}>
         {LOCALES.map((l) => (
           <li key={l}>
             <Link

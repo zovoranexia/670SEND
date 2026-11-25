@@ -65,7 +65,8 @@
       "subtitle": "Do quiosque agente 670Link mais próximo até ao município de destino — com OTP, foto de prova e notificações por WhatsApp.",
       "ctaCalculate": "Calcular tarifa",
       "ctaTrack": "Rastrear encomenda",
-      "ctaBook": "Pedir recolha por estafeta"
+      "ctaBook": "Pedir recolha por estafeta",
+      "eyebrow": "Logística de encomendas em Timor-Leste"
     },
     "schemes": {
       "SCHEME_A": "Agente para Agente",
@@ -308,7 +309,13 @@
       "coverageTitle": "Todos os 14 municípios",
       "coverageLead": "Díli é o nosso hub: todas as rotas começam ou terminam em Díli.",
       "ctaTitle": "Pronto para enviar?",
-      "ctaBody": "Saiba o preço em segundos. Sem registo."
+      "ctaBody": "Saiba o preço em segundos. Sem registo.",
+      "stats": {
+        "municipalities": "Municípios ligados",
+        "schemes": "Formas de enviar",
+        "steps": "Etapas rastreadas",
+        "languages": "Idiomas"
+      }
     },
     "corridors": {
       "LOCAL": "Local",
