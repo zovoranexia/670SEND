@@ -95,8 +95,8 @@ describe('Unclaimed parcels: reminders, storage penalty, return-to-sender (daily
     expect(s.status).toBe('RETURN_TO_SENDER');
     expect(s.rtsFlaggedAt).not.toBeNull();
     expect(s.pickupOtpHash).toBeNull();
-    expect(messagesTo(ctx, p.senderPhone).at(-1)!.body).toContain('haruka fila fali ba Hub Dili');
-    expect(messagesTo(ctx, p.recipientPhone).at(-1)!.body).toContain('haruka fila fali ba Hub Dili');
+    expect(messagesTo(ctx, p.senderPhone).at(-1)!.body).toContain('haruka fila fali ba Hub Díli');
+    expect(messagesTo(ctx, p.recipientPhone).at(-1)!.body).toContain('haruka fila fali ba Hub Díli');
 
     const events = await ctx.prisma.shipmentEvent.findMany({ where: { shipmentId: p.id }, orderBy: { createdAt: 'asc' } });
     expect(events.at(-1)).toMatchObject({ status: 'RETURN_TO_SENDER', fromStatus: 'ARRIVED_AT_DEST_AGENT' });
@@ -213,7 +213,7 @@ describe('Unclaimed parcels: reminders, storage penalty, return-to-sender (daily
 
     expect((await ctx.http.post(`/v1/shipments/${p.waybill}/out-for-delivery`).set(bearer(courier.token))).status).toBe(200);
     expect((await shipmentRow(ctx, p.waybill)).status).toBe('OUT_FOR_DELIVERY');
-    expect(messagesTo(ctx, (await shipmentRow(ctx, p.waybill)).recipientPhone).at(-1)!.body).toContain('Kurir lokál');
+    expect(messagesTo(ctx, (await shipmentRow(ctx, p.waybill)).recipientPhone).at(-1)!.body).toContain('Estafeta lokál');
 
     const first = await ctx.http.post(`/v1/shipments/${p.waybill}/delivery-failed`).set(bearer(courier.token)).send({ notes: 'Nobody home' });
     expect(first.body).toMatchObject({ attempts: 1, returnedToAgent: false, status: 'OUT_FOR_DELIVERY' });
