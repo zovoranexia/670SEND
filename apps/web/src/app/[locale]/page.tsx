@@ -1,9 +1,14 @@
 import type { Metadata } from 'next';
 import { getTranslations, setRequestLocale } from 'next-intl/server';
+import type { CSSProperties } from 'react';
 import type { Locale } from '@670send/types';
+import { Ridges, RouteMap } from '@/components/fx/decor';
+import { Parallax } from '@/components/fx/parallax';
+import { Reveal } from '@/components/fx/reveal';
+import { ScrollProgress } from '@/components/fx/scroll-progress';
 import { IconBus, IconCalc, IconCamera, IconChat, IconPackage, IconPin, IconSearch, IconShield, IconShip, IconTag, IconTruck } from '@/components/icons';
 import { Link } from '@/i18n/navigation';
-import { groupByCorridor } from '@/lib/municipalities';
+import { groupByCorridor, MUNICIPALITY_OPTIONS } from '@/lib/municipalities';
 import { pageMetadata } from '@/lib/seo';
 
 type Props = { params: Promise<{ locale: Locale }> };
@@ -14,7 +19,12 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 }
 
 const SCHEMES = ['SCHEME_A', 'SCHEME_B', 'SCHEME_C', 'SCHEME_D'] as const;
-const SCHEME_ICON = { SCHEME_A: IconPackage, SCHEME_B: IconTruck, SCHEME_C: IconPin, SCHEME_D: IconShip } as const;
+const SCHEME_ICON = {
+  SCHEME_A: IconPackage,
+  SCHEME_B: IconTruck,
+  SCHEME_C: IconPin,
+  SCHEME_D: IconShip,
+} as const;
 const STEPS = ['s1', 's2', 's3', 's4', 's5'] as const;
 const TRUST = [
   { key: 'otp', Icon: IconShield },
@@ -22,6 +32,16 @@ const TRUST = [
   { key: 'whatsapp', Icon: IconChat },
   { key: 'tariff', Icon: IconTag },
 ] as const;
+const STATS = [
+  { key: 'municipalities', value: '14' },
+  { key: 'schemes', value: '4' },
+  { key: 'steps', value: '5' },
+  { key: 'languages', value: '4' },
+] as const;
+
+const hub = MUNICIPALITY_OPTIONS.find((m) => m.code === 'DIL')!;
+
+const delay = (ms: number) => ({ '--d': `${ms}ms` }) as CSSProperties;
 
 export default async function HomePage({ params }: Props) {
   const { locale } = await params;
@@ -31,12 +51,45 @@ export default async function HomePage({ params }: Props) {
   return (
     <>
       {/* ------------------------------------------------------------------ hero */}
-      <section className="bg-brand-700 text-white">
-        <div className="container-page grid gap-10 py-14 lg:grid-cols-[1.25fr_1fr] lg:items-center lg:py-20">
+      <section className="on-dark relative isolate overflow-hidden bg-gradient-to-b from-brand-900 via-brand-800 to-brand-700 text-white">
+        {/* parallax layers: glows (far) → route network → floating parcels (near) → ridges (nearest) */}
+        <Parallax speed={0.38} className="absolute -inset-y-40 inset-x-0 -z-10" innerClassName="relative h-full">
+          <div className="absolute -left-28 top-24 h-[26rem] w-[26rem] rounded-full bg-brand-500/45 blur-3xl" />
+          <div className="absolute -right-16 top-72 h-[30rem] w-[30rem] rounded-full bg-accent-500/20 blur-3xl" />
+        </Parallax>
+        <Parallax speed={0.22} className="absolute -inset-y-24 inset-x-0 -z-10 hidden opacity-60 lg:left-[46%] lg:block" innerClassName="h-full">
+          <RouteMap className="h-full w-full" />
+        </Parallax>
+        <Parallax speed={-0.18} className="absolute right-[6%] top-28 -z-10 hidden md:block" innerClassName="">
+          <div className="float-slow flex h-16 w-16 items-center justify-center rounded-2xl glass text-white shadow-lift">
+            <IconPackage width={32} height={32} />
+          </div>
+        </Parallax>
+        <Parallax speed={-0.3} className="absolute right-[2%] top-[74%] -z-10 hidden lg:block" innerClassName="">
+          <div className="float-slower flex h-14 w-14 items-center justify-center rounded-2xl glass text-[#ffb08a] shadow-lift">
+            <IconTruck width={28} height={28} />
+          </div>
+        </Parallax>
+        <Parallax speed={-0.12} className="absolute right-[34%] top-[9%] -z-10 hidden lg:block" innerClassName="">
+          <div className="float-slow flex h-12 w-12 items-center justify-center rounded-xl glass text-white shadow-lift">
+            <IconShip width={24} height={24} />
+          </div>
+        </Parallax>
+        <Ridges className="-z-10" />
+
+        <div className="container-page relative grid gap-12 pb-40 pt-14 sm:pt-20 lg:grid-cols-[1.2fr_1fr] lg:items-center lg:pb-52 lg:pt-24">
           <div>
-            <h1 className="text-3xl font-extrabold leading-tight tracking-tight sm:text-4xl lg:text-5xl">{t('hero.title')}</h1>
-            <p className="mt-5 max-w-2xl text-lg leading-relaxed text-brand-100 sm:text-xl">{t('hero.subtitle')}</p>
-            <div className="mt-8 flex flex-wrap gap-3">
+            <p className="rise inline-flex items-center gap-2.5 rounded-full border border-white/20 bg-white/10 px-4 py-1.5 text-sm font-semibold text-brand-100 backdrop-blur">
+              <span className="pulse-dot h-2.5 w-2.5 rounded-full bg-[#ff7a45]" aria-hidden="true" />
+              {t('hero.eyebrow')}
+            </p>
+            <h1 className="rise mt-5 text-4xl font-extrabold leading-[1.08] tracking-tight text-balance sm:text-5xl lg:text-6xl" style={delay(80)}>
+              {t('hero.title')}
+            </h1>
+            <p className="rise mt-6 max-w-2xl text-lg leading-relaxed text-brand-100 sm:text-xl" style={delay(160)}>
+              {t('hero.subtitle')}
+            </p>
+            <div className="rise mt-9 flex flex-wrap gap-3" style={delay(240)}>
               <Link href="/calculator" className="btn btn-accent">
                 <IconCalc width={20} height={20} />
                 {t('hero.ctaCalculate')}
@@ -45,7 +98,7 @@ export default async function HomePage({ params }: Props) {
                 <IconSearch width={20} height={20} />
                 {t('hero.ctaTrack')}
               </Link>
-              <Link href="/book" className="btn border-2 border-white/70 text-white hover:bg-white/10">
+              <Link href="/book" className="btn btn-ghost-light">
                 <IconTruck width={20} height={20} />
                 {t('hero.ctaBook')}
               </Link>
@@ -53,13 +106,27 @@ export default async function HomePage({ params }: Props) {
           </div>
 
           {/* Quick tracker: a plain GET form, so it works without JavaScript. */}
-          <form action={`/${locale}/track`} method="get" className="rounded-2xl bg-white p-5 text-slate-800 shadow-xl sm:p-6">
-            <h2 className="text-xl font-bold text-brand-800">{t('tracker.title')}</h2>
+          <form action={`/${locale}/track`} method="get" className="rise rounded-3xl bg-white p-6 text-slate-800 shadow-lift ring-1 ring-white/50 sm:p-7" style={delay(200)}>
+            <span className="flex h-12 w-12 items-center justify-center rounded-2xl bg-brand-50 text-brand-700" aria-hidden="true">
+              <IconSearch width={26} height={26} />
+            </span>
+            <h2 className="mt-4 text-xl font-bold text-brand-800">{t('tracker.title')}</h2>
             <p className="mt-1 text-sm text-slate-600">{t('tracker.lead')}</p>
             <label htmlFor="quick-no" className="field-label mt-4">
               {t('tracker.title')}
             </label>
-            <input id="quick-no" name="no" type="text" inputMode="text" autoCapitalize="characters" autoComplete="off" spellCheck={false} placeholder="670S-DIL-BCU-261121-0042" className="input font-mono" required />
+            <input
+              id="quick-no"
+              name="no"
+              type="text"
+              inputMode="text"
+              autoCapitalize="characters"
+              autoComplete="off"
+              spellCheck={false}
+              placeholder="670S-DIL-BCU-261121-0042"
+              className="input font-mono"
+              required
+            />
             <button type="submit" className="btn btn-primary mt-4 w-full">
               <IconSearch width={20} height={20} />
               {t('tracker.button')}
@@ -68,25 +135,50 @@ export default async function HomePage({ params }: Props) {
         </div>
       </section>
 
+      {/* ----------------------------------------------------------------- stats */}
+      <section className="container-page relative z-10 -mt-24 lg:-mt-32" aria-label="670Send">
+        <Reveal>
+          <dl className="grid grid-cols-2 gap-px overflow-hidden rounded-3xl bg-slate-200/70 shadow-lift ring-1 ring-slate-200/80 md:grid-cols-4">
+            {STATS.map((s) => (
+              <div key={s.key} className="flex flex-col-reverse items-center gap-1 bg-white px-4 py-6 text-center">
+                <dt className="text-sm font-semibold text-slate-600">{t(`home.stats.${s.key}`)}</dt>
+                <dd className="text-4xl font-extrabold tracking-tight text-brand-700 sm:text-5xl">{s.value}</dd>
+              </div>
+            ))}
+          </dl>
+        </Reveal>
+      </section>
+
       {/* --------------------------------------------------------------- schemes */}
-      <section className="container-page pt-16" aria-labelledby="schemes-title">
-        <h2 id="schemes-title" className="section-title">
-          {t('home.schemesTitle')}
-        </h2>
-        <p className="section-lead">{t('home.schemesLead')}</p>
-        <ul className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-          {SCHEMES.map((s) => {
+      <section className="container-page pt-24" aria-labelledby="schemes-title">
+        <Reveal>
+          <h2 id="schemes-title" className="section-title">
+            {t('home.schemesTitle')}
+          </h2>
+          <p className="section-lead">{t('home.schemesLead')}</p>
+        </Reveal>
+        <ul className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+          {SCHEMES.map((s, i) => {
             const Icon = SCHEME_ICON[s];
             return (
-              <li key={s} className="card flex flex-col">
-                <span className="flex h-12 w-12 items-center justify-center rounded-xl bg-brand-50 text-brand-700">
-                  <Icon width={26} height={26} />
-                </span>
-                <h3 className="mt-4 text-lg font-bold text-brand-800">{t(`schemes.${s}`)}</h3>
-                <p className="mt-2 flex-1 text-base text-slate-600">{t(`home.schemeDesc.${s}`)}</p>
-                <Link href={{ pathname: '/calculator', query: { scheme: s } }} className="mt-4 inline-flex min-h-11 items-center font-semibold text-accent-600 hover:underline">
-                  {t('hero.ctaCalculate')} →
-                </Link>
+              <li key={s}>
+                <Reveal delay={i * 90} className="group card relative flex h-full flex-col overflow-hidden transition duration-300 hover:-translate-y-1.5 hover:shadow-lift">
+                  <span
+                    className="absolute inset-x-0 top-0 h-1 origin-left scale-x-0 bg-gradient-to-r from-accent-500 to-[#ffb08a] transition duration-500 group-hover:scale-x-100"
+                    aria-hidden="true"
+                  />
+                  <span className="flex h-14 w-14 items-center justify-center rounded-2xl bg-gradient-to-br from-brand-600 to-brand-800 text-white shadow-soft transition duration-300 group-hover:rotate-3 group-hover:scale-105">
+                    <Icon width={28} height={28} />
+                  </span>
+                  <h3 className="mt-5 text-lg font-bold text-brand-800">{t(`schemes.${s}`)}</h3>
+                  <p className="mt-2 flex-1 text-base text-slate-600">{t(`home.schemeDesc.${s}`)}</p>
+                  <Link href={{ pathname: '/calculator', query: { scheme: s } }} className="mt-5 inline-flex min-h-11 items-center gap-1 font-semibold text-accent-600 hover:underline">
+                    {t('hero.ctaCalculate')}
+                    <span aria-hidden="true" className="transition group-hover:translate-x-1">
+                      →
+                    </span>
+                  </Link>
+                </Reveal>
               </li>
             );
           })}
@@ -94,88 +186,165 @@ export default async function HomePage({ params }: Props) {
       </section>
 
       {/* ------------------------------------------------------------ how it works */}
-      <section className="mt-16 bg-brand-50 py-16" aria-labelledby="how-title">
-        <div className="container-page">
-          <h2 id="how-title" className="section-title">
-            {t('home.howTitle')}
-          </h2>
-          <ol className="mt-8 grid gap-4 md:grid-cols-5">
-            {STEPS.map((s, i) => (
-              <li key={s} className="relative rounded-2xl bg-white p-5 shadow-sm">
-                <span className="flex h-10 w-10 items-center justify-center rounded-full bg-accent-600 text-lg font-bold text-white" aria-hidden="true">
-                  {i + 1}
-                </span>
-                <h3 className="mt-3 text-lg font-bold text-brand-800">
-                  <span className="sr-only">{i + 1}. </span>
-                  {t(`home.how.${s}.title`)}
-                </h3>
-                <p className="mt-2 text-base text-slate-600">{t(`home.how.${s}.body`)}</p>
-              </li>
-            ))}
-          </ol>
+      <section className="relative mt-24 overflow-hidden bg-brand-50 py-24" aria-labelledby="how-title">
+        <Parallax speed={0.25} className="absolute -inset-y-20 inset-x-0" innerClassName="dot-grid h-full opacity-70" />
+        <div className="container-page relative">
+          <Reveal>
+            <h2 id="how-title" className="section-title">
+              {t('home.howTitle')}
+            </h2>
+          </Reveal>
+          <ScrollProgress className="relative mt-12">
+            <div
+              aria-hidden="true"
+              className="pointer-events-none absolute bottom-6 left-6 top-6 w-1 -translate-x-1/2 rounded-full bg-brand-200 md:bottom-auto md:left-6 md:right-[calc(20%-1.5rem)] md:top-6 md:h-1 md:w-auto md:translate-x-0 md:-translate-y-1/2"
+            >
+              <span className="progress-fill block h-full w-full rounded-full bg-gradient-to-b from-accent-500 to-[#ffb08a] md:bg-gradient-to-r" />
+            </div>
+            <ol className="relative grid gap-8 md:grid-cols-5 md:gap-5">
+              {STEPS.map((s, i) => (
+                <li key={s} className="relative flex gap-4 md:flex-col md:gap-5">
+                  <span
+                    className="relative z-10 flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-accent-600 text-lg font-extrabold text-white shadow-[0_0_0_6px_var(--color-brand-50)]"
+                    aria-hidden="true"
+                  >
+                    {i + 1}
+                  </span>
+                  <Reveal delay={i * 80} className="flex-1 rounded-2xl bg-white p-5 shadow-soft ring-1 ring-slate-200/70">
+                    <h3 className="text-lg font-bold text-brand-800">
+                      <span className="sr-only">{i + 1}. </span>
+                      {t(`home.how.${s}.title`)}
+                    </h3>
+                    <p className="mt-2 text-base text-slate-600">{t(`home.how.${s}.body`)}</p>
+                  </Reveal>
+                </li>
+              ))}
+            </ol>
+          </ScrollProgress>
         </div>
       </section>
 
       {/* ------------------------------------------------------------------ trust */}
-      <section className="container-page pt-16" aria-labelledby="trust-title">
-        <h2 id="trust-title" className="section-title">
-          {t('home.trustTitle')}
-        </h2>
-        <ul className="mt-8 grid gap-6 sm:grid-cols-2">
-          {TRUST.map(({ key, Icon }) => (
-            <li key={key} className="flex gap-4">
-              <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-accent-50 text-accent-600">
-                <Icon width={26} height={26} />
-              </span>
-              <div>
-                <h3 className="text-lg font-bold text-brand-800">{t(`home.trust.${key}.title`)}</h3>
-                <p className="mt-1 text-base text-slate-600">{t(`home.trust.${key}.body`)}</p>
-              </div>
-            </li>
-          ))}
-        </ul>
+      <section className="on-dark relative isolate overflow-hidden bg-brand-900 py-24 text-white" aria-labelledby="trust-title">
+        <Parallax speed={0.3} className="absolute -inset-y-32 inset-x-0 -z-10" innerClassName="relative h-full">
+          <div className="absolute -right-20 top-10 h-96 w-96 rounded-full bg-accent-500/20 blur-3xl" />
+          <div className="absolute -left-24 bottom-10 h-96 w-96 rounded-full bg-brand-500/40 blur-3xl" />
+        </Parallax>
+        <div className="container-page">
+          <Reveal>
+            <h2 id="trust-title" className="text-3xl font-extrabold tracking-tight text-balance sm:text-4xl">
+              {t('home.trustTitle')}
+            </h2>
+          </Reveal>
+          <ul className="mt-10 grid gap-5 sm:grid-cols-2">
+            {TRUST.map(({ key, Icon }, i) => (
+              <li key={key}>
+                <Reveal delay={i * 90} className="glass flex h-full gap-4 rounded-3xl p-6 transition duration-300 hover:-translate-y-1 hover:bg-white/10">
+                  <span className="flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl bg-[#ff7a45]/15 text-[#ff9a6b] ring-1 ring-[#ff7a45]/30">
+                    <Icon width={28} height={28} />
+                  </span>
+                  <div>
+                    <h3 className="text-lg font-bold text-white">{t(`home.trust.${key}.title`)}</h3>
+                    <p className="mt-1 text-base text-brand-100">{t(`home.trust.${key}.body`)}</p>
+                  </div>
+                </Reveal>
+              </li>
+            ))}
+          </ul>
+        </div>
       </section>
 
       {/* --------------------------------------------------------------- coverage */}
-      <section className="container-page pt-16" aria-labelledby="coverage-title">
-        <h2 id="coverage-title" className="section-title">
-          {t('home.coverageTitle')}
-        </h2>
-        <p className="section-lead">{t('home.coverageLead')}</p>
-        <div className="mt-8 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-          {groupByCorridor().map(({ corridor, items }) => (
-            <div key={corridor} className="card">
-              <h3 className="flex items-center gap-2 text-lg font-bold text-brand-800">
-                {corridor === 'SEA' ? <IconShip width={22} height={22} /> : <IconBus width={22} height={22} />}
-                {t(`corridors.${corridor}`)}
-              </h3>
-              <ul className="mt-3 flex flex-wrap gap-2">
-                {items.map((m) => (
-                  <li key={m.code} className={`rounded-full px-3 py-1.5 text-sm font-medium ${m.isSea ? 'bg-brand-100 text-brand-800' : 'bg-slate-100 text-slate-800'}`}>
-                    {m.name}
-                  </li>
+      <section className="container-page pt-24" aria-labelledby="coverage-title">
+        <Reveal>
+          <h2 id="coverage-title" className="section-title">
+            {t('home.coverageTitle')}
+          </h2>
+          <p className="section-lead">{t('home.coverageLead')}</p>
+        </Reveal>
+        <div className="mt-10 grid gap-5 lg:grid-cols-[minmax(0,1fr)_minmax(0,2fr)]">
+          {/* Díli: the hub every route starts or ends in */}
+          <Reveal className="on-dark relative isolate flex min-h-64 flex-col justify-between overflow-hidden rounded-3xl bg-gradient-to-br from-brand-900 via-brand-800 to-brand-600 p-7 text-white shadow-lift">
+            <Parallax speed={0.2} className="absolute inset-0 -z-10" innerClassName="h-full">
+              <svg viewBox="0 0 400 300" preserveAspectRatio="xMidYMid slice" className="h-full w-full" fill="none" aria-hidden="true" focusable="false">
+                {[60, 110, 160, 215].map((r) => (
+                  <circle key={r} cx="300" cy="210" r={r} stroke="white" strokeOpacity={0.16 - r / 2400} strokeWidth="1.5" strokeDasharray="3 9" />
                 ))}
-              </ul>
-              {corridor === 'SEA' && <p className="mt-3 text-sm text-slate-600">{t('calculator.seaNotice')}</p>}
+              </svg>
+            </Parallax>
+            <h3 className="flex items-center gap-3 text-lg font-bold">
+              <span className="flex h-10 w-10 items-center justify-center rounded-xl bg-white/15">
+                <IconPin width={22} height={22} />
+              </span>
+              {t('corridors.LOCAL')}
+            </h3>
+            <div>
+              <p className="flex items-center gap-4 text-5xl font-extrabold tracking-tight sm:text-6xl">
+                <span className="pulse-dot h-4 w-4 shrink-0 rounded-full bg-[#ff7a45]" aria-hidden="true" />
+                {hub.name}
+              </p>
             </div>
-          ))}
+          </Reveal>
+
+          <div className="grid gap-5 sm:grid-cols-2">
+            {groupByCorridor()
+              .filter((g) => g.corridor !== 'LOCAL')
+              .map(({ corridor, items }, i) => {
+                const sea = corridor === 'SEA';
+                return (
+                  <Reveal key={corridor} delay={i * 90} className="group overflow-hidden rounded-3xl bg-white shadow-soft ring-1 ring-slate-200/80 transition duration-300 hover:-translate-y-1 hover:shadow-lift">
+                    <div className={`flex items-center gap-3 px-5 py-4 text-white ${sea ? 'bg-gradient-to-r from-accent-700 to-accent-600' : 'bg-gradient-to-r from-brand-800 to-brand-600'}`}>
+                      <span className="flex h-10 w-10 items-center justify-center rounded-xl bg-white/15 transition group-hover:rotate-6 group-hover:scale-110">
+                        {sea ? <IconShip width={22} height={22} /> : <IconBus width={22} height={22} />}
+                      </span>
+                      <h3 className="text-lg font-bold">{t(`corridors.${corridor}`)}</h3>
+                      <span className="ml-auto rounded-full bg-white/15 px-2.5 py-0.5 text-sm font-bold" aria-hidden="true">
+                        {items.length}
+                      </span>
+                    </div>
+                    <div className="p-5">
+                      <ul className="relative space-y-0.5 pl-7">
+                        <span className="route-line absolute bottom-4 left-[0.55rem] top-4 w-0.5" aria-hidden="true" />
+                        <li className="relative flex min-h-9 items-center rounded-lg px-2 font-bold text-brand-800">
+                          <span className="absolute -left-[1.625rem] top-1/2 h-4 w-4 -translate-y-1/2 rounded-full bg-[#ff7a45] ring-4 ring-white" aria-hidden="true" />
+                          {hub.name}
+                        </li>
+                        {items.map((m) => (
+                          <li key={m.code} className="relative flex min-h-9 items-center rounded-lg px-2 text-base font-medium text-slate-800 transition hover:bg-brand-50 hover:text-brand-800">
+                            <span className={`absolute -left-6 top-1/2 h-3 w-3 -translate-y-1/2 rounded-full ring-4 ring-white ${sea ? 'bg-accent-600' : 'bg-brand-500'}`} aria-hidden="true" />
+                            {m.name}
+                          </li>
+                        ))}
+                      </ul>
+                      {sea && <p className="mt-4 rounded-xl bg-accent-50 p-3 text-sm text-slate-800">{t('calculator.seaNotice')}</p>}
+                    </div>
+                  </Reveal>
+                );
+              })}
+          </div>
         </div>
       </section>
 
       {/* -------------------------------------------------------------------- CTA */}
-      <section className="container-page pt-16">
-        <div className="rounded-3xl bg-brand-800 px-6 py-10 text-center text-white sm:px-12">
-          <h2 className="text-2xl font-bold sm:text-3xl">{t('home.ctaTitle')}</h2>
-          <p className="mx-auto mt-3 max-w-xl text-lg text-brand-100">{t('home.ctaBody')}</p>
-          <div className="mt-6 flex flex-wrap justify-center gap-3">
-            <Link href="/calculator" className="btn btn-accent">
-              {t('hero.ctaCalculate')}
-            </Link>
-            <Link href="/book" className="btn btn-light">
-              {t('hero.ctaBook')}
-            </Link>
+      <section className="container-page pt-24">
+        <Reveal>
+          <div className="on-dark relative isolate overflow-hidden rounded-[2rem] bg-gradient-to-br from-brand-800 via-brand-700 to-brand-600 px-6 py-14 text-center text-white shadow-lift sm:px-12">
+            <Parallax speed={0.35} className="absolute -inset-y-10 inset-x-0 -z-10" innerClassName="relative h-full">
+              <div className="absolute -left-10 -top-10 h-64 w-64 rounded-full bg-accent-500/30 blur-3xl" />
+              <div className="absolute -bottom-16 right-0 h-72 w-72 rounded-full bg-brand-300/25 blur-3xl" />
+            </Parallax>
+            <h2 className="text-3xl font-extrabold tracking-tight text-balance sm:text-4xl">{t('home.ctaTitle')}</h2>
+            <p className="mx-auto mt-4 max-w-xl text-lg text-brand-100">{t('home.ctaBody')}</p>
+            <div className="mt-8 flex flex-wrap justify-center gap-3">
+              <Link href="/calculator" className="btn btn-accent">
+                {t('hero.ctaCalculate')}
+              </Link>
+              <Link href="/book" className="btn btn-light">
+                {t('hero.ctaBook')}
+              </Link>
+            </div>
           </div>
-        </div>
+        </Reveal>
       </section>
     </>
   );

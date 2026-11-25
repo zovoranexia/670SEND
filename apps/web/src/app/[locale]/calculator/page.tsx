@@ -3,6 +3,7 @@ import { getTranslations, setRequestLocale } from 'next-intl/server';
 import { Suspense } from 'react';
 import type { Locale } from '@670send/types';
 import { Calculator } from '@/components/calculator/calculator';
+import { PageHero } from '@/components/page-hero';
 import { pageMetadata } from '@/lib/seo';
 
 type Props = { params: Promise<{ locale: Locale }> };
@@ -18,14 +19,13 @@ export default async function CalculatorPage({ params }: Props) {
   const t = await getTranslations('web.calculator');
 
   return (
-    <div className="container-page py-10 sm:py-14">
-      <h1 className="text-3xl font-extrabold tracking-tight text-brand-800 sm:text-4xl">{t('title')}</h1>
-      <p className="mt-3 max-w-2xl text-lg text-slate-700">{t('lead')}</p>
-      <div className="mt-8">
+    <>
+      <PageHero title={t('title')} lead={t('lead')} />
+      <div className="container-page pb-10 pt-4">
         <Suspense fallback={<div className="card h-96 animate-pulse bg-slate-100" aria-hidden="true" />}>
           <Calculator />
         </Suspense>
       </div>
-    </div>
+    </>
   );
 }

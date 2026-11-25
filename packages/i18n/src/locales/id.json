@@ -65,7 +65,8 @@
       "subtitle": "Dari kios agen 670Link terdekat hingga munisipalitas tujuan — dengan OTP, foto bukti, dan notifikasi WhatsApp.",
       "ctaCalculate": "Hitung ongkos kirim",
       "ctaTrack": "Lacak paket",
-      "ctaBook": "Pesan kurir jemput"
+      "ctaBook": "Pesan kurir jemput",
+      "eyebrow": "Logistik paket Timor-Leste"
     },
     "schemes": {
       "SCHEME_A": "Agen ke Agen",
@@ -213,7 +214,8 @@
       "exploreHeading": "Jelajahi",
       "legalHeading": "Hukum",
       "about": "670Send mengantar paket antar 14 munisipalitas di Timor-Leste. Dioperasikan oleh {operator}.",
-      "support": "Bantuan WhatsApp"
+      "support": "Bantuan WhatsApp",
+      "top": "Kembali ke atas"
     },
     "meta": {
       "home": {
@@ -308,7 +310,13 @@
       "coverageTitle": "Seluruh 14 munisipalitas",
       "coverageLead": "Díli adalah hub kami: setiap rute dimulai atau berakhir di Díli.",
       "ctaTitle": "Siap mengirim?",
-      "ctaBody": "Ketahui harganya dalam hitungan detik. Tanpa pendaftaran."
+      "ctaBody": "Ketahui harganya dalam hitungan detik. Tanpa pendaftaran.",
+      "stats": {
+        "municipalities": "Munisipalitas terhubung",
+        "schemes": "Cara mengirim",
+        "steps": "Tahap terlacak",
+        "languages": "Bahasa"
+      }
     },
     "corridors": {
       "LOCAL": "Lokal",

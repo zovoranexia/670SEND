@@ -21,6 +21,9 @@
   --color-accent-500: #e6511a;
   --color-accent-600: #c2410c;
   --color-accent-700: #9a3412;
+
+  --shadow-soft: 0 10px 40px -16px rgb(8 61 71 / 0.35);
+  --shadow-lift: 0 22px 50px -18px rgb(8 61 71 / 0.45);
 }
 
 @layer base {
@@ -49,6 +52,12 @@
     outline-offset: 2px;
     border-radius: 4px;
   }
+  /* On the dark teal bands the dark outline would vanish: use the logo orange (large/decorative contrast is enough for a focus ring). */
+  .on-dark :focus-visible,
+  header :focus-visible,
+  footer :focus-visible {
+    outline-color: #ffb08a;
+  }
   summary {
     cursor: pointer;
   }
@@ -62,13 +71,13 @@
     @apply mx-auto w-full max-w-6xl px-4 sm:px-6 lg:px-8;
   }
   .btn {
-    @apply inline-flex min-h-11 items-center justify-center gap-2 rounded-lg px-5 py-2.5 text-base font-semibold transition-colors disabled:cursor-not-allowed disabled:opacity-60;
+    @apply inline-flex min-h-11 items-center justify-center gap-2 rounded-xl px-5 py-2.5 text-base font-semibold transition duration-200 ease-out hover:-translate-y-0.5 active:translate-y-0 disabled:cursor-not-allowed disabled:opacity-60 disabled:hover:translate-y-0;
   }
   .btn-primary {
-    @apply bg-brand-700 text-white hover:bg-brand-800 active:bg-brand-900;
+    @apply bg-brand-700 text-white shadow-soft hover:bg-brand-800 active:bg-brand-900;
   }
   .btn-accent {
-    @apply bg-accent-600 text-white hover:bg-accent-700;
+    @apply bg-accent-600 text-white shadow-[0_12px_28px_-12px_rgb(194_65_12/0.7)] hover:bg-accent-700;
   }
   .btn-outline {
     @apply border-2 border-brand-700 bg-white text-brand-700 hover:bg-brand-50;
@@ -76,8 +85,11 @@
   .btn-light {
     @apply bg-white text-brand-800 hover:bg-brand-50;
   }
+  .btn-ghost-light {
+    @apply border-2 border-white/60 text-white hover:border-white hover:bg-white/10;
+  }
   .card {
-    @apply rounded-2xl border border-slate-200 bg-white p-5 shadow-sm sm:p-6;
+    @apply rounded-3xl border border-slate-200/80 bg-white p-5 shadow-soft sm:p-6;
   }
   .field-label {
     @apply mb-1.5 block text-sm font-semibold text-slate-800;
@@ -89,12 +101,231 @@
     @apply mt-1 text-sm font-medium text-red-700;
   }
   .input {
-    @apply block min-h-11 w-full rounded-lg border border-slate-400 bg-white px-3 py-2 text-base text-slate-900 placeholder:text-slate-500 hover:border-slate-600 aria-[invalid=true]:border-red-600;
+    @apply block min-h-11 w-full rounded-xl border border-slate-400 bg-white px-3.5 py-2 text-base text-slate-900 transition placeholder:text-slate-500 hover:border-slate-600 focus:border-brand-600 focus:ring-4 focus:ring-brand-100 aria-[invalid=true]:border-red-600;
   }
   .section-title {
-    @apply text-2xl font-bold tracking-tight text-brand-800 sm:text-3xl;
+    @apply text-3xl font-extrabold tracking-tight text-balance text-brand-800 sm:text-4xl;
   }
   .section-lead {
     @apply mt-3 max-w-2xl text-lg text-slate-600;
+  }
+  .eyebrow {
+    @apply mb-3 inline-flex items-center gap-2 text-sm font-bold uppercase tracking-[0.14em] text-accent-600;
+  }
+  .glass {
+    @apply border border-white/15 bg-white/[0.07] backdrop-blur-md;
+  }
+}
+
+/* ----------------------------------------------------------------------------------------------------------
+   Motion. Everything below is decorative: content is always in the DOM and readable, animations are CSS-driven
+   (so they work without JavaScript) and switched off for `prefers-reduced-motion`.
+   ---------------------------------------------------------------------------------------------------------- */
+
+/* ---- Logo splash (server-rendered overlay; fades out by itself; skipped after the first view of a session) ---- */
+.splash {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  display: grid;
+  place-items: center;
+  background: radial-gradient(120% 90% at 50% 40%, #0b4f5c 0%, #083d47 55%, #062e36 100%);
+  animation: splash-out 0.55s ease-in 2.15s forwards;
+}
+html[data-splash='seen'] .splash {
+  display: none;
+}
+.splash-inner {
+  display: grid;
+  justify-items: center;
+  gap: 1.75rem;
+  padding: 1.5rem;
+}
+.splash-logo {
+  width: min(78vw, 420px);
+  height: auto;
+  overflow: visible;
+  filter: drop-shadow(0 12px 40px rgb(0 0 0 / 0.35));
+  animation: splash-pop 0.9s cubic-bezier(0.2, 0.9, 0.3, 1.2) 0.05s both;
+}
+.splash-logo .dash {
+  stroke-dasharray: 1;
+  stroke-dashoffset: 1;
+  opacity: 0;
+  animation: splash-draw 0.8s cubic-bezier(0.55, 0, 0.25, 1) calc(var(--i, 0) * 45ms + 0.15s) forwards;
+}
+.splash-logo .arrow-down {
+  animation: splash-down 1.1s ease-in-out 1.5s infinite;
+}
+.splash-logo .arrow-up {
+  animation: splash-up 1.1s ease-in-out 1.5s infinite;
+}
+.splash-bar {
+  width: min(52vw, 220px);
+  height: 4px;
+  overflow: hidden;
+  border-radius: 999px;
+  background: rgb(255 255 255 / 0.15);
+}
+.splash-bar > span {
+  display: block;
+  height: 100%;
+  border-radius: inherit;
+  background: linear-gradient(90deg, #ff7a45, #ffb08a);
+  transform: scaleX(0);
+  transform-origin: left;
+  animation: splash-load 1.75s cubic-bezier(0.4, 0, 0.2, 1) 0.2s forwards;
+}
+@keyframes splash-draw {
+  0% {
+    stroke-dashoffset: 1;
+    opacity: 0;
+  }
+  6% {
+    opacity: 1;
+  }
+  100% {
+    stroke-dashoffset: 0;
+    opacity: 1;
+  }
+}
+@keyframes splash-pop {
+  from {
+    transform: scale(0.88);
+  }
+  to {
+    transform: scale(1);
+  }
+}
+@keyframes splash-down {
+  50% {
+    transform: translateY(3px);
+  }
+}
+@keyframes splash-up {
+  50% {
+    transform: translateY(-3px);
+  }
+}
+@keyframes splash-load {
+  to {
+    transform: scaleX(1);
+  }
+}
+@keyframes splash-out {
+  to {
+    opacity: 0;
+    visibility: hidden;
+  }
+}
+
+/* ---- Scroll reveal: hidden only once JS is known to be running; a failsafe shows everything if hydration never happens ---- */
+.reveal {
+  transition:
+    opacity 0.75s cubic-bezier(0.2, 0.7, 0.2, 1) var(--d, 0ms),
+    transform 0.75s cubic-bezier(0.2, 0.7, 0.2, 1) var(--d, 0ms);
+}
+@media (prefers-reduced-motion: no-preference) {
+  .js .reveal:not([data-in]) {
+    opacity: 0;
+    transform: translate3d(0, 30px, 0);
+  }
+  .js:not([data-fx]) .reveal:not([data-in]) {
+    animation: reveal-failsafe 0s linear 3.5s forwards;
+  }
+}
+@keyframes reveal-failsafe {
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* ---- Hero entrance (waits for the splash on the first view) ---- */
+.rise {
+  animation: rise 0.9s cubic-bezier(0.2, 0.7, 0.2, 1) calc(var(--d, 0ms) + 0.1s) both;
+}
+html:not([data-splash='seen']) .rise {
+  animation-delay: calc(var(--d, 0ms) + 1.95s);
+}
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 26px, 0);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .splash {
+    display: none;
+  }
+  .rise {
+    animation: none;
+  }
+}
+
+/* ---- Ambient loops ---- */
+.float-slow {
+  animation: float 7s ease-in-out infinite;
+}
+.float-slower {
+  animation: float 10s ease-in-out -3s infinite;
+}
+@keyframes float {
+  50% {
+    transform: translate3d(0, -14px, 0) rotate(2deg);
+  }
+}
+.route-flow {
+  stroke-dasharray: 3 12;
+  animation: route-flow 2.4s linear infinite;
+}
+@keyframes route-flow {
+  to {
+    stroke-dashoffset: -30;
+  }
+}
+.pulse-dot {
+  animation: pulse-dot 2.2s ease-out infinite;
+}
+@keyframes pulse-dot {
+  0% {
+    box-shadow: 0 0 0 0 rgb(255 122 69 / 0.7);
+  }
+  100% {
+    box-shadow: 0 0 0 12px rgb(255 122 69 / 0);
+  }
+}
+
+/* ---- Scroll-linked line of the "how it works" timeline (--p is 0..1, set by <ScrollProgress>) ---- */
+.progress-fill {
+  transform-origin: top;
+  transform: scaleY(var(--p, 1));
+}
+@media (min-width: 768px) {
+  .progress-fill {
+    transform-origin: left;
+    transform: scaleX(var(--p, 1));
+  }
+}
+
+.dot-grid {
+  background-image: radial-gradient(rgb(11 79 92 / 0.16) 1.2px, transparent 1.2px);
+  background-size: 22px 22px;
+}
+
+/* ---- Route line of the coverage cards: dashes that flow away from Díli ---- */
+.route-line {
+  background-image: linear-gradient(to bottom, var(--color-brand-300) 55%, transparent 0);
+  background-size: 2px 10px;
+  background-repeat: repeat-y;
+  animation: route-line 1.4s linear infinite;
+}
+@keyframes route-line {
+  to {
+    background-position-y: 10px;
   }
 }

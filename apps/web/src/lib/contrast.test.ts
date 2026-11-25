@@ -54,6 +54,14 @@ describe('colour contrast of the real design tokens (WCAG AA: 4.5:1 for normal t
     ['chips: slate-800 on slate-100', SLATE_800, '#f1f5f9'],
     ['chips: brand-800 on brand-100', token('brand-800'), token('brand-100')],
     ['accent-700 heading on white', token('accent-700'), WHITE],
+    ['header links (brand-100) on brand-900', token('brand-100'), token('brand-900')],
+    ['white on trust band (brand-900)', WHITE, token('brand-900')],
+    ['trust body text (brand-100) on brand-900', token('brand-100'), token('brand-900')],
+    ['hero subtitle (brand-100) on the darkest hero stop', token('brand-100'), token('brand-800')],
+    ['page banner lead (brand-100) on brand-700', token('brand-100'), token('brand-700')],
+    ['stat number (brand-700) on white', token('brand-700'), WHITE],
+    ['CTA band text (brand-100) on brand-600', token('brand-100'), token('brand-600')],
+    ['white on CTA band end stop (brand-600)', WHITE, token('brand-600')],
   ];
   it.each(pairs)('%s', (_name, fg, bg) => expect(ratio(fg, bg)).toBeGreaterThanOrEqual(AA));
 

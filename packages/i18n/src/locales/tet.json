@@ -65,7 +65,8 @@
       "subtitle": "Husi kios ajente 670Link besik Ita to'o munisípiu destinu — ho OTP, foto prova no notifikasaun WhatsApp.",
       "ctaCalculate": "Kalkula taxa haruka",
       "ctaTrack": "Akompaña pakote",
-      "ctaBook": "Husu kurir foti pakote"
+      "ctaBook": "Husu kurir foti pakote",
+      "eyebrow": "Lojístika pakote iha Timor-Leste"
     },
     "schemes": {
       "SCHEME_A": "Ajente ba Ajente",
@@ -213,7 +214,8 @@
       "exploreHeading": "Esplora",
       "legalHeading": "Legál",
       "about": "670Send lori pakote entre munisípiu 14 iha Timor-Leste. Opera husi {operator}.",
-      "support": "Apoiu WhatsApp"
+      "support": "Apoiu WhatsApp",
+      "top": "Fila ba leten"
     },
     "meta": {
       "home": {
@@ -308,7 +310,13 @@
       "coverageTitle": "Munisípiu 14 hotu",
       "coverageLead": "Díli mak ami-nia hub: rota hotu hahú ka remata iha Díli.",
       "ctaTitle": "Prontu atu haruka?",
-      "ctaBody": "Hatene taxa iha segundu balu. La presiza rejistu."
+      "ctaBody": "Hatene taxa iha segundu balu. La presiza rejistu.",
+      "stats": {
+        "municipalities": "Munisípiu konekta",
+        "schemes": "Dalan atu haruka",
+        "steps": "Etapa tracking",
+        "languages": "Lian"
+      }
     },
     "corridors": {
       "LOCAL": "Lokál",

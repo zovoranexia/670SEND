@@ -65,7 +65,8 @@
       "subtitle": "From your nearest 670Link agent kiosk to the destination municipality — with OTP, proof photos and WhatsApp updates.",
       "ctaCalculate": "Calculate shipping rate",
       "ctaTrack": "Track a parcel",
-      "ctaBook": "Book a courier pick-up"
+      "ctaBook": "Book a courier pick-up",
+      "eyebrow": "Parcel logistics for Timor-Leste"
     },
     "schemes": {
       "SCHEME_A": "Agent to Agent",
@@ -213,7 +214,8 @@
       "exploreHeading": "Explore",
       "legalHeading": "Legal",
       "about": "670Send moves parcels between all 14 municipalities of Timor-Leste. Operated by {operator}.",
-      "support": "WhatsApp support"
+      "support": "WhatsApp support",
+      "top": "Back to top"
     },
     "meta": {
       "home": {
@@ -308,7 +310,13 @@
       "coverageTitle": "All 14 municipalities",
       "coverageLead": "Díli is our hub: every route starts or ends in Díli.",
       "ctaTitle": "Ready to send?",
-      "ctaBody": "Get your price in seconds. No sign-up needed."
+      "ctaBody": "Get your price in seconds. No sign-up needed.",
+      "stats": {
+        "municipalities": "Municipalities connected",
+        "schemes": "Ways to send",
+        "steps": "Tracked steps",
+        "languages": "Languages"
+      }
     },
     "corridors": {
       "LOCAL": "Local",
