@@ -8,7 +8,7 @@ import { Reveal } from '@/components/fx/reveal';
 import { ScrollProgress } from '@/components/fx/scroll-progress';
 import { IconBus, IconCalc, IconCamera, IconChat, IconPackage, IconPin, IconSearch, IconShield, IconShip, IconTag, IconTruck } from '@/components/icons';
 import { Link } from '@/i18n/navigation';
-import { groupByCorridor } from '@/lib/municipalities';
+import { groupByCorridor, MUNICIPALITY_OPTIONS } from '@/lib/municipalities';
 import { pageMetadata } from '@/lib/seo';
 
 type Props = { params: Promise<{ locale: Locale }> };
@@ -38,6 +38,8 @@ const STATS = [
   { key: 'steps', value: '5' },
   { key: 'languages', value: '4' },
 ] as const;
+
+const hub = MUNICIPALITY_OPTIONS.find((m) => m.code === 'DIL')!;
 
 const delay = (ms: number) => ({ '--d': `${ms}ms` }) as CSSProperties;
 
@@ -260,25 +262,66 @@ export default async function HomePage({ params }: Props) {
           </h2>
           <p className="section-lead">{t('home.coverageLead')}</p>
         </Reveal>
-        <div className="mt-10 grid gap-5 md:grid-cols-2 lg:grid-cols-3">
-          {groupByCorridor().map(({ corridor, items }, i) => (
-            <Reveal key={corridor} delay={(i % 3) * 90} className="card transition duration-300 hover:-translate-y-1 hover:shadow-lift">
-              <h3 className="flex items-center gap-3 text-lg font-bold text-brand-800">
-                <span className="flex h-10 w-10 items-center justify-center rounded-xl bg-brand-50 text-brand-700">
-                  {corridor === 'SEA' ? <IconShip width={22} height={22} /> : <IconBus width={22} height={22} />}
-                </span>
-                {t(`corridors.${corridor}`)}
-              </h3>
-              <ul className="mt-4 flex flex-wrap gap-2">
-                {items.map((m) => (
-                  <li key={m.code} className={`rounded-full px-3.5 py-1.5 text-sm font-medium ${m.isSea ? 'bg-brand-100 text-brand-800' : 'bg-slate-100 text-slate-800'}`}>
-                    {m.name}
-                  </li>
+        <div className="mt-10 grid gap-5 lg:grid-cols-[minmax(0,1fr)_minmax(0,2fr)]">
+          {/* Díli: the hub every route starts or ends in */}
+          <Reveal className="on-dark relative isolate flex min-h-64 flex-col justify-between overflow-hidden rounded-3xl bg-gradient-to-br from-brand-900 via-brand-800 to-brand-600 p-7 text-white shadow-lift">
+            <Parallax speed={0.2} className="absolute inset-0 -z-10" innerClassName="h-full">
+              <svg viewBox="0 0 400 300" preserveAspectRatio="xMidYMid slice" className="h-full w-full" fill="none" aria-hidden="true" focusable="false">
+                {[60, 110, 160, 215].map((r) => (
+                  <circle key={r} cx="300" cy="210" r={r} stroke="white" strokeOpacity={0.16 - r / 2400} strokeWidth="1.5" strokeDasharray="3 9" />
                 ))}
-              </ul>
-              {corridor === 'SEA' && <p className="mt-3 text-sm text-slate-600">{t('calculator.seaNotice')}</p>}
-            </Reveal>
-          ))}
+              </svg>
+            </Parallax>
+            <h3 className="flex items-center gap-3 text-lg font-bold">
+              <span className="flex h-10 w-10 items-center justify-center rounded-xl bg-white/15">
+                <IconPin width={22} height={22} />
+              </span>
+              {t('corridors.LOCAL')}
+            </h3>
+            <div>
+              <p className="flex items-center gap-4 text-5xl font-extrabold tracking-tight sm:text-6xl">
+                <span className="pulse-dot h-4 w-4 shrink-0 rounded-full bg-[#ff7a45]" aria-hidden="true" />
+                {hub.name}
+              </p>
+            </div>
+          </Reveal>
+
+          <div className="grid gap-5 sm:grid-cols-2">
+            {groupByCorridor()
+              .filter((g) => g.corridor !== 'LOCAL')
+              .map(({ corridor, items }, i) => {
+                const sea = corridor === 'SEA';
+                return (
+                  <Reveal key={corridor} delay={i * 90} className="group overflow-hidden rounded-3xl bg-white shadow-soft ring-1 ring-slate-200/80 transition duration-300 hover:-translate-y-1 hover:shadow-lift">
+                    <div className={`flex items-center gap-3 px-5 py-4 text-white ${sea ? 'bg-gradient-to-r from-accent-700 to-accent-600' : 'bg-gradient-to-r from-brand-800 to-brand-600'}`}>
+                      <span className="flex h-10 w-10 items-center justify-center rounded-xl bg-white/15 transition group-hover:rotate-6 group-hover:scale-110">
+                        {sea ? <IconShip width={22} height={22} /> : <IconBus width={22} height={22} />}
+                      </span>
+                      <h3 className="text-lg font-bold">{t(`corridors.${corridor}`)}</h3>
+                      <span className="ml-auto rounded-full bg-white/15 px-2.5 py-0.5 text-sm font-bold" aria-hidden="true">
+                        {items.length}
+                      </span>
+                    </div>
+                    <div className="p-5">
+                      <ul className="relative space-y-0.5 pl-7">
+                        <span className="route-line absolute bottom-4 left-[0.55rem] top-4 w-0.5" aria-hidden="true" />
+                        <li className="relative flex min-h-9 items-center rounded-lg px-2 font-bold text-brand-800">
+                          <span className="absolute -left-[1.625rem] top-1/2 h-4 w-4 -translate-y-1/2 rounded-full bg-[#ff7a45] ring-4 ring-white" aria-hidden="true" />
+                          {hub.name}
+                        </li>
+                        {items.map((m) => (
+                          <li key={m.code} className="relative flex min-h-9 items-center rounded-lg px-2 text-base font-medium text-slate-800 transition hover:bg-brand-50 hover:text-brand-800">
+                            <span className={`absolute -left-6 top-1/2 h-3 w-3 -translate-y-1/2 rounded-full ring-4 ring-white ${sea ? 'bg-accent-600' : 'bg-brand-500'}`} aria-hidden="true" />
+                            {m.name}
+                          </li>
+                        ))}
+                      </ul>
+                      {sea && <p className="mt-4 rounded-xl bg-accent-50 p-3 text-sm text-slate-800">{t('calculator.seaNotice')}</p>}
+                    </div>
+                  </Reveal>
+                );
+              })}
+          </div>
         </div>
       </section>
 
